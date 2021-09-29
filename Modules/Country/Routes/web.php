@@ -3,16 +3,34 @@
 use Modules\Country\Http\Controllers\CountryController;
 
 Route::group([
-    'prefix' => 'countries',
-    'as' => 'countries.'
+    'prefix' => 'dashboard/paises',
+    'as' => 'country.'
 ], function () {
 
-    Route::get('/datatable', [CountryController::class, 'dataTable'])->name('datatable');
-    Route::delete('/destroy/{id}', [CountryController::class, 'destroy'])->name('destroy');
-    Route::put('/edit/{id}', [CountryController::class, 'update'])->name('update');
-    Route::get('/edit/{id}', [CountryController::class, 'edit'])->name('edit');
-    Route::get('/show/{id}', [CountryController::class, 'show'])->name('show');
-    Route::post('/create', [CountryController::class, 'store'])->name('store');
-    Route::get('/create', [CountryController::class, 'create'])->name('create');
-    Route::get('/', [CountryController::class, 'index'])->name('index');
+    Route::get('/', [CountryController::class, 'index'])
+        ->name('index');
+
+    Route::post('/datatable', [CountryController::class, 'dataTable'])
+        ->name('datatable');
+
+    Route::get('/{id}/ver', [CountryController::class, 'show'])
+        ->name('show');
+
+    Route::get('/cadastrar', [CountryController::class, 'create'])
+        ->name('create');
+
+    Route::post('/cadastrar', [CountryController::class, 'store'])
+        ->name('store');
+
+    Route::get('/{id}/editar', [CountryController::class, 'edit'])
+        ->name('edit');
+
+    Route::put('/{id}/editar', [CountryController::class, 'update'])
+        ->name('update');
+
+    Route::get('/{id}/confirar-exclusao', [CountryController::class, 'confirmDelete'])
+        ->name('confirmDelete');
+
+    Route::delete('/{id}/excluir', [CountryController::class, 'destroy'])
+        ->name('destroy');
 });

@@ -11,7 +11,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="{{ route('countries.index') }}" class="nav-link {{ Ekko::isActiveRoute('countries*')}}">
+            <a href="{{ route('country.index') }}" class="nav-link {{ Ekko::isActiveRoute('country*')}}">
               <i class="fas fa-globe-americas"></i>
               <p>Paises</p>
             </a>

@@ -18,6 +18,16 @@ class CountryController extends Controller
     }
 
     /**
+     * DataTables com ajax.
+     *
+     * @return json
+    */
+    public function dataTable()
+    { //
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
@@ -63,6 +73,18 @@ class CountryController extends Controller
      * @return Renderable
      */
     public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Confirmar exclusão.
+     *
+     * @param int $id
+     *
+     * @return Renderable
+     */
+    public function confirmDelete()
     {
         //
     }
