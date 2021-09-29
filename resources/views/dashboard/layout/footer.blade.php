@@ -1,5 +1,5 @@
 
   <footer class="main-footer">
-    
-  <strong>&copy;<?php echo date("Y"); ?></strong> Todos os direitos reservados.
+
+  <strong>Dashboard<?php echo date("Y"); ?></strong>
   </footer>

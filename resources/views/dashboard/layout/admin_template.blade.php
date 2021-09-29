@@ -1,34 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  
-  @include('dashboard.layout.header-scripts')
+
+    @include('dashboard.layout.header-scripts')
+
+    @yield('header-extras')
 
 </head>
+
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
 
-  @include('dashboard.layout.navbar')
+    <div class="wrapper">
 
-  @include('dashboard.layout.sidebar')
+        @include('dashboard.layout.header')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+        @include('dashboard.layout.sidebar')
 
-  @yield('content')
 
-  </div>
-  <!-- /.content-wrapper -->
+        <div class="content-wrapper">
 
-  @include('dashboard.layout.footer')
+            <div class="card-body">
+                @yield('content')
+            </div>
 
-</div>
-<!-- ./wrapper -->
+            <div class="card-footer"></div>
 
-@include('dashboard.layout.footer-scripts')
+        </div>
+
+
+        @include('dashboard.layout.footer')
+
+    </div>
+
+
+    @include('dashboard.layout.footer-scripts')
 
 
 </body>
+
 </html>
