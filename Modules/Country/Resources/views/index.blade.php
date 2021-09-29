@@ -13,9 +13,6 @@
                             <i class="fa fa-plus"></i> Novo</a>
                         </a>
                     </div>
-                    <div class="card-header">
-                        <h3 class="card-title">Paises</h3>
-                    </div>
 
                     @include('country::includes.alerts')
 
