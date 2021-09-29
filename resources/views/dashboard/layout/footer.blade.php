@@ -1,5 +1,5 @@
 
   <footer class="main-footer">
 
-  <strong>Dashboard<?php echo date("Y"); ?></strong>
+  <strong>Dashboard</strong> <?php echo date("Y") ?>
   </footer>
