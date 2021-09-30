@@ -7,7 +7,7 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { data: "action", orderable: false, searchable: false },
+            { data: "action", orderable: false, searchable: false }
         ],
     });
 });
