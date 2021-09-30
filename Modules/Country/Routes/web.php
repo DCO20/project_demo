@@ -3,7 +3,7 @@
 use Modules\Country\Http\Controllers\CountryController;
 
 Route::group([
-    'prefix' => 'dashboard/paises',
+    'prefix' => 'dashboard/pais',
     'as' => 'country.'
 ], function () {
 
