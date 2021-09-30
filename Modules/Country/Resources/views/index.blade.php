@@ -19,7 +19,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <input type="hidden" id="route_datatable_country" value="">
+                        <input type="hidden" id="route_datatable_country" value="{{ route('country.datatable') }}">
 
                         <table class="table table-bordered table-striped" id="ajax-datatable-country">
                             <thead>

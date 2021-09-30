@@ -11,7 +11,9 @@ class Country extends Model
 
     protected $table = "countries";
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name'
+    ];
 
     protected $dates = [
         'created_at',

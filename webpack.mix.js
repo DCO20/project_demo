@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,13 +11,24 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.combine([
-    "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
-    "node_modules/admin-lte/dist/css/adminlte.css",
-],
+// Geral
+mix.combine(
+    [
+        "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
+        "node_modules/admin-lte/dist/css/adminlte.css",
+    ],
     "public/css/adminlte.css"
 );
 
+// DataTable Ajax
+mix.combine(
+    [
+        "node_modules/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css",
+        "node_modules/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.css",
+        "node_modules/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.css",
+    ],
+    "public/css/datatable.css"
+);
 
 /*
  |--------------------------------------------------------------------------
@@ -30,11 +41,31 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.combine([
-    "node_modules/admin-lte/plugins/jquery/jquery.js",
-    "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.js",
-    "node_modules/admin-lte/dist/js/adminlte.js",
-    "node_modules/admin-lte/scripts/script.js"
- ],
+// Geral
+mix.combine(
+    [
+        "node_modules/admin-lte/plugins/jquery/jquery.js",
+        "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.js",
+        "node_modules/admin-lte/dist/js/adminlte.js",
+        "node_modules/admin-lte/scripts/script.js",
+    ],
     "public/js/adminlte.js"
+);
+
+// DataTable JS
+mix.combine(
+    [
+        "node_modules/admin-lte/plugins/datatables/jquery.dataTables.js",
+        "node_modules/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.js",
+        "node_modules/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.js",
+        "node_modules/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.js",
+        "node_modules/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.js",
+        "node_modules/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.js",
+    ],
+    "public/js/datatables.js"
+);
+
+mix.combine(
+    ["Modules/Country/Resources/assets/js/country.js"],
+    "public/js/country.js"
 );

@@ -1,4 +1,7 @@
 {
     "/css/adminlte.css": "/css/adminlte.css",
-    "/js/adminlte.js": "/js/adminlte.js"
+    "/css/datatable.css": "/css/datatable.css",
+    "/js/adminlte.js": "/js/adminlte.js",
+    "/js/datatables.js": "/js/datatables.js",
+    "/js/country.js": "/js/country.js"
 }
