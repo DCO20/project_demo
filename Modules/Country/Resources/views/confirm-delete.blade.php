@@ -11,14 +11,6 @@
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('country.edit', $country->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                 <a href="{{ route('country.confirm_delete', $country->id) }}" class="btn btn-danger">
-                   <i class="fas fa-trash"></i> Deletar
-                </a>
-            </div>
         </div>
     </div>
 @endsection
@@ -42,9 +34,26 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nome:</label>
-                                    <input type="text" name="name" class="form-control" readonly value="{{ $country->name }}">
+                                    <input type="text" name="name" class="form-control" readonly>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <form action="{{ route('country.delete', $country->id) }}" method="post">
+
+                                {{-- Elementos Ocultos --}}
+                                @csrf
+                                @method('DELETE')
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Excluir
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
                     </div>

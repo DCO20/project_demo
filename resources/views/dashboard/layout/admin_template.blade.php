@@ -20,7 +20,7 @@
 
         <div class="content-wrapper">
 
-            @yield('content-header')
+            @yield('content_header')
 
             <section class="content">
 

@@ -1,11 +1,25 @@
 @extends('country::layouts.master')
 
-@section('page_title', 'Cadastro Pais')
+@section('title', 'País')
+
+@section('content_header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-10">
+                <ol class="breadcrumb float-sm-left">
+                    <li class="breadcrumb-item">País</li>
+                    <li class="breadcrumb-item active">Cadastro</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+@endsection
 
 @section('content')
 
-    {{-- Alertas --}}
-    @include('country::includes.alerts')
+    {{-- Respostas --}}
+    @include('dashboard.partials.errors')
+    @include('dashboard.partials.success')
 
     <div class="container-fluid">
         <div class="row">
@@ -19,7 +33,7 @@
 
                         <div class="card-header">
                             <h3 class="card-title">
-                                Summernote
+                                Dados do País
                             </h3>
                         </div>
 
@@ -29,7 +43,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Nome<span class="text-danger">*</span></label>
+                                        <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
                                 </div>

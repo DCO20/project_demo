@@ -2,20 +2,35 @@
 
 @section('title', 'Paises')
 
+@section('content_header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-10">
+                <ol class="breadcrumb float-sm-left">
+                    <li class="breadcrumb-item">País</li>
+                    <li class="breadcrumb-item active">Painel de Controle</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 text-right">
+                <a href="{{ route('country.create') }}" class="btn btn-primary">
+                    <i class="fa fa-plus fa-fw"></i> Cadastrar
+                </a>
+            </div>
+        </div>
+    </div>
+@endsection
+
 @section('content')
 
-    @include('country::includes.alerts')
+    {{-- Respostas --}}
+    @include('dashboard.partials.errors')
+    @include('dashboard.partials.success')
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
 
                 <div class="card">
-                    <div class="mt-3 ml-3">
-                        <a href="{{ route('country.create') }}" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> Novo</a>
-                        </a>
-                    </div>
 
                     <div class="card-body">
 
