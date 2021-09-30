@@ -9,7 +9,7 @@
 
                 <div class="card">
                     <div class="mt-3 ml-3">
-                        <a href="{{ route('countries.create') }}" class="btn btn-primary">
+                        <a href="{{ route('country.create') }}" class="btn btn-primary">
                             <i class="fa fa-plus"></i> Novo</a>
                         </a>
                     </div>
