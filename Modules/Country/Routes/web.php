@@ -29,8 +29,8 @@ Route::group([
         ->name('update');
 
     Route::get('/{id}/confirar-exclusao', [CountryController::class, 'confirmDelete'])
-        ->name('confirmDelete');
+        ->name('confirm_delete');
 
-    Route::delete('/{id}/excluir', [CountryController::class, 'destroy'])
-        ->name('destroy');
+    Route::delete('/{id}/excluir', [CountryController::class, 'delete'])
+        ->name('delete');
 });

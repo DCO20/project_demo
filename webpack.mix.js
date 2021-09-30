@@ -30,6 +30,14 @@ mix.combine(
     "public/css/datatable.css"
 );
 
+// Sidebar Link Active
+mix.combine(
+    [
+        "resources/css/style.css",
+    ],
+    "public/css/style.css"
+);
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management JS

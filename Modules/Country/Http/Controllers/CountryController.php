@@ -2,12 +2,10 @@
 
 namespace Modules\Country\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
 use Modules\Country\Entities\Country;
-use Illuminate\Contracts\Support\Renderable;
-use Modules\Country\Http\Requests\StoreUpdateRequest;
+use Modules\Country\Http\Requests\CountryRequest;
 
 class CountryController extends Controller
 {
@@ -17,10 +15,7 @@ class CountryController extends Controller
     {
         $this->country = $country;
     }
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
+
     public function index()
     {
         return view('country::index');
@@ -51,34 +46,20 @@ class CountryController extends Controller
             ->make(true);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create()
     {
         return view('country::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function store(StoreUpdateRequest $request)
+    public function store(CountryRequest $request)
     {
         $this->country->create($request->all());
 
         return redirect()
-            ->back()
+            ->route('country.index')
             ->with('message', 'Cadastrado realizado com sucesso!');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function show($id)
     {
         $country = $this->country->findOrFail($id);
@@ -86,11 +67,6 @@ class CountryController extends Controller
         return view('country::show', compact('country'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function edit($id)
     {
         $country = $this->country->findOrFail($id);
@@ -98,13 +74,7 @@ class CountryController extends Controller
         return view('country::edit', compact('country'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(StoreUpdateRequest $request, $id)
+    public function update(CountryRequest $request, $id)
     {
         $country = $this->country->findOrFail($id);
 
@@ -115,24 +85,12 @@ class CountryController extends Controller
             ->with('message', 'Atualização realizada com sucesso.');
     }
 
-    /**
-     * Confirmar exclusão.
-     *
-     * @param int $id
-     *
-     * @return Renderable
-     */
     public function confirmDelete()
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
+    public function delete($id)
     {
         //
     }

@@ -38,7 +38,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-check"></i>Salvar</button>
+                                            <i class="fas fa-check"></i> Salvar</button>
                                     </div>
                                 </div>
                             </div>

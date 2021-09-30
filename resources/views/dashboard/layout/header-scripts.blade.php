@@ -7,3 +7,4 @@
 <!-- Style -->
 <link rel="stylesheet" href="{{ mix('css/adminlte.css') }}">
 <link rel="stylesheet" href="{{ mix('css/datatable.css') }}">
+<link rel="stylesheet" href="{{ mix('css/style.css') }}">

@@ -3,6 +3,9 @@
 @section('title', 'Paises')
 
 @section('content')
+
+    @include('country::includes.alerts')
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -14,9 +17,6 @@
                         </a>
                     </div>
 
-                    @include('country::includes.alerts')
-
-                    <!-- /.card-header -->
                     <div class="card-body">
 
                         <input type="hidden" id="route_datatable_country" value="{{ route('country.datatable') }}">
