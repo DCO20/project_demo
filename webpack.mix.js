@@ -19,16 +19,9 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.css",
         "node_modules/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.css",
         "node_modules/admin-lte/dist/css/adminlte.css",
+        "resources/css/style.css"
     ],
     "public/css/adminlte.css"
-);
-
-// Sidebar Link Active
-mix.styles(
-    [
-        "resources/css/style.css",
-    ],
-    "public/css/style.css"
 );
 
 /*
@@ -60,6 +53,5 @@ mix.combine(
 );
 
 mix.scripts(
-    ["Modules/Country/Resources/assets/js/country.js"],
-    "public/js/country.js"
+    "Modules/Country/Resources/assets/js/country.js", "public/js/country.js"
 );

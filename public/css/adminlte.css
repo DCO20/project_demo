@@ -57707,3 +57707,9 @@ a.text-muted:hover {
   color: #3f474e;
 }
 /*# sourceMappingURL=adminlte.css.map */
+/*Sidebar Link Active*/
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+.sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #494e53;
+    color: #fff;
+}
