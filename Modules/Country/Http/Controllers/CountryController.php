@@ -41,9 +41,9 @@ class CountryController extends Controller
      */
     public function dataTable()
     {
-        $country = Country::get();
+        $countries = $this->country->query();
 
-        return DataTables::of($country)
+        return DataTables::of($countries)
             ->addColumn("action", function ($country) {
                 return '<div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -53,6 +53,7 @@ class CountryController extends Controller
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="' . route('country.show', $country->id) . '">Ver</a>
                         <a class="dropdown-item" href="' . route('country.edit', $country->id) . '">Editar</a>
+                        <a class="dropdown-item" href="' . route('country.confirm_delete', $country->id) . '">Excluir</a>
                         </div>';
             })
             ->rawColumns(['action'])

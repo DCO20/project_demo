@@ -34,7 +34,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nome:</label>
-                                    <input type="text" name="name" class="form-control" readonly>
+                                    <input type="text" name="name" class="form-control" readonly value="{{ $country->name }}">
                                 </div>
                             </div>
                         </div>

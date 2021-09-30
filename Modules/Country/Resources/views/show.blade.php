@@ -16,7 +16,7 @@
                     <i class="fas fa-pen"></i> Editar
                 </a>
                  <a href="{{ route('country.confirm_delete', $country->id) }}" class="btn btn-danger">
-                   <i class="fas fa-trash"></i> Deletar
+                   <i class="fas fa-trash"></i> Excluir
                 </a>
             </div>
         </div>

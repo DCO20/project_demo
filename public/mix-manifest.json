@@ -1,8 +1,6 @@
 {
     "/css/adminlte.css": "/css/adminlte.css",
-    "/css/datatable.css": "/css/datatable.css",
     "/css/style.css": "/css/style.css",
     "/js/adminlte.js": "/js/adminlte.js",
-    "/js/datatables.js": "/js/datatables.js",
     "/js/country.js": "/js/country.js"
 }

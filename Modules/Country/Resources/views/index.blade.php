@@ -2,6 +2,9 @@
 
 @section('title', 'Paises')
 
+@section('header-extras')
+@endsection
+
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
@@ -34,9 +37,11 @@
 
                     <div class="card-body">
 
-                        <input type="hidden" id="route_datatable_country" value="{{ route('country.datatable') }}">
+                        {{-- Elementos Ocultos --}}
+                        @csrf
+                        <input type="hidden" id="route_datatable" value="{{ route('country.datatable') }}">
 
-                        <table class="table table-bordered table-striped" id="ajax-datatable-country">
+                        <table class="table table-bordered table-striped" id="ajax-datatable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -44,12 +49,22 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            </tbody>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer-extras')
+    <script src="{{ mix('js/country.js') }}"></script>
 @endsection

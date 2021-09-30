@@ -36,6 +36,7 @@
 
     @include('dashboard.layout.footer-scripts')
 
+    @yield('footer-extras')
 
 </body>
 

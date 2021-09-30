@@ -10,7 +10,7 @@ Route::group([
     Route::get('/', [CountryController::class, 'index'])
         ->name('index');
 
-    Route::get('/datatable', [CountryController::class, 'dataTable'])
+    Route::post('/datatable', [CountryController::class, 'dataTable'])
         ->name('datatable');
 
     Route::get('/{id}/ver', [CountryController::class, 'show'])
