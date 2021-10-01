@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Modules\Country\Http\Requests;
 use Modules\Country\Entities\Country;
 use Modules\Country\Http\Requests\CountryRequest;
+use Modules\Country\Services\CountryServices;
 
 class CountryController extends Controller
 {
@@ -76,9 +77,9 @@ class CountryController extends Controller
      * @param Requests\CountryRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CountryRequest $request)
+    public function store(CountryRequest $request, CountryServices $country_service)
     {
-        $this->country->create($request->all());
+        $country_service->register($request->all());
 
         return redirect()
             ->route('country.index')
@@ -118,11 +119,11 @@ class CountryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(CountryRequest $request, $id)
+    public function update(CountryRequest $request, $id, CountryServices $country_service)
     {
         $country = $this->country->findOrFail($id);
 
-        $country->update($request->all());
+        $country_service->register($request->all(), $country->id);
 
         return redirect()
             ->route('country.edit', $country->id)
