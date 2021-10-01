@@ -15,8 +15,8 @@
                 <a href="{{ route('country.edit', $country->id) }}" class="btn btn-primary">
                     <i class="fas fa-pen"></i> Editar
                 </a>
-                 <a href="{{ route('country.confirm_delete', $country->id) }}" class="btn btn-danger">
-                   <i class="fas fa-trash"></i> Excluir
+                <a href="{{ route('country.confirm_delete', $country->id) }}" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Excluir
                 </a>
             </div>
         </div>
@@ -38,6 +38,7 @@
 
                     <div class="card-body">
 
+                        {{-- Nome --}}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
