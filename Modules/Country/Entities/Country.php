@@ -2,13 +2,21 @@
 
 namespace Modules\Country\Entities;
 
+use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Modules\Country\Presenter\CountryPresenter;
 
 class Country extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Presentable;
+
+    /**
+     * Presenter
+     *
+     * @var string $presenter
+    */
+    protected $presenter = CountryPresenter::class;
 
     /**
      * Tabela do banco de dados

@@ -46,16 +46,7 @@ class CountryController extends Controller
 
         return DataTables::of($countries)
             ->addColumn("action", function ($country) {
-                return '<div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="' . route('country.show', $country->id) . '">Ver</a>
-                        <a class="dropdown-item" href="' . route('country.edit', $country->id) . '">Editar</a>
-                        <a class="dropdown-item" href="' . route('country.confirm_delete', $country->id) . '">Excluir</a>
-                        </div>';
+                return $country->actionView();
             })
             ->rawColumns(['action'])
             ->make(true);
