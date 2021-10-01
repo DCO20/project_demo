@@ -16,9 +16,10 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('country_id');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('lat');
+            $table->string('long');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('country_id')->references('id')->on('countries');
         });

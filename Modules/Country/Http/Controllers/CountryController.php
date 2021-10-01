@@ -7,11 +7,13 @@ use Illuminate\Routing\Controller;
 use Modules\Country\Http\Requests;
 use Modules\Country\Entities\Country;
 use Modules\Country\Http\Requests\CountryRequest;
-use Modules\Country\Services\CountryServices;
+use Modules\Country\Services\CountryService;
 
 class CountryController extends Controller
 {
     protected $country;
+
+    protected $country_service;
 
     /**
      * Método Construtor
@@ -19,9 +21,12 @@ class CountryController extends Controller
      * @param Country $country
      * @return void
      */
-    public function __construct(Country $country)
-    {
+    public function __construct(
+        Country $country,
+        CountryService $country_service
+    ) {
         $this->country = $country;
+        $this->country_service = $country_service;
     }
 
     /**
@@ -68,9 +73,9 @@ class CountryController extends Controller
      * @param Requests\CountryRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CountryRequest $request, CountryServices $country_service)
+    public function store(CountryRequest $request)
     {
-        $country_service->register($request->all());
+        $this->country_service->register($request->all());
 
         return redirect()
             ->route('country.index')
@@ -110,11 +115,11 @@ class CountryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(CountryRequest $request, $id, CountryServices $country_service)
+    public function update(CountryRequest $request, $id)
     {
         $country = $this->country->findOrFail($id);
 
-        $country_service->register($request->all(), $country->id);
+        $this->country_service->register($request->all(), $country->id);
 
         return redirect()
             ->route('country.edit', $country->id)
