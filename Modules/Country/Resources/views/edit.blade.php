@@ -40,7 +40,7 @@
 
                         <div class="card-body">
 
-
+                            {{-- Nome --}}
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -56,6 +56,7 @@
 
                     </div>
 
+                    {{-- Botão que salva os dados --}}
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -65,6 +66,7 @@
                             </div>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
