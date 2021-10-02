@@ -11,7 +11,7 @@ $(document).ready(function () {
     //-----------------------------------------------------
     // Instance of plugins
     //-----------------------------------------------------
-    $("#ajax-datatable_location").DataTable({
+    $("#ajax-datatable-location").DataTable({
         processing: true,
         serverSide: true,
         ajax: {
@@ -24,7 +24,7 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "lat" },
-            { data: "log" },
+            { data: "long" },
             { data: "country" },
             { data: "action", orderable: false, searchable: false },
         ],

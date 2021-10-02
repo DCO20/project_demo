@@ -2,20 +2,22 @@
 
 namespace Modules\Location\Entities;
 
+use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Country\Entities\Country;
+use Modules\Location\Presenter\LocationPresenter;
 
 class Location extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Presentable;
 
     /**
      * Presenter
      *
      * @var string $presenter
      */
-    protected $presenter = CountryPresenter::class;
+    protected $presenter = LocationPresenter::class;
 
     /**
      * Tabela do banco de dados
@@ -54,5 +56,11 @@ class Location extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    // Retorna o valor formatado para o front
+    public function formatCountryName()
+    {
+        return $this->country->pluck('name')->implode(", ");
     }
 }
