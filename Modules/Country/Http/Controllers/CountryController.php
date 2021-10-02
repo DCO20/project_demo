@@ -75,7 +75,7 @@ class CountryController extends Controller
      */
     public function store(CountryRequest $request)
     {
-        $this->country_service->register($request->all());
+        $this->country_service->updateOrCreate($request->all());
 
         return redirect()
             ->route('country.index')
@@ -119,7 +119,7 @@ class CountryController extends Controller
     {
         $country = $this->country->findOrFail($id);
 
-        $this->country_service->register($request->all(), $country->id);
+        $this->country_service->updateOrCreate($request->all(), $country->id);
 
         return redirect()
             ->route('country.edit', $country->id)
