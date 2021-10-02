@@ -15,11 +15,8 @@ class CountryService
      */
     public function updateOrCreate($request, $id = null)
     {
-        Country::updateOrCreate(
-            [
-                'id' => $id
-            ],
-            $request
-        );
+        $country = Country::updateOrCreate(['id' => $id], $request);
+
+        (new InitialService)->updateOrCreate($request, $country->initial->id ?? null);
     }
 }
