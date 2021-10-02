@@ -18,8 +18,9 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css",
         "node_modules/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.css",
         "node_modules/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.css",
+        "node_modules/admin-lte/plugins/select2/css/select2.css",
         "node_modules/admin-lte/dist/css/adminlte.css",
-        "resources/css/style.css"
+        "resources/css/style.css",
     ],
     "public/css/adminlte.css"
 );
@@ -46,12 +47,20 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.js",
         "node_modules/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.js",
         "node_modules/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.js",
+        "node_modules/admin-lte/plugins/select2/js/select2.js",
         "node_modules/admin-lte/dist/js/adminlte.js",
         "node_modules/admin-lte/scripts/script.js",
     ],
     "public/js/adminlte.js"
 );
 
+// Country JS
 mix.scripts(
     "Modules/Country/Resources/assets/js/country.js", "public/js/country.js"
+);
+
+// Location JS
+mix.scripts(
+    "Modules/Location/Resources/assets/js/location.js",
+    "public/js/location.js"
 );

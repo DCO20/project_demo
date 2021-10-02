@@ -3,6 +3,7 @@ $(document).ready(function () {
     // Defining a variable
     //-----------------------------------------------------
     var token = $("input[name='_token']").val();
+    var datatable_url = window.location.origin + "/datatable/pt-br.json";
 
     //-----------------------------------------------------
     // Instance of plugins
@@ -22,5 +23,8 @@ $(document).ready(function () {
             { data: "name" },
             { data: "action", orderable: false, searchable: false },
         ],
+        language: {
+            url: datatable_url,
+        },
     });
 });

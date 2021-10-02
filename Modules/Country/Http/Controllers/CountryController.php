@@ -7,10 +7,13 @@ use Illuminate\Routing\Controller;
 use Modules\Country\Http\Requests;
 use Modules\Country\Entities\Country;
 use Modules\Country\Http\Requests\CountryRequest;
+use Modules\Country\Services\CountryService;
 
 class CountryController extends Controller
 {
     protected $country;
+
+    protected $country_service;
 
     /**
      * Método Construtor
@@ -18,9 +21,12 @@ class CountryController extends Controller
      * @param Country $country
      * @return void
      */
-    public function __construct(Country $country)
-    {
+    public function __construct(
+        Country $country,
+        CountryService $country_service
+    ) {
         $this->country = $country;
+        $this->country_service = $country_service;
     }
 
     /**
@@ -45,16 +51,7 @@ class CountryController extends Controller
 
         return DataTables::of($countries)
             ->addColumn("action", function ($country) {
-                return '<div class="dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="' . route('country.show', $country->id) . '">Ver</a>
-                        <a class="dropdown-item" href="' . route('country.edit', $country->id) . '">Editar</a>
-                        <a class="dropdown-item" href="' . route('country.confirm_delete', $country->id) . '">Excluir</a>
-                        </div>';
+                return $country->actionView();
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -78,7 +75,7 @@ class CountryController extends Controller
      */
     public function store(CountryRequest $request)
     {
-        $this->country->create($request->all());
+        $this->country_service->updateOrCreate($request->all());
 
         return redirect()
             ->route('country.index')
@@ -122,7 +119,7 @@ class CountryController extends Controller
     {
         $country = $this->country->findOrFail($id);
 
-        $country->update($request->all());
+        $this->country_service->updateOrCreate($request->all(), $country->id);
 
         return redirect()
             ->route('country.edit', $country->id)

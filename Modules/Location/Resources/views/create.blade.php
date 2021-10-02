@@ -1,4 +1,4 @@
-@extends('country::layouts.master')
+@extends('location::layouts.master')
 
 @section('title', 'País')
 
@@ -7,7 +7,7 @@
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">País</li>
+                    <li class="breadcrumb-item">Localização</li>
                     <li class="breadcrumb-item active">Cadastro</li>
                 </ol>
             </div>
@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ route('country.store') }}" method="post">
+                <form action="{{ route('location.store') }}" method="post">
 
                     {{-- Elementos Ocultos --}}
                     @csrf
@@ -33,20 +33,46 @@
 
                         <div class="card-header">
                             <h3 class="card-title">
-                                Dados do País
+                                Dados da Localização
                             </h3>
                         </div>
 
                         <div class="card-body">
 
-                            {{-- Nome --}}
+
                             <div class="row">
-                                <div class="col-md-12">
+                                {{-- Latitude --}}
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Nome:<span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control" required>
+                                        <label>Latitude:<span class="text-danger">*</span></label>
+                                        <input type="text" name="lat" class="form-control" required>
                                     </div>
                                 </div>
+
+                                {{-- Longitude --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Longitude:<span class="text-danger">*</span></label>
+                                        <input type="text" name="long" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                {{-- Países --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>País:<span class="text-danger">*</span></label>
+                                        <select name="country_id" class="form-control select2" style="width: 100%;" required>
+
+                                            <option value="">Selecione</option>
+
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>
