@@ -6,6 +6,7 @@ use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Country\Presenter\CountryPresenter;
+use Modules\Location\Entities\Location;
 
 class Country extends Model
 {
@@ -44,4 +45,14 @@ class Country extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * Relacionamento com localização
+     *
+     *  @var array
+     */
+    public function location()
+    {
+        return $this->hasOne(Location::class);
+    }
 }
