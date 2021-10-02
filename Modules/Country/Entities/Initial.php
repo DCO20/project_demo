@@ -1,30 +1,19 @@
 <?php
 
-namespace Modules\Location\Entities;
+namespace Modules\Country\Entities;
 
-use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Country\Entities\Country;
-use Modules\Location\Presenter\LocationPresenter;
 
-class Location extends Model
+class Initial extends Model
 {
-    use SoftDeletes, Presentable;
-
-    /**
-     * Presenter
-     *
-     * @var string $presenter
-     */
-    protected $presenter = LocationPresenter::class;
+    use SoftDeletes;
 
     /**
      * Tabela do banco de dados
      *
      * @var string $table
      */
-    protected $table = 'locations';
+    protected $table = 'initials';
 
     /**
      * Atributos da tabela do banco de dados
@@ -33,8 +22,7 @@ class Location extends Model
      */
     protected $fillable = [
         'country_id',
-        'lat',
-        'long'
+        'name'
     ];
 
     /**
@@ -56,11 +44,5 @@ class Location extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
-    }
-
-    // Retorna o valor formatado para o front
-    public function formatCountryName()
-    {
-        return $this->country->pluck('name')->implode(", ");
     }
 }

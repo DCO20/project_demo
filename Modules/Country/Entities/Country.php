@@ -55,4 +55,14 @@ class Country extends Model
     {
         return $this->hasOne(Location::class);
     }
+
+    /**
+     * Relacionamento com sigla
+     *
+     *  @var array
+     */
+    public function initial()
+    {
+        return $this->hasOne(Initial::class);
+    }
 }
