@@ -17,6 +17,12 @@
               <p>Paises</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('location.index') }}" class="nav-link {{ Ekko::isActiveRoute('location*')}}">
+              <i class="fas fa-location-arrow"></i>
+              <p>Localização</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
