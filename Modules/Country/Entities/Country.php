@@ -78,4 +78,13 @@ class Country extends Model
     {
         return $this->hasMany(State::class);
     }
+
+    /**
+     * Retorna os nomes dos estados que tem relacão com o país
+     *
+     */
+    public function formatStateName()
+    {
+        return $this->states->pluck('name')->implode(", ");
+    }
 }

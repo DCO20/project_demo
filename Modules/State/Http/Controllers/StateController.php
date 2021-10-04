@@ -47,7 +47,7 @@ class StateController extends Controller
      */
     public function dataTable()
     {
-        $states = $this->state->query();
+        $states = $this->state->with('country');
 
         return DataTables::of($states)
             ->addColumn("action", function ($state) {

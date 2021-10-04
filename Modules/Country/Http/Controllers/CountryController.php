@@ -50,10 +50,13 @@ class CountryController extends Controller
         $countries = $this->country->with(['initial', 'states']);
 
         return DataTables::of($countries)
+            ->addColumn("state", function ($country) {
+                return $country->formatStateName();
+            })
             ->addColumn("action", function ($country) {
                 return $country->actionView();
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['state','action'])
             ->make(true);
     }
 

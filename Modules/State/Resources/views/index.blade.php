@@ -39,9 +39,9 @@
 
                         {{-- Elementos Ocultos --}}
                         @csrf
-                        <input type="hidden" id="route_datatable_state" value="{{ route('state.datatable') }}">
+                        <input type="hidden" id="route_datatable" value="{{ route('state.datatable') }}">
 
-                        <table class="table table-bordered table-striped" id="ajax-datatable-state">
+                        <table class="table table-bordered table-striped" id="ajax-datatable">
                             <thead>
                                 <tr>
                                     <th>ID</th>
