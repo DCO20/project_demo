@@ -51,7 +51,7 @@ class LocationController extends Controller
 
         return DataTables::of($locations)
             ->addColumn("country", function ($location) {
-                return $location->formatCountryName();
+                return $location->country->name;
             })
             ->addColumn("action", function ($location) {
                 return $location->actionView();
