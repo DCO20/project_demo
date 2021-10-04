@@ -14,7 +14,8 @@ class CountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'initial' => 'required',
         ];
     }
 
