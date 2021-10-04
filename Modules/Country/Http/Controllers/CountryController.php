@@ -47,7 +47,7 @@ class CountryController extends Controller
      */
     public function dataTable()
     {
-        $countries = $this->country->query();
+        $countries = $this->country->with(['initial', 'states']);
 
         return DataTables::of($countries)
             ->addColumn("action", function ($country) {
@@ -90,7 +90,12 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        $country = $this->country->findOrFail($id);
+        $country = $this->country
+            ->with([
+                'initial',
+                'states'
+            ])
+            ->findOrFail($id);
 
         return view('country::show', compact('country'));
     }
@@ -103,7 +108,9 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        $country = $this->country->findOrFail($id);
+        $country = $this->country
+            ->with('initial')
+            ->findOrFail($id);
 
         return view('country::edit', compact('country'));
     }

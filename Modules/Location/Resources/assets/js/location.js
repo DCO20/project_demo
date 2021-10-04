@@ -25,7 +25,7 @@ $(document).ready(function () {
             { data: "id" },
             { data: "lat" },
             { data: "long" },
-            { data: "country" },
+            { data: "country.name" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {
