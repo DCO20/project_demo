@@ -3,6 +3,7 @@
 namespace Modules\Country\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Initial extends Model
 {
@@ -22,7 +23,7 @@ class Initial extends Model
      */
     protected $fillable = [
         'country_id',
-        'name'
+        'initial'
     ];
 
     /**
