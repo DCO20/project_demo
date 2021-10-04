@@ -25,12 +25,5 @@ class CountryService
         ];
 
         Initial::updateOrCreate(['id' => $country->initial->id ?? null], $data);
-
-        $data = [
-            'country_id' => $country->id,
-            'name' => $request['name']
-        ];
-
-        State::updateOrCreate(['id' => $country->states->id ?? null], $data);
     }
 }
