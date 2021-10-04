@@ -40,14 +40,24 @@
 
                         <div class="card-body">
 
-                            {{-- Nome --}}
                             <div class="row">
-                                <div class="col-md-12">
+
+                                {{-- Nome --}}
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" value="{{ $country->name }}">
                                     </div>
                                 </div>
+
+                                {{-- Sigla --}}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Sigla:<span class="text-danger">*</span></label>
+                                        <input type="text" name="initial" class="form-control" value="{{ $country->initial->initial }}">
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>

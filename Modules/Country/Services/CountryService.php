@@ -3,6 +3,7 @@
 namespace Modules\Country\Services;
 
 use Modules\Country\Entities\Country;
+use Modules\Country\Entities\Initial;
 
 class CountryService
 {
@@ -17,6 +18,12 @@ class CountryService
     {
         $country = Country::updateOrCreate(['id' => $id], $request);
 
-        (new InitialService)->updateOrCreate($request, $country->initial->id ?? null);
+        $initial = [
+            'country_id' => $country->id,
+            'initial' => $request['initial']
+        ];
+
+        Initial::updateOrCreate(['id' => $id, $initial]);
+
     }
 }
