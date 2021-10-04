@@ -2,15 +2,35 @@
 
 namespace Modules\State\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
+use Modules\State\Entities\State;
 use Illuminate\Routing\Controller;
+use Modules\State\Services\StateService;
+use Modules\State\Http\Requests\StateRequest;
 
 class StateController extends Controller
 {
+    protected $state;
+
+    protected $state_service;
+
     /**
-     * Display a listing of the resource.
-     * @return Renderable
+     * Método Construtor
+     *
+     * @param State $state
+     * @return void
+     */
+    public function __construct(
+        State $state,
+        StateService $state_service
+    ) {
+        $this->state = $state;
+        $this->state_service = $state_service;
+    }
+
+    /**
+     * Exibe a tela inicial com a listagem de dados.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -18,8 +38,27 @@ class StateController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
+     * Obtêm os dados para a tabela
+     * @codeCoverageIgnore
+     *
+     * @return string
+     */
+    public function dataTable()
+    {
+        $states = $this->state->query();
+
+        return DataTables::of($states)
+            ->addColumn("action", function ($state) {
+                return $state->actionView();
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    /**
+     * Exibe a tela de cadastro
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -27,53 +66,91 @@ class StateController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     * Cadastra e retorna para a tela inicial
+     *
+     * @param Requests\StateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StateRequest $request)
     {
-        //
+        $this->state_service->updateOrCreate($request->all());
+
+        return redirect()
+            ->route('state.index')
+            ->with('message', 'Cadastro realizado com sucesso.');
     }
 
     /**
-     * Show the specified resource.
+     * Exibe os dados
+     *
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        return view('state::show');
+        $state = $this->state->findOrFail($id);
+
+        return view('state::show', compact('state'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe os dados para edição
+     *
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        return view('state::edit');
+        $state = $this->state->findOrFail($id);
+
+        return view('state::edit', compact('state'));
     }
 
     /**
-     * Update the specified resource in storage.
-     * @param Request $request
+     * Atualiza e retorna para a tela de edição
+     *
+     * @param Requests\StateRequest $request
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(StateRequest $request, $id)
     {
-        //
+        $state = $this->state->findOrFail($id);
+
+        $this->state_service->updateOrCreate($request->all(), $state->id);
+
+        return redirect()
+            ->route('state.edit', $state->id)
+            ->with('message', 'Atualização realizada com sucesso.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Exibe a tela para exclusão
+     *
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\View\View
      */
-    public function destroy($id)
+    public function confirmDelete($id)
     {
-        //
+        $state = $this->state->findOrFail($id);
+
+        return view('state::confirm-delete', compact('state'));
+    }
+
+    /**
+     * Exclui e retorna para a tela inicial
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $state = $this->state->findOrFail($id);
+
+        $state->delete();
+
+        return redirect()
+            ->route('state.index')
+            ->with('message', 'Exclusão realizada com sucesso.');
     }
 }

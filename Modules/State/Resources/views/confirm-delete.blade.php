@@ -33,7 +33,7 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome:</label>
                                     <input type="text" class="form-control" readonly value="{{ $state->name }}">
@@ -41,7 +41,7 @@
                             </div>
 
                             {{-- Sigla --}}
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Sigla:</label>
                                     <input type="text" class="form-control" readonly value="{{ $state->initial }}">
