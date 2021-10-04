@@ -18,12 +18,11 @@ class CountryService
     {
         $country = Country::updateOrCreate(['id' => $id], $request);
 
-        $initial = [
+        $data = [
             'country_id' => $country->id,
             'initial' => $request['initial']
         ];
 
-        Initial::updateOrCreate(['id' => $id, $initial]);
-
+        Initial::updateOrCreate(['id' => $country->initial->id ?? null], $data);
     }
 }

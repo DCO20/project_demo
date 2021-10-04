@@ -18,7 +18,6 @@ class CreateInitialsTable extends Migration
             $table->string('initial');
             $table->unsignedBigInteger('country_id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('country_id')->references('id')->on('countries');
         });
