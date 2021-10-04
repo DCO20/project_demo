@@ -3,10 +3,11 @@
 namespace Modules\Country\Entities;
 
 use App\Traits\Presentable;
+use Modules\Country\Entities\State;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Location\Entities\Location;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Country\Presenter\CountryPresenter;
-use Modules\Location\Entities\Location;
 
 class Country extends Model
 {
@@ -16,7 +17,7 @@ class Country extends Model
      * Presenter
      *
      * @var string $presenter
-    */
+     */
     protected $presenter = CountryPresenter::class;
 
     /**
@@ -64,5 +65,16 @@ class Country extends Model
     public function initial()
     {
         return $this->hasOne(Initial::class);
+    }
+
+
+    /**
+     * Relacionamento com estados
+     *
+     *  @var array
+     */
+    public function states()
+    {
+        return $this->hasOne(State::class);
     }
 }

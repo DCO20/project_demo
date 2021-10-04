@@ -61,7 +61,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Estado:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $country->state->state_name }}">
+                                    <input type="text" class="form-control" readonly value="{{ $country->states->name }}">
                                 </div>
                             </div>
 

@@ -16,7 +16,7 @@ class CountryRequest extends FormRequest
         return [
             'name' => 'required',
             'initial' => 'required',
-            'state_name' => 'required'
+            'name' => 'required'
         ];
     }
 

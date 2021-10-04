@@ -21,8 +21,8 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { data: "sigla" },
-            { data: "state" },
+            { data: "initial.initial" },
+            { data: "states.name" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {

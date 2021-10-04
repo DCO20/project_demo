@@ -61,7 +61,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Estados:<span class="text-danger">*</span></label>
-                                        <input type="text" name="state_name[]" class="form-control" required>
+                                        <input type="text" name="name" class="form-control" required>
                                     </div>
                                 </div>
 
