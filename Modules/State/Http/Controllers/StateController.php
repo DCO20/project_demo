@@ -1,32 +1,32 @@
 <?php
 
-namespace Modules\Country\Http\Controllers;
+namespace Modules\State\Http\Controllers;
 
 use Yajra\DataTables\DataTables;
+use Modules\State\Entities\State;
 use Illuminate\Routing\Controller;
-use Modules\Country\Http\Requests;
 use Modules\Country\Entities\Country;
-use Modules\Country\Http\Requests\CountryRequest;
-use Modules\Country\Services\CountryService;
+use Modules\State\Services\StateService;
+use Modules\State\Http\Requests\StateRequest;
 
-class CountryController extends Controller
+class StateController extends Controller
 {
-    protected $country;
+    protected $state;
 
-    protected $country_service;
+    protected $state_service;
 
     /**
      * Método Construtor
      *
-     * @param Country $country
+     * @param State $state
      * @return void
      */
     public function __construct(
-        Country $country,
-        CountryService $country_service
+        State $state,
+        StateService $state_service
     ) {
-        $this->country = $country;
-        $this->country_service = $country_service;
+        $this->state = $state;
+        $this->state_service = $state_service;
     }
 
     /**
@@ -36,7 +36,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return view('country::index');
+        return view('state::index');
     }
 
     /**
@@ -47,16 +47,13 @@ class CountryController extends Controller
      */
     public function dataTable()
     {
-        $countries = $this->country->with(['initial', 'states']);
+        $states = $this->state->with('country');
 
-        return DataTables::of($countries)
-            ->addColumn("state", function ($country) {
-                return $country->formatStateName();
+        return DataTables::of($states)
+            ->addColumn("action", function ($state) {
+                return $state->actionView();
             })
-            ->addColumn("action", function ($country) {
-                return $country->actionView();
-            })
-            ->rawColumns(['state','action'])
+            ->rawColumns(['action'])
             ->make(true);
     }
 
@@ -67,21 +64,23 @@ class CountryController extends Controller
      */
     public function create()
     {
-        return view('country::create');
+        $countries = Country::all();
+
+        return view('state::create', compact('countries'));
     }
 
     /**
      * Cadastra e retorna para a tela inicial
      *
-     * @param Requests\CountryRequest $request
+     * @param Requests\StateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CountryRequest $request)
+    public function store(StateRequest $request)
     {
-        $this->country_service->updateOrCreate($request->all());
+        $this->state_service->updateOrCreate($request->all());
 
         return redirect()
-            ->route('country.index')
+            ->route('state.index')
             ->with('message', 'Cadastro realizado com sucesso.');
     }
 
@@ -93,14 +92,10 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        $country = $this->country
-            ->with([
-                'initial',
-                'states'
-            ])
+        $state = $this->state->with('country')
             ->findOrFail($id);
 
-        return view('country::show', compact('country'));
+        return view('state::show', compact('state'));
     }
 
     /**
@@ -111,28 +106,31 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        $country = $this->country
-            ->with('initial')
+        $state = $this->state->with('country')
             ->findOrFail($id);
 
-        return view('country::edit', compact('country'));
+        $countries = Country::orderBy('name')
+            ->where('id', '!=', $state->country->id)
+            ->get();
+
+        return view('state::edit', compact('state', 'countries'));
     }
 
     /**
      * Atualiza e retorna para a tela de edição
      *
-     * @param Requests\CountryRequest $request
+     * @param Requests\StateRequest $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(CountryRequest $request, $id)
+    public function update(StateRequest $request, $id)
     {
-        $country = $this->country->findOrFail($id);
+        $state = $this->state->findOrFail($id);
 
-        $this->country_service->updateOrCreate($request->all(), $country->id);
+        $this->state_service->updateOrCreate($request->all(), $state->id);
 
         return redirect()
-            ->route('country.edit', $country->id)
+            ->route('state.edit', $state->id)
             ->with('message', 'Atualização realizada com sucesso.');
     }
 
@@ -144,9 +142,9 @@ class CountryController extends Controller
      */
     public function confirmDelete($id)
     {
-        $country = $this->country->findOrFail($id);
+        $state = $this->state->findOrFail($id);
 
-        return view('country::confirm-delete', compact('country'));
+        return view('state::confirm-delete', compact('state'));
     }
 
     /**
@@ -157,12 +155,12 @@ class CountryController extends Controller
      */
     public function delete($id)
     {
-        $country = $this->country->findOrFail($id);
+        $state = $this->state->findOrFail($id);
 
-        $country->delete();
+        $state->delete();
 
         return redirect()
-            ->route('country.index')
+            ->route('state.index')
             ->with('message', 'Exclusão realizada com sucesso.');
     }
 }

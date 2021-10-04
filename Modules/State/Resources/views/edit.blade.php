@@ -1,14 +1,14 @@
-@extends('country::layouts.master')
+@extends('state::layouts.master')
 
-@section('title', 'País')
+@section('title', 'Estados')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">País</li>
-                    <li class="breadcrumb-item active">Cadastro</li>
+                    <li class="breadcrumb-item">Estados</li>
+                    <li class="breadcrumb-item active">Editar</li>
                 </ol>
             </div>
         </div>
@@ -24,16 +24,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ route('country.store') }}" method="post">
+                <form action="{{ route('state.update', $state->id) }}" method="post">
 
                     {{-- Elementos Ocultos --}}
                     @csrf
+                    @method('PUT')
 
                     <div class="card card-outline card-secondary">
 
                         <div class="card-header">
                             <h3 class="card-title">
-                                Dados do País
+                                Dados da Estados
                             </h3>
                         </div>
 
@@ -42,18 +43,36 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control" required>
+                                        <input type="text" name="name" class="form-control" value="{{ $state->name }}">
                                     </div>
                                 </div>
 
                                 {{-- Sigla --}}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Sigla:<span class="text-danger">*</span></label>
-                                        <input type="text" name="initial" class="form-control" required>
+                                        <input type="text" name="initial" class="form-control" value="{{ $state->initial }}">
+                                    </div>
+                                </div>
+
+                                {{-- Países --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>País:<span class="text-danger">*</span></label>
+                                        <select name="country_id" class="form-control select2" style="width: 100%;" required>
+
+                                            <option value="">Selecione</option>
+
+                                            <option value="{{ $state->country->id }}" selected>{{ $state->country->name }}</option>
+
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
+
+                                        </select>
                                     </div>
                                 </div>
 
@@ -70,7 +89,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-plus fa-fw"></i> Cadastrar
+                                    <i class="fa fa-plus fa-fw"></i> Salvar
                                 </button>
                             </div>
                         </div>
@@ -81,4 +100,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer-extras')
+    <script src="{{ mix('js/state.js') }}"></script>
 @endsection

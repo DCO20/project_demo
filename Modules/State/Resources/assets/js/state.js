@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+
     //-----------------------------------------------------
     // Defining a variable
     //-----------------------------------------------------
@@ -21,8 +24,8 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { data: "initial.initial" },
-            { data: "state", name: "states.name" },
+            { data: "initial" },
+            { data: "country.name" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {

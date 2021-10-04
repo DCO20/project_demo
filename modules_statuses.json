@@ -1,4 +1,5 @@
 {
     "Country": true,
-    "Location": true
+    "Location": true,
+    "State": true
 }

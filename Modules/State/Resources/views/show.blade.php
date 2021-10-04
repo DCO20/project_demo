@@ -1,21 +1,21 @@
-@extends('country::layouts.master')
+@extends('state::layouts.master')
 
-@section('title', 'País')
+@section('title', 'Estados')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">País</li>
+                    <li class="breadcrumb-item">Estados</li>
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
             <div class="col-sm-2 text-right">
-                <a href="{{ route('country.edit', $country->id) }}" class="btn btn-primary">
+                <a href="{{ route('state.edit', $state->id) }}" class="btn btn-primary">
                     <i class="fas fa-pen"></i> Editar
                 </a>
-                <a href="{{ route('country.confirm_delete', $country->id) }}" class="btn btn-danger">
+                <a href="{{ route('state.confirm_delete', $state->id) }}" class="btn btn-danger">
                     <i class="fas fa-trash"></i> Excluir
                 </a>
             </div>
@@ -32,28 +32,39 @@
 
                     <div class="card-header">
                         <h3 class="card-title">
-                            Dados do País
+                            Dados do Estados
                         </h3>
                     </div>
 
                     <div class="card-body">
 
-
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nome:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $country->name }}">
+                                    <input type="text" class="form-control" readonly value="{{ $state->name }}">
                                 </div>
                             </div>
 
                             {{-- Sigla --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Sigla:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $country->initial->initial }}">
+                                    <input type="text" class="form-control" readonly value="{{ $state->initial }}">
+                                </div>
+                            </div>
+
+                             {{-- País --}}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>País:</label>
+                                    <select class="form-control select2" style="width: 100%;" disabled>
+
+                                        <option value="{{ $state->country->id }}" selected>{{ $state->country->name }}</option>
+
+                                    </select>
                                 </div>
                             </div>
 

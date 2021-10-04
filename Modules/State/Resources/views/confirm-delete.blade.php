@@ -1,23 +1,15 @@
-@extends('country::layouts.master')
+@extends('state::layouts.master')
 
-@section('title', 'País')
+@section('title', 'Estados')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">País</li>
+                    <li class="breadcrumb-item">Estados</li>
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
-            </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('country.edit', $country->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                <a href="{{ route('country.confirm_delete', $country->id) }}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
             </div>
         </div>
     </div>
@@ -32,12 +24,11 @@
 
                     <div class="card-header">
                         <h3 class="card-title">
-                            Dados do País
+                            Dados do Estados
                         </h3>
                     </div>
 
                     <div class="card-body">
-
 
                         <div class="row">
 
@@ -45,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $country->name }}">
+                                    <input type="text" class="form-control" readonly value="{{ $state->name }}">
                                 </div>
                             </div>
 
@@ -53,10 +44,27 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Sigla:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $country->initial->initial }}">
+                                    <input type="text" class="form-control" readonly value="{{ $state->initial }}">
                                 </div>
                             </div>
 
+                        </div>
+
+                        <div class="row">
+                            <form action="{{ route('state.delete', $state->id) }}" method="post">
+
+                                {{-- Elementos Ocultos --}}
+                                @csrf
+                                @method('DELETE')
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Excluir
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
                     </div>
