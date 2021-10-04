@@ -22,6 +22,12 @@
                         <p>Localização</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('state.index') }}" class="nav-link {{ Ekko::isActiveRoute('state*') }}">
+                        <i class="fab fa-usps"></i>
+                        <p>Estados</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
