@@ -2,5 +2,6 @@
     "/css/adminlte.css": "/css/adminlte.css",
     "/js/adminlte.js": "/js/adminlte.js",
     "/js/country.js": "/js/country.js",
-    "/js/location.js": "/js/location.js"
+    "/js/location.js": "/js/location.js",
+    "/js/state.js": "/js/state.js"
 }

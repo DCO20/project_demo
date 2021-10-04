@@ -56,11 +56,18 @@ mix.combine(
 
 // Country JS
 mix.scripts(
-    "Modules/Country/Resources/assets/js/country.js", "public/js/country.js"
+    "Modules/Country/Resources/assets/js/country.js",
+    "public/js/country.js"
 );
 
 // Location JS
 mix.scripts(
     "Modules/Location/Resources/assets/js/location.js",
     "public/js/location.js"
+);
+
+// State JS
+mix.scripts(
+    "Modules/State/Resources/assets/js/state.js",
+    "public/js/state.js"
 );

@@ -52,7 +52,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Sigla:<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" readonly value="{{ $state->sigla }}">
+                                    <input type="text" class="form-control" readonly value="{{ $state->initial }}">
                                 </div>
                             </div>
 

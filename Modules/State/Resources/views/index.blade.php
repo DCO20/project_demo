@@ -70,5 +70,5 @@
 @endsection
 
 @section('footer-extras')
-
+    <script src="{{ mix('js/state.js') }}"></script>
 @endsection

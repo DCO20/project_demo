@@ -2,6 +2,7 @@
 
 namespace Modules\State\Http\Controllers;
 
+use Yajra\DataTables\DataTables;
 use Modules\State\Entities\State;
 use Illuminate\Routing\Controller;
 use Modules\State\Services\StateService;
