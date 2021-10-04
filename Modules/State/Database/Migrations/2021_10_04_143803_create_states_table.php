@@ -19,6 +19,7 @@ class CreateStatesTable extends Migration
             $table->string('name');
             $table->string('initial');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('country_id')->references('id')->on('countries');
         });
