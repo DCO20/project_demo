@@ -15,7 +15,7 @@ class CreateInitialsTable extends Migration
     {
         Schema::create('initials', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('initial');
             $table->unsignedBigInteger('country_id');
             $table->timestamps();
             $table->softDeletes();
