@@ -100,3 +100,7 @@
     </div>
 
 @endsection
+
+@section('footer-extras')
+    <script src="{{ mix('js/location.js') }}"></script>
+@endsection

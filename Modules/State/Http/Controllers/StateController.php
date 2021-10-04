@@ -5,6 +5,7 @@ namespace Modules\State\Http\Controllers;
 use Yajra\DataTables\DataTables;
 use Modules\State\Entities\State;
 use Illuminate\Routing\Controller;
+use Modules\Country\Entities\Country;
 use Modules\State\Services\StateService;
 use Modules\State\Http\Requests\StateRequest;
 
@@ -63,7 +64,9 @@ class StateController extends Controller
      */
     public function create()
     {
-        return view('state::create');
+        $countries = Country::all();
+
+        return view('state::create', compact('countries'));
     }
 
     /**
@@ -89,7 +92,8 @@ class StateController extends Controller
      */
     public function show($id)
     {
-        $state = $this->state->findOrFail($id);
+        $state = $this->state->with('country')
+            ->findOrFail($id);
 
         return view('state::show', compact('state'));
     }
@@ -102,9 +106,14 @@ class StateController extends Controller
      */
     public function edit($id)
     {
-        $state = $this->state->findOrFail($id);
+        $state = $this->state->with('country')
+            ->findOrFail($id);
 
-        return view('state::edit', compact('state'));
+        $countries = Country::orderBy('name')
+            ->where('id', '!=', $state->country->id)
+            ->get();
+
+        return view('state::edit', compact('state', 'countries'));
     }
 
     /**

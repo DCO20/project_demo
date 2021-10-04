@@ -41,18 +41,30 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Nome:<span class="text-danger">*</span></label>
+                                    <label>Nome:</label>
                                     <input type="text" class="form-control" readonly value="{{ $state->name }}">
                                 </div>
                             </div>
 
                             {{-- Sigla --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Sigla:<span class="text-danger">*</span></label>
+                                    <label>Sigla:</label>
                                     <input type="text" class="form-control" readonly value="{{ $state->initial }}">
+                                </div>
+                            </div>
+
+                             {{-- País --}}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>País:</label>
+                                    <select class="form-control select2" style="width: 100%;" disabled>
+
+                                        <option value="{{ $state->country->id }}" selected>{{ $state->country->name }}</option>
+
+                                    </select>
                                 </div>
                             </div>
 

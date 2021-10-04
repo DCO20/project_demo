@@ -42,7 +42,7 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" required>
@@ -50,18 +50,10 @@
                                 </div>
 
                                 {{-- Sigla --}}
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Sigla:<span class="text-danger">*</span></label>
                                         <input type="text" name="initial" class="form-control" required>
-                                    </div>
-                                </div>
-
-                                {{-- Estados --}}
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Estados:<span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control" required>
                                     </div>
                                 </div>
 

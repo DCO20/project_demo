@@ -43,7 +43,7 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" value="{{ $state->name }}">
@@ -51,10 +51,28 @@
                                 </div>
 
                                 {{-- Sigla --}}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Sigla:<span class="text-danger">*</span></label>
                                         <input type="text" name="initial" class="form-control" value="{{ $state->initial }}">
+                                    </div>
+                                </div>
+
+                                {{-- Países --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>País:<span class="text-danger">*</span></label>
+                                        <select name="country_id" class="form-control select2" style="width: 100%;" required>
+
+                                            <option value="">Selecione</option>
+
+                                            <option value="{{ $state->country->id }}" selected>{{ $state->country->name }}</option>
+
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
+
+                                        </select>
                                     </div>
                                 </div>
 
@@ -82,4 +100,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer-extras')
+    <script src="{{ mix('js/state.js') }}"></script>
 @endsection

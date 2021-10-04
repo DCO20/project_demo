@@ -3,9 +3,10 @@
 namespace Modules\State\Entities;
 
 use App\Traits\Presentable;
+use Modules\Country\Entities\Country;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\State\Presenter\StatePresenter;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class State extends Model
 {
@@ -31,6 +32,7 @@ class State extends Model
      *  @var array $fillable
      */
     protected $fillable = [
+        'country_id',
         'name',
         'initial'
     ];
@@ -45,4 +47,14 @@ class State extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * Relacionamento com país
+     *
+     *  @var array
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class)->withTrashed();
+    }
 }

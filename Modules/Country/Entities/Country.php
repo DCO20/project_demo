@@ -3,7 +3,8 @@
 namespace Modules\Country\Entities;
 
 use App\Traits\Presentable;
-use Modules\Country\Entities\State;
+
+use Modules\State\Entities\State;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Location\Entities\Location;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -75,6 +76,6 @@ class Country extends Model
      */
     public function states()
     {
-        return $this->hasOne(State::class);
+        return $this->hasMany(State::class);
     }
 }
