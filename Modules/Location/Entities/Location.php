@@ -57,10 +57,4 @@ class Location extends Model
     {
         return $this->belongsTo(Country::class);
     }
-
-    // Retorna o valor formatado para o front
-    public function formatCountryName()
-    {
-        return $this->country->pluck('name')->implode(", ");
-    }
 }
