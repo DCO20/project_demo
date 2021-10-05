@@ -1,16 +1,19 @@
 $(document).ready(function () {
-    //Text editor
-    $("#summernote").summernote();
-
     //-----------------------------------------------------
     // Defining a variable
     //-----------------------------------------------------
-    var token = $("input[name='_token']").val();
-    var datatable_url = window.location.origin + "/datatable/pt-br.json";
+
+    var token = $("input[name='_token']").val(),
+        datatable_url = window.location.origin + "/datatable/pt-br.json";
 
     //-----------------------------------------------------
     // Instance of plugins
     //-----------------------------------------------------
+
+    $("#summernote").summernote();
+
+    $("#summernote-disable").summernote("disable");
+
     $("#ajax-datatable").DataTable({
         processing: true,
         serverSide: true,

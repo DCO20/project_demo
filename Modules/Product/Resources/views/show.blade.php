@@ -71,7 +71,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Descrição:</label>
-                                    <textarea name="description" id="summernote" class="form-control" disabled>{{ $product->description }}</textarea>
+                                    <textarea name="description" id="summernote-disable" class="form-control">{!! $product->description !!}</textarea>
                                 </div>
                             </div>
                         </div>

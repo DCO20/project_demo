@@ -59,8 +59,10 @@ class Category extends Model
     ];
 
     /**
-     * Retorna sim ou não
+     * Formata o atributo
      *
+     * @param string $value
+     * @return boolean
      */
     public function getFormattedActiveAttribute()
     {

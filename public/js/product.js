@@ -1,22 +1,24 @@
 $(document).ready(function () {
-    //Money mask
+    //-----------------------------------------------------
+    // Defining a variable
+    //-----------------------------------------------------
+
+    var token = $("input[name='_token']").val(),
+        datatable_url = window.location.origin + "/datatable/pt-br.json";
+
+    //-----------------------------------------------------
+    // Instance of plugins
+    //-----------------------------------------------------
+
     $(".money").mask("0.000.000.000,00", {
         reverse: true,
         placeholder: "R$ 0,00",
     });
 
-    //Text editor
     $("#summernote").summernote();
 
-    //-----------------------------------------------------
-    // Defining a variable
-    //-----------------------------------------------------
-    var token = $("input[name='_token']").val();
-    var datatable_url = window.location.origin + "/datatable/pt-br.json";
+    $("#summernote-disable").summernote("disable");
 
-    //-----------------------------------------------------
-    // Instance of plugins
-    //-----------------------------------------------------
     $("#ajax-datatable").DataTable({
         processing: true,
         serverSide: true,

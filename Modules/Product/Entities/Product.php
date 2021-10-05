@@ -57,7 +57,7 @@ class Product extends Model
      */
     protected $casts = [
         'active' => 'boolean',
-        'price' => 'double'
+        'price' => 'float'
     ];
 
     /**
@@ -71,8 +71,10 @@ class Product extends Model
 
 
     /**
-     * Leva para o banco de dados a entrada convertida para 00.00
+     * Formata o atributo
      *
+     * @param string $value
+     * @return void
      */
     public function setPriceAttribute($value)
     {
@@ -81,8 +83,10 @@ class Product extends Model
 
 
     /**
-     * Trás do banco de dados a entrada convertida para 100,00
+     * Formata o atributo
      *
+     * @param string $value
+     * @return string
      */
     public function getFormattedPriceAttribute()
     {
