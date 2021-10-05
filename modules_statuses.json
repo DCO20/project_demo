@@ -2,5 +2,6 @@
     "Country": true,
     "Location": true,
     "State": true,
-    "Category": true
+    "Category": true,
+    "Product": true
 }
