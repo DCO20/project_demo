@@ -9,7 +9,8 @@ use Modules\Product\Presenter\ProductPresenter;
 
 class Product extends Model
 {
-    use SoftDeletes, Presentable;
+    use SoftDeletes,
+        Presentable;
 
     /**
      * Presenter

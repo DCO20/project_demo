@@ -9,7 +9,8 @@ use Modules\Category\Presenter\CategoryPresenter;
 
 class Category extends Model
 {
-    use SoftDeletes,  Presentable;
+    use SoftDeletes,
+        Presentable;
 
     /**
      * Presenter

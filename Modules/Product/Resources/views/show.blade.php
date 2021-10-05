@@ -71,7 +71,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Descrição:</label>
-                                    <textarea name="description" id="summernote" cols="50" rows="5" class="form-control" style="resize: none;">{{ $product->description }}</textarea>
+                                    <textarea name="description" id="summernote" class="form-control" disabled>{{ $product->description }}</textarea>
                                 </div>
                             </div>
                         </div>
