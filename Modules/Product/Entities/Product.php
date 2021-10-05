@@ -2,12 +2,21 @@
 
 namespace Modules\Product\Entities;
 
+use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Product\Presenter\ProductPresenter;
 
 class Product extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Presentable;
+
+    /**
+     * Presenter
+     *
+     * @var string $presenter
+     */
+    protected $presenter = ProductPresenter::class;
 
     /**
      * Tabela do banco de dados

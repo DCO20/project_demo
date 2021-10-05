@@ -49,6 +49,7 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.js",
         "node_modules/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.js",
         "node_modules/admin-lte/plugins/select2/js/select2.js",
+        "resources/js/jquery.mask.js",
         "node_modules/admin-lte/dist/js/adminlte.js",
         "node_modules/admin-lte/plugins/summernote/summernote-bs4.js",
         "node_modules/admin-lte/scripts/script.js",
@@ -60,4 +61,10 @@ mix.combine(
 mix.scripts(
     "Modules/Category/Resources/assets/js/category.js",
     "public/js/category.js"
+);
+
+// Produto JS
+mix.scripts(
+    "Modules/Product/Resources/assets/js/product.js",
+    "public/js/product.js"
 );
