@@ -2,19 +2,13 @@
 
 namespace Modules\Category\Entities;
 
-use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use SoftDeletes, Presentable;
+    use SoftDeletes;
 
-    /**
-     * Presenter
-     *
-     * @var string $presenter
-    protected $presenter = CategotyPresenter::class;*/
 
     /**
      * Tabela do banco de dados

@@ -101,7 +101,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = $this->category > findOrFail($id);
+        $category = $this->category->findOrFail($id);
 
         return view('category::edit', compact('category'));
     }
