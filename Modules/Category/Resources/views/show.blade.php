@@ -43,7 +43,7 @@
                             {{-- Nome --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Nome:<span class="text-danger">*</span></label>
+                                    <label>Nome:</label>
                                     <input type="text" class="form-control" readonly value="{{ $category->name }}">
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                             {{-- Ativo --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Ativo:<span class="text-danger">*</span></label>
+                                    <label>Ativo:</label>
                                     <input type="text" class="form-control" readonly value="{{ $category->formatted_active }}">
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Descrição:</label>
-                                    <textarea name="description" id="summernote" cols="50" rows="5" class="form-control" readonly>{{ $category->description }}</textarea>
+                                    <textarea name="description" id="summernote-disable" cols="50" rows="5" class="form-control">{!! $category->description !!}</textarea>
                                 </div>
                             </div>
                         </div>

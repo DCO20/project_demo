@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Category\Entities;
+namespace Modules\Product\Entities;
 
 use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Category\Presenter\CategoryPresenter;
+use Modules\Product\Presenter\ProductPresenter;
 
-class Category extends Model
+class Product extends Model
 {
     use SoftDeletes,
         Presentable;
@@ -17,14 +17,14 @@ class Category extends Model
      *
      * @var string $presenter
      */
-    protected $presenter = CategoryPresenter::class;
+    protected $presenter = ProductPresenter::class;
 
     /**
      * Tabela do banco de dados
      *
      * @var string $table
      */
-    protected $table = 'categories';
+    protected $table = 'products';
 
     /**
      * Atributos da tabela do banco de dados
@@ -34,6 +34,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'active',
+        'price',
         'description'
     ];
 
@@ -55,17 +56,40 @@ class Category extends Model
      *  @var array $casts
      */
     protected $casts = [
-        'active' => 'boolean'
+        'active' => 'boolean',
+        'price' => 'float'
     ];
+
+    /**
+     * Retorna sim ou não
+     *
+     */
+    public function getFormattedActiveAttribute()
+    {
+        return $this->active ? "Sim" : "Não";
+    }
+
 
     /**
      * Formata o atributo
      *
      * @param string $value
-     * @return boolean
+     * @return void
      */
-    public function getFormattedActiveAttribute()
+    public function setPriceAttribute($value)
     {
-        return $this->active ? "Sim" : "Não";
+        $this->attributes['price'] = str_replace(',', '.', str_replace('.', '', $value));
+    }
+
+
+    /**
+     * Formata o atributo
+     *
+     * @param string $value
+     * @return string
+     */
+    public function getFormattedPriceAttribute()
+    {
+        return number_format($this->attributes['price'], 2, ',', '.');
     }
 }

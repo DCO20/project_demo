@@ -1,13 +1,13 @@
-@extends('category::layouts.master')
+@extends('product::layouts.master')
 
-@section('title', 'Categorias')
+@section('title', 'Produtos')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">Categorias</li>
+                    <li class="breadcrumb-item">Produtos</li>
                     <li class="breadcrumb-item active">Editar</li>
                 </ol>
             </div>
@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ route('category.update', $category->id) }}" method="post">
+                <form action="{{ route('product.update', $product->id) }}" method="post">
 
                     {{-- Elementos Ocultos --}}
                     @csrf
@@ -43,21 +43,31 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
-                                        <input type="text" name="name" class="form-control" value="{{ $category->name }}" required>
+                                        <input type="text" name="name" class="form-control" required value="{{ $product->name }}">
                                     </div>
                                 </div>
 
                                 {{-- Ativo --}}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Ativo:<span class="text-danger">*</span></label>
                                         <select name="active" class="form-control select2" style="width: 100%;" required>
-                                            <option value="1" @if($category->active) selected @endif >Sim</option>
-                                            <option value="0" @if(!$category->active)  selected @endif >Não</option>
+
+                                            <option value="1" @if ($product->active) selected @endif>Sim</option>
+                                            <option value="0" @if (!$product->active)  selected @endif>Não</option>
+
                                         </select>
+                                    </div>
+                                </div>
+
+                                {{-- Preço --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Preço:<span class="text-danger">*</span></label>
+                                        <input type="text" name="price" class="form-control money" required value="{{ $product->formatted_price }}">
                                     </div>
                                 </div>
 
@@ -68,7 +78,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Descrição:</label>
-                                        <textarea name="description" id="summernote" cols="50" rows="5" class="form-control">{{ $category->description }}</textarea>
+                                        <textarea name="description" id="summernote" cols="50" rows="5" class="form-control">{{ $product->description }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -98,5 +108,5 @@
 @endsection
 
 @section('footer-extras')
-    <script src="{{ mix('js/category.js') }}"></script>
+    <script src="{{ mix('js/product.js') }}"></script>
 @endsection

@@ -1,15 +1,23 @@
-@extends('category::layouts.master')
+@extends('product::layouts.master')
 
-@section('title', 'Categorias')
+@section('title', 'Produtos')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">Categorias</li>
+                    <li class="breadcrumb-item">Produtos</li>
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
+            </div>
+            <div class="col-sm-2 text-right">
+                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">
+                    <i class="fas fa-pen"></i> Editar
+                </a>
+                <a href="{{ route('product.confirm_delete', $product->id) }}" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Excluir
+                </a>
             </div>
         </div>
     </div>
@@ -24,7 +32,7 @@
 
                     <div class="card-header">
                         <h3 class="card-title">
-                            Dados do Categorias
+                            Dados do Produtos
                         </h3>
                     </div>
 
@@ -33,18 +41,26 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Nome:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $category->name }}">
+                                    <label>Nome:</span></label>
+                                    <input type="text" class="form-control" readonly value="{{ $product->name }}">
                                 </div>
                             </div>
 
                             {{-- Ativo --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ativo:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $category->formatted_active }}">
+                                    <input type="text" class="form-control" readonly value="{{ $product->formatted_active }}">
+                                </div>
+                            </div>
+
+                            {{-- Preço --}}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Preço:</label>
+                                    <input type="text" name="price" class="form-control money" readonly value="{{ $product->formatted_price }}">
                                 </div>
                             </div>
 
@@ -55,26 +71,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Descrição:</label>
-                                    <textarea name="description" id="summernote-disable" cols="50" rows="5" class="form-control">{!! $category->description !!} </textarea>
+                                    <textarea name="description" id="summernote-disable" class="form-control">{!! $product->description !!}</textarea>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <form action="{{ route('category.delete', $category->id) }}" method="post">
-
-                                {{-- Elementos Ocultos --}}
-                                @csrf
-                                @method('DELETE')
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i> Excluir
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
 
                     </div>
@@ -89,5 +88,5 @@
 @endsection
 
 @section('footer-extras')
-    <script src="{{ mix('js/category.js') }}"></script>
+    <script src="{{ mix('js/product.js') }}"></script>
 @endsection
