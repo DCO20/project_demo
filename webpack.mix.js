@@ -20,6 +20,7 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.css",
         "node_modules/admin-lte/plugins/select2/css/select2.css",
         "node_modules/admin-lte/dist/css/adminlte.css",
+        "node_modules/admin-lte/plugins/summernote/summernote-bs4.css",
         "resources/css/style.css",
     ],
     "public/css/adminlte.css"
@@ -49,25 +50,14 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.js",
         "node_modules/admin-lte/plugins/select2/js/select2.js",
         "node_modules/admin-lte/dist/js/adminlte.js",
+        "node_modules/admin-lte/plugins/summernote/summernote-bs4.js",
         "node_modules/admin-lte/scripts/script.js",
     ],
     "public/js/adminlte.js"
 );
 
-// Country JS
+// Categoria JS
 mix.scripts(
-    "Modules/Country/Resources/assets/js/country.js",
-    "public/js/country.js"
-);
-
-// Location JS
-mix.scripts(
-    "Modules/Location/Resources/assets/js/location.js",
-    "public/js/location.js"
-);
-
-// State JS
-mix.scripts(
-    "Modules/State/Resources/assets/js/state.js",
-    "public/js/state.js"
+    "Modules/Category/Resources/assets/js/category.js",
+    "public/js/category.js"
 );
