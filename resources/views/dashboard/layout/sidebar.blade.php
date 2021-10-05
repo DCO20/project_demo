@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ Ekko::isActiveRoute('product*') }}">
+                    <a href="{{ route('product.index') }}" class="nav-link {{ Ekko::isActiveRoute('product*') }}">
                         <i class="fas fa-boxes"></i>
                         <p>Produtos</p>
                     </a>
