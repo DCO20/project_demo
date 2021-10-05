@@ -52,7 +52,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Ativo:<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" readonly value="{{ $category->active }}">
+                                    <input type="text" class="form-control" readonly value="{{ $category->formatted_active }}">
                                 </div>
                             </div>
 

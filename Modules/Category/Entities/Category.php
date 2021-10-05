@@ -2,13 +2,21 @@
 
 namespace Modules\Category\Entities;
 
+use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Category\Presenter\CategoryPresenter;
 
 class Category extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,  Presentable;
 
+    /**
+     * Presenter
+     *
+     * @var string $presenter
+     */
+    protected $presenter = CategoryPresenter::class;
 
     /**
      * Tabela do banco de dados
@@ -48,4 +56,13 @@ class Category extends Model
     protected $casts = [
         'active' => 'boolean'
     ];
+
+    /**
+     * Retorna sim ou não
+     *
+     */
+    public function getFormattedActiveAttribute()
+    {
+        return $this->active ? "Sim" : "Não";
+    }
 }

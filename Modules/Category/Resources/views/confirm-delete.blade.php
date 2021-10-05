@@ -1,13 +1,13 @@
-@extends('state::layouts.master')
+@extends('category::layouts.master')
 
-@section('title', 'Estados')
+@section('title', 'Categorias')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-10">
                 <ol class="breadcrumb float-sm-left">
-                    <li class="breadcrumb-item">Estados</li>
+                    <li class="breadcrumb-item">Categorias</li>
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
@@ -24,7 +24,7 @@
 
                     <div class="card-header">
                         <h3 class="card-title">
-                            Dados do Estados
+                            Dados do Categorias
                         </h3>
                     </div>
 
@@ -36,22 +36,32 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $state->name }}">
+                                    <input type="text" class="form-control" readonly value="{{ $category->name }}">
                                 </div>
                             </div>
 
-                            {{-- Sigla --}}
+                            {{-- Ativo --}}
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Sigla:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $state->initial }}">
+                                    <label>Ativo:</label>
+                                    <input type="text" class="form-control" readonly value="{{ $category->formatted_active }}">
                                 </div>
                             </div>
 
                         </div>
 
+                        {{-- Descrição --}}
                         <div class="row">
-                            <form action="{{ route('state.delete', $state->id) }}" method="post">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Descrição:</label>
+                                    <textarea name="description" id="summernote" cols="50" rows="5" class="form-control" readonly>{{ $category->description }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <form action="{{ route('category.delete', $category->id) }}" method="post">
 
                                 {{-- Elementos Ocultos --}}
                                 @csrf
@@ -76,4 +86,8 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer-extras')
+    <script src="{{ mix('js/category.js') }}"></script>
 @endsection

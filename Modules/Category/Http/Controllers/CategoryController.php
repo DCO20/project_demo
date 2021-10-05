@@ -2,6 +2,7 @@
 
 namespace Modules\Category\Http\Controllers;
 
+use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
 use Modules\Category\Services\CategoryService;
@@ -48,10 +49,13 @@ class CategoryController extends Controller
         $categories = $this->category->query();
 
         return DataTables::of($categories)
+            ->editColumn("active", function ($category) {
+                return $category->formatted_active;
+            })
             ->addColumn("action", function ($category) {
                 return $category->actionView();
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['active', 'description', 'action'])
             ->make(true);
     }
 
