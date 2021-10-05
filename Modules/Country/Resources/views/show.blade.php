@@ -42,7 +42,7 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nome:</label>
                                     <input type="text" class="form-control" readonly value="{{ $country->name }}">
@@ -50,10 +50,24 @@
                             </div>
 
                             {{-- Sigla --}}
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Sigla:</label>
                                     <input type="text" class="form-control" readonly value="{{ $country->initial->initial }}">
+                                </div>
+                            </div>
+
+                            {{-- Estados --}}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Estados:<span class="text-danger">*</span></label>
+                                    <select multiple="multiple" class="form-control select2" style="width: 100%;" disabled>
+
+                                        @foreach ($country->states as $state)
+                                            <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
 
