@@ -4,6 +4,7 @@ namespace Modules\Category\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
+use Modules\Category\Services\CategoryService;
 use Modules\Category\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function __construct(
         Category $category,
-        categoryService $category_service
+        CategoryService $category_service
     ) {
         $this->category = $category;
         $this->category_service = $category_service;
