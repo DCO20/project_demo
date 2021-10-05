@@ -56,7 +56,7 @@ class CountryController extends Controller
             ->addColumn("action", function ($country) {
                 return $country->actionView();
             })
-            ->rawColumns(['state','action'])
+            ->rawColumns(['state', 'action'])
             ->make(true);
     }
 
