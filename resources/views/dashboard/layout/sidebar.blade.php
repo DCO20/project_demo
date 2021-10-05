@@ -11,21 +11,15 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('country.index') }}" class="nav-link {{ Ekko::isActiveRoute('country*') }}">
-                        <i class="fas fa-globe-americas"></i>
-                        <p>Paises</p>
+                    <a href="{{ route('category.index') }}" class="nav-link {{ Ekko::isActiveRoute('category*') }}">
+                       <i class="fas fa-folder-open"></i>
+                        <p>Categorias</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('location.index') }}" class="nav-link {{ Ekko::isActiveRoute('location*') }}">
-                        <i class="fas fa-location-arrow"></i>
-                        <p>Localização</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('state.index') }}" class="nav-link {{ Ekko::isActiveRoute('state*') }}">
-                        <i class="fab fa-usps"></i>
-                        <p>Estados</p>
+                    <a href="" class="nav-link {{ Ekko::isActiveRoute('product*') }}">
+                        <i class="fas fa-boxes"></i>
+                        <p>Produtos</p>
                     </a>
                 </li>
             </ul>
