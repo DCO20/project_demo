@@ -47,7 +47,7 @@ class CountryController extends Controller
      */
     public function dataTable()
     {
-        $countries = $this->country->with(['initial', 'states']);
+        $countries = $this->country->with('initial');
 
         return DataTables::of($countries)
             ->addColumn("state", function ($country) {
