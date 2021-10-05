@@ -2,15 +2,34 @@
 
 namespace Modules\Category\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Category\Entities\Category;
+use Modules\Category\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
+    protected $category;
+
+    protected $category_service;
+
     /**
-     * Display a listing of the resource.
-     * @return Renderable
+     * Método Construtor
+     *
+     * @param category $category
+     * @return void
+     */
+    public function __construct(
+        Category $category,
+        categoryService $category_service
+    ) {
+        $this->category = $category;
+        $this->category_service = $category_service;
+    }
+
+    /**
+     * Exibe a tela inicial com a listagem de dados.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -18,8 +37,27 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
+     * Obtêm os dados para a tabela
+     * @codeCoverageIgnore
+     *
+     * @return string
+     */
+    public function dataTable()
+    {
+        $categories = $this->category->query();
+
+        return DataTables::of($categories)
+            ->addColumn("action", function ($category) {
+                return $category->actionView();
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    /**
+     * Exibe a tela de cadastro
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -27,53 +65,91 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     * Cadastra e retorna para a tela inicial
+     *
+     * @param Requests\CategoryRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $this->category_service->updateOrCreate($request->all());
+
+        return redirect()
+            ->route('category.index')
+            ->with('message', 'Cadastro realizado com sucesso.');
     }
 
     /**
-     * Show the specified resource.
+     * Exibe os dados
+     *
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        return view('category::show');
+        $category = $this->category->findOrFail($id);
+
+        return view('category::show', compact('category'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe os dados para edição
+     *
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        return view('category::edit');
+        $category = $this->category > findOrFail($id);
+
+        return view('category::edit', compact('category'));
     }
 
     /**
-     * Update the specified resource in storage.
-     * @param Request $request
+     * Atualiza e retorna para a tela de edição
+     *
+     * @param Requests\CategoryRequest $request
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = $this->category->findOrFail($id);
+
+        $this->category_service->updateOrCreate($request->all(), $category->id);
+
+        return redirect()
+            ->route('category.edit', $category->id)
+            ->with('message', 'Atualização realizada com sucesso.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Exibe a tela para exclusão
+     *
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\View\View
      */
-    public function destroy($id)
+    public function confirmDelete($id)
     {
-        //
+        $category = $this->category->findOrFail($id);
+
+        return view('category::confirm-delete', compact('category'));
+    }
+
+    /**
+     * Exclui e retorna para a tela inicial
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $category = $this->category->findOrFail($id);
+
+        $category->delete();
+
+        return redirect()
+            ->route('category.index')
+            ->with('message', 'Exclusão realizada com sucesso.');
     }
 }
