@@ -43,7 +43,7 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" required>
@@ -51,10 +51,10 @@
                                 </div>
 
                                 {{-- Ativo --}}
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Ativo:<span class="text-danger">*</span></label>
-                                        <select name="active" class="form-control select2" style="width: 100%;" required>
+                                        <select name="active" class="form-control" style="width: 100%;" required>
 
                                             <option value="">Selecione</option>
                                             <option value="1">Sim</option>
@@ -65,10 +65,26 @@
                                 </div>
 
                                 {{-- Preço --}}
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Preço:<span class="text-danger">*</span></label>
                                         <input type="text" name="price" class="form-control money" required>
+                                    </div>
+                                </div>
+
+                                {{-- Categorias --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Categorias:<span class="text-danger">*</span></label>
+                                        <select name="categories[]" multiple="multiple" class="form-control select2" style="width: 100%;" required>
+
+                                            <option value="">Selecione</option>
+
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+
+                                        </select>
                                     </div>
                                 </div>
 

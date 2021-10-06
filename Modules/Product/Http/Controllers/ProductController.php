@@ -56,6 +56,17 @@ class ProductController extends Controller
             ->editColumn("price", function ($product) {
                 return $product->formatted_price;
             })
+            ->filterColumn(
+                'price',
+                function ($q, $keyword) {
+                    $formatted_price = str_replace(',', '.', str_replace('.', '', $keyword));
+
+                    $q->where('price', 'LIKE', '%' . $formatted_price . '%');
+                }
+            )
+            ->addColumn("category", function ($product) {
+                return $product->formatCategoryName();
+            })
             ->addColumn("action", function ($product) {
                 return $product->actionView();
             })
@@ -70,7 +81,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('active', true)->get();
 
         return view('product::create', compact('categories'));
     }
@@ -98,7 +109,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = $this->product->findOrFail($id);
+        $product = $this->product->with('categories')
+            ->findOrFail($id);
 
         return view('product::show', compact('product'));
     }
@@ -111,9 +123,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->product->findOrFail($id);
+        $product = $this->product->with('categories')
+            ->findOrFail($id);
 
-        return view('product::edit', compact('product'));
+        $categories = Category::where('active', true)
+            ->whereNotIn('id', $product->categories->pluck('id'))
+            ->get();
+
+        return view('product::edit', compact('product', 'categories'));
     }
 
     /**

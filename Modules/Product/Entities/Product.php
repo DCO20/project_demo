@@ -95,6 +95,17 @@ class Product extends Model
     }
 
     /**
+     * Formata o atributo
+     *
+     * @param string $value
+     * @return string
+     */
+    public function formatCategoryName()
+    {
+        return $this->categories()->pluck('name')->implode(", ");
+    }
+
+    /**
      * Relacionamento com categorias
      *
      *  @var array

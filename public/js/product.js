@@ -19,6 +19,8 @@ $(document).ready(function () {
 
     $("#summernote-disable").summernote("disable");
 
+    $(".select2").select2();
+
     $("#ajax-datatable").DataTable({
         processing: true,
         serverSide: true,
@@ -34,6 +36,7 @@ $(document).ready(function () {
             { data: "name" },
             { data: "active" },
             { data: "price" },
+            { data: "category" },
             { data: "description" },
             { data: "action", orderable: false, searchable: false },
         ],
