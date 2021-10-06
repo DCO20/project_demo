@@ -18,7 +18,7 @@ class CreateProvidersTable extends Migration
             $table->string('cnpj');
             $table->string('corporate_name');
             $table->string('fantasy_name');
-            $table->string('active');
+            $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();
         });
