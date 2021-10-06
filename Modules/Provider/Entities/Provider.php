@@ -34,7 +34,8 @@ class Provider extends Model
         'cnpj',
         'corporate_name',
         'fantasy_name',
-        'active'
+        'active',
+        'note'
     ];
 
     /**
