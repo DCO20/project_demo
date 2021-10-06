@@ -15,11 +15,8 @@ class ProductService
      */
     public function updateOrCreate($request, $id = null)
     {
-        Product::updateOrCreate(
-            [
-                'id' => $id
-            ],
-            $request
-        );
+        $product = Product::updateOrCreate(['id' => $id], $request);
+
+        $product->categories()->sync($request['categories'] ?? '');
     }
 }
