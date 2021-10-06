@@ -19,6 +19,7 @@ class CreateProvidersTable extends Migration
             $table->string('corporate_name');
             $table->string('fantasy_name');
             $table->boolean('active');
+            $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
