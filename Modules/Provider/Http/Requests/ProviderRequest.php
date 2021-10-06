@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Product\Http\Requests;
+namespace Modules\Provider\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ProviderRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,10 +14,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'cnpj' => 'required',
-            '' => 'required',
-            'price' => 'required',
-            'active' => 'nullable'
+            'name' => 'required',
+            'corporate_name' => 'required',
+            'fantasy_name' => 'required',
+            'description' => 'nullable'
         ];
     }
 
