@@ -17,7 +17,8 @@ class ProviderRequest extends FormRequest
             'name' => 'required',
             'corporate_name' => 'required',
             'fantasy_name' => 'required',
-            'description' => 'nullable'
+            'active' => 'required',
+            'note' => 'nullable',
         ];
     }
 
