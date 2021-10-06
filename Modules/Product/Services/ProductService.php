@@ -21,16 +21,15 @@ class ProductService
 
         return $product;
     }
-
     /**
-     * Método que deleta um produto
-     * @param array $request
+     * Exclui e retorna a tela inicial
+     * @param Modules\Product\Entities\Product $product
      * @param int|null $id
      *
      * @return void
      */
-    public function delete($id)
+    public function removeData($product)
     {
-        Product::destroy(['id' => $id]);
+        $product->delete();
     }
 }

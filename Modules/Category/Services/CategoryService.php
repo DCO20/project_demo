@@ -24,14 +24,14 @@ class CategoryService
     }
 
     /**
-     * Método que deleta uma categoria
-     * @param array $request
+     * Exclui e retorna a tela inicial
+     * @param Modules\Category\Entities\Category $category
      * @param int|null $id
      *
      * @return void
      */
-    public function delete($id)
+    public function removeData($category)
     {
-        Category::destroy(['id' => $id]);
+        $category->delete();
     }
 }

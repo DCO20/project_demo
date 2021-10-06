@@ -172,7 +172,9 @@ class ProductController extends Controller
      */
     public function delete($id)
     {
-        $this->product_service->delete($id);
+        $product = $this->product->findOrFail($id);
+
+        $this->product_service->removeData($product);
 
         return redirect()
             ->route('product.index')

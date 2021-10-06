@@ -149,7 +149,9 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        $this->category_service->delete($id);
+        $category = $this->category->findOrFail($id);
+
+        $this->category_service->removeData($category);
 
         return redirect()
             ->route('category.index')
