@@ -4,6 +4,7 @@ namespace Modules\Product\Http\Controllers;
 
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
+use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
 use Modules\Product\Services\ProductService;
 use Modules\Product\Http\Requests\ProductRequest;
@@ -69,7 +70,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product::create');
+        $categories = Category::all();
+
+        return view('product::create', compact('categories'));
     }
 
     /**
