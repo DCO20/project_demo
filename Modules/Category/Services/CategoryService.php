@@ -2,6 +2,7 @@
 
 namespace Modules\Category\Services;
 
+use Illuminate\Support\Facades\DB;
 use Modules\Category\Entities\Category;
 
 class CategoryService
@@ -15,12 +16,21 @@ class CategoryService
      */
     public function updateOrCreate($request, $id = null)
     {
-        Category::updateOrCreate(
-            [
-                'id' => $id
-            ],
-            $request
-        );
+        DB::beginTransaction();
+
+        try {
+            Category::updateOrCreate(
+                [
+                    'id' => $id
+                ],
+                $request
+            );
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            abort(500);
+        }
     }
 
     /**
@@ -32,6 +42,15 @@ class CategoryService
      */
     public function removeData($category)
     {
-        $category->delete();
+        DB::beginTransaction();
+
+        try {
+            $category->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            abort(500);
+        }
     }
 }

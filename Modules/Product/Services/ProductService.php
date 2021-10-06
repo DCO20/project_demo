@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Services;
 
+use Illuminate\Support\Facades\DB;
 use Modules\Product\Entities\Product;
 
 class ProductService
@@ -15,12 +16,23 @@ class ProductService
      */
     public function updateOrCreate($request, $id = null)
     {
-        $product = Product::updateOrCreate(['id' => $id], $request);
+        DB::beginTransaction();
 
-        $product->categories()->sync($request['categories'] ?? '');
+        try {
+            $product = Product::updateOrCreate(['id' => $id], $request);
 
-        return $product;
+            $product->categories()->sync($request['categories'] ?? '');
+
+            return $product;
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            abort(500);
+        }
     }
+
+
     /**
      * Exclui e retorna a tela inicial
      * @param Modules\Product\Entities\Product $product
@@ -30,6 +42,15 @@ class ProductService
      */
     public function removeData($product)
     {
-        $product->delete();
+        DB::beginTransaction();
+
+        try {
+            $product->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            abort(500);
+        }
     }
 }
