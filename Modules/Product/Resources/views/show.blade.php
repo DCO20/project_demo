@@ -67,12 +67,11 @@
                             {{-- Categorias --}}
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Categorias:<span class="text-danger">*</span></label>
-
-                                    <select multiple="multiple" class="form-control" style="width: 100%;" disabled>
+                                    <label>Categorias:</label>
+                                    <select multiple="multiple" class="form-control select2" style="width: 100%;" disabled>
 
                                         @foreach ($product->categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                         @endforeach
 
                                     </select>

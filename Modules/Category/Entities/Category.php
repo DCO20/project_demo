@@ -3,10 +3,10 @@
 namespace Modules\Category\Entities;
 
 use App\Traits\Presentable;
+use Modules\Product\Entities\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Presenter\CategoryPresenter;
-use Modules\Product\Entities\Product;
 
 class Category extends Model
 {
