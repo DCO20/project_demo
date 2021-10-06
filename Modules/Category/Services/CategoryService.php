@@ -22,4 +22,16 @@ class CategoryService
             $request
         );
     }
+
+    /**
+     * Método que deleta uma categoria
+     * @param array $request
+     * @param int|null $id
+     *
+     * @return void
+     */
+    public function delete($id)
+    {
+        Category::destroy(['id' => $id]);
+    }
 }

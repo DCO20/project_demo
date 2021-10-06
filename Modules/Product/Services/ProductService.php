@@ -15,11 +15,22 @@ class ProductService
      */
     public function updateOrCreate($request, $id = null)
     {
-        Product::updateOrCreate(
-            [
-                'id' => $id
-            ],
-            $request
-        );
+        $product = Product::updateOrCreate(['id' => $id], $request);
+
+        $product->categories()->sync($request['categories'] ?? '');
+
+        return $product;
+    }
+
+    /**
+     * Método que deleta um produto
+     * @param array $request
+     * @param int|null $id
+     *
+     * @return void
+     */
+    public function delete($id)
+    {
+        Product::destroy(['id' => $id]);
     }
 }

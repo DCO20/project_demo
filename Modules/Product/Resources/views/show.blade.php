@@ -41,7 +41,7 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Nome:</span></label>
                                     <input type="text" class="form-control" readonly value="{{ $product->name }}">
@@ -49,7 +49,7 @@
                             </div>
 
                             {{-- Ativo --}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Ativo:</label>
                                     <input type="text" class="form-control" readonly value="{{ $product->formatted_active }}">
@@ -57,10 +57,26 @@
                             </div>
 
                             {{-- Preço --}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Preço:</label>
                                     <input type="text" name="price" class="form-control money" readonly value="{{ $product->formatted_price }}">
+                                </div>
+                            </div>
+
+                            {{-- Categorias --}}
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Categorias:<span class="text-danger">*</span></label>
+
+                                    <select multiple="multiple" class="form-control" style="width: 100%;" disabled>
+
+                                        @foreach ($product->categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+
+                                    </select>
+
                                 </div>
                             </div>
 

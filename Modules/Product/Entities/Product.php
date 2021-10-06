@@ -4,6 +4,7 @@ namespace Modules\Product\Entities;
 
 use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Entities\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Product\Presenter\ProductPresenter;
 
@@ -91,5 +92,26 @@ class Product extends Model
     public function getFormattedPriceAttribute()
     {
         return number_format($this->attributes['price'], 2, ',', '.');
+    }
+
+    /**
+     * Formata o atributo
+     *
+     * @param string $value
+     * @return string
+     */
+    public function formatCategoryName()
+    {
+        return $this->categories()->pluck('name')->implode(", ");
+    }
+
+    /**
+     * Relacionamento com categorias
+     *
+     *  @var array
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withTrashed();
     }
 }

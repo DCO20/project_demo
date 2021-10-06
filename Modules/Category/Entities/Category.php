@@ -6,6 +6,7 @@ use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Presenter\CategoryPresenter;
+use Modules\Product\Entities\Product;
 
 class Category extends Model
 {
@@ -67,5 +68,15 @@ class Category extends Model
     public function getFormattedActiveAttribute()
     {
         return $this->active ? "Sim" : "Não";
+    }
+
+    /**
+     * Relacionamento com produtos
+     *
+     *  @var array
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withTrashed();
     }
 }
