@@ -16,6 +16,9 @@ class ProviderDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(
+            StateTableSeeder::class,
+            CityTableSeeder::class
+        );
     }
 }
