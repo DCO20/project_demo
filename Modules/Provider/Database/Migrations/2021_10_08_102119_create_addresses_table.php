@@ -24,7 +24,6 @@ class CreateAddressesTable extends Migration
             $table->string('district');
             $table->string('ref_point')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('provider_id')->references('id')->on('providers');
             $table->foreign('city_id')->references('id')->on('cities');
