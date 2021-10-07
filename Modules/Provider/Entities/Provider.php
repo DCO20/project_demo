@@ -5,7 +5,7 @@ namespace Modules\Provider\Entities;
 use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Product\Presenter\ProviderPresenter;
+use Modules\Provider\Presenter\ProviderPresenter;
 
 class Provider extends Model
 {
