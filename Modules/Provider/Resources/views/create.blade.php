@@ -51,7 +51,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>CNPJ:<span class="text-danger">*</span></label>
-                                            <input type="text" name="cnpj" class="form-control mask-cnpj" required>
+                                            <input type="text" name="cnpj" id="cnpj" class="form-control mask-cnpj" required>
+                                            <span id="message" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -60,7 +61,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Razão social:<span class="text-danger">*</span></label>
-                                            <input type="text" name="corporate_name" class="form-control" required>
+                                            <input type="text" name="corporate_name" id="corporate_name" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -69,7 +70,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Nome Fantasia:<span class="text-danger">*</span></label>
-                                            <input type="text" name="fantasy_name" class="form-control" required>
+                                            <input type="text" name="fantasy_name" id="fantasy_name" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -114,7 +115,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>CEP:<span class="text-danger">*</span></label>
-                                            <input type="text" name="zipcode" class="form-control mask-zipcode" required>
+                                            <input type="text" name="zipcode" id="cep" class="form-control mask-zipcode" required>
                                         </div>
                                     </div>
 
@@ -123,7 +124,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Logradouro:<span class="text-danger">*</span></label>
-                                            <input type="text" name="street" class="form-control" required>
+                                            <input type="text" name="street" id="logradouro" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -148,7 +149,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Bairro:<span class="text-danger">*</span></label>
-                                            <input type="text" name="district" class="form-control" required>
+                                            <input type="text" name="district" id="bairro" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -164,7 +165,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>UF:<span class="text-danger">*</span></label>
-                                            <select name="state" class="form-controll select2" id="state" required style="width: 100%;">
+                                            <select name="state" class="form-controll select2" id="uf" required style="width: 100%;">
 
                                                 <option value="">Selecione</option>
 

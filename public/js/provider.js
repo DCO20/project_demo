@@ -43,7 +43,55 @@ $(document).ready(function () {
         },
     });
 
-    $("#state").on("change", function () {
+    function searchCNPJ() {
+        var cnpj = $("#cnpj")
+            .val()
+            .replace(/[^0-9]/g, "");
+
+        if (cnpj.length != 11) {
+            var url = "https://www.receitaws.com.br/v1/cnpj/" + cnpj;
+
+            $.ajax({
+                url: url,
+                crossDomain: true,
+                type: "GET",
+                dataType: "jsonp",
+
+                success: function (data) {
+                    console.log(data);
+                    if (data.nome == undefined) {
+                        $("#message").append(
+                            "<p>O cnpj não consta no sistema.</p>"
+                        );
+                    } else {
+                        $("#corporate_name").val(data.nome);
+                        $("#fantasy_name").val(data.fantasia);
+                    }
+                },
+            });
+        }
+    }
+
+    function searchZipCode() {
+        var numZipcode = $("#cep").val().replace("-", "");
+        var url = "https://viacep.com.br/ws/" + numZipcode + "/json/";
+        $.ajax({
+            url: url,
+            crossDomain: true,
+            type: "GET",
+            dataType: "json",
+
+            success: function (data) {
+                console.log(data);
+                $("#uf").select2("val", data.uf);
+                $("#uf").trigger("change");
+                $("#logradouro").val(data.logradouro);
+                $("#bairro").val(data.bairro);
+            },
+        });
+    }
+
+    $("#uf").on("change", function () {
         var token = $("input[name='_token']").val();
 
         $.ajax({
@@ -79,4 +127,7 @@ $(document).ready(function () {
             },
         });
     });
+
+    $(document).delegate("#cep", "input", searchZipCode);
+    $(document).delegate("#cnpj", "input", searchCNPJ);
 });
