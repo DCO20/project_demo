@@ -3,5 +3,6 @@
     "Location": true,
     "State": true,
     "Category": true,
-    "Product": true
+    "Product": true,
+    "Provider": true
 }

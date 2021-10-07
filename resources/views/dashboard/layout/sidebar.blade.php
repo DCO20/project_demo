@@ -11,15 +11,9 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('category.index') }}" class="nav-link {{ Ekko::isActiveRoute('category*') }}">
-                       <i class="fas fa-folder-open"></i>
-                        <p>Categorias</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('product.index') }}" class="nav-link {{ Ekko::isActiveRoute('product*') }}">
-                        <i class="fas fa-boxes"></i>
-                        <p>Produtos</p>
+                    <a href="{{ route('provider.index') }}" class="nav-link {{ Ekko::isActiveRoute('provider*') }}">
+                       <i class="fas fa-users"></i>
+                        <p>Fornecedores</p>
                     </a>
                 </li>
             </ul>
