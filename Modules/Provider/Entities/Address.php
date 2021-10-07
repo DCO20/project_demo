@@ -14,7 +14,7 @@ class Address extends Model
      *
      * @var string $table
      */
-    protected $table = "addresses";
+    protected $table = "adresses";
 
     /**
      * Atributos da tabela do banco de dados
@@ -41,4 +41,14 @@ class Address extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * Relacionamento para o fornecedor
+     *
+     *  @var array
+     */
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
 }
