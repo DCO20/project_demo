@@ -46,16 +46,16 @@ class ProviderController extends Controller
      */
     public function dataTable()
     {
-        $categories = $this->provider->query();
+        $providers = $this->provider->query();
 
-        return DataTables::of($categories)
+        return DataTables::of($providers)
             ->editColumn("active", function ($provider) {
                 return $provider->formatted_active;
             })
             ->addColumn("action", function ($provider) {
                 return $provider->actionView();
             })
-            ->rawColumns(['active', 'description', 'action'])
+            ->rawColumns(['active', 'action'])
             ->make(true);
     }
 
