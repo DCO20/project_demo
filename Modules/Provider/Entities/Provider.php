@@ -70,4 +70,14 @@ class Provider extends Model
     {
         return $this->active ? "Sim" : "Não";
     }
+
+    /**
+     * Relacionamento com endereço
+     *
+     *  @var array
+     */
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
 }
