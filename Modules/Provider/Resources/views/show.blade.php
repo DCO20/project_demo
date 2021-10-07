@@ -11,14 +11,6 @@
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                <a href="{{ route('provider.confirm_delete', $provider->id) }}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
-            </div>
         </div>
     </div>
 @endsection
@@ -190,19 +182,23 @@
 
                     </div>
 
-                    {{-- Botão que salva os dados --}}
+                    {{-- Editar e excluir --}}
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-plus fa-fw"></i> Salvar
-                                </button>
+                                <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-primary">
+                                    <i class="fas fa-pen"></i> Editar
+                                </a>
+                                <a href="{{ route('provider.confirm_delete', $provider->id) }}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Excluir
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 @endsection
