@@ -14,7 +14,7 @@ class ProviderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'cnpj' => 'required',
             'corporate_name' => 'required',
             'fantasy_name' => 'required',
             'active' => 'required',
