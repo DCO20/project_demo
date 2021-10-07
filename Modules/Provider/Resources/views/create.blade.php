@@ -158,6 +158,33 @@
                                         </div>
                                     </div>
 
+                                    {{-- Estado --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>UF:<span class="text-danger">*</span></label>
+                                            <select name="state" class="form-controll select2" id="state" required style="width: 100%;">
+
+                                                <option value="">Selecione</option>
+
+                                                @foreach ($states as $state)
+                                                    <option value="{{ $state->id }}">{{ $state->abbr }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {{-- Cidade --}}
+                                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Cidade:<span class="text-danger"> *</span></label>
+                                            <select name="city_id" class="form-controll select2" id="city" disabled style="width: 100%;">
+                                                <option value="">Selecione</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 

@@ -16,6 +16,7 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('provider_id');
+            $table->unsignedBigInteger('city_id');
             $table->string('zipcode');
             $table->string('street');
             $table->string('number');
@@ -24,7 +25,10 @@ class CreateAddressesTable extends Migration
             $table->string('ref_point')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
             $table->foreign('provider_id')->references('id')->on('providers');
+            $table->foreign('city_id')->references('id')->on('cities');
+
         });
     }
 

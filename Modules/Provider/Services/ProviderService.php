@@ -24,6 +24,7 @@ class ProviderService
 
             $data = [
                 'provider_id' => $provider->id,
+                'city_id' => $request['city_id'],
                 'zipcode' => $request['zipcode'],
                 'street' => $request['street'],
                 'number' => $request['number'],

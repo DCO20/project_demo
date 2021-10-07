@@ -145,6 +145,23 @@
                                     </div>
                                 </div>
 
+                                {{-- UF --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>UF:</label>
+                                        <input type="text" class="form-control" value="{{ $provider->address->city->state->abbr }}"  readonly>
+                                    </div>
+                                </div>
+
+                                {{-- Cidades --}}
+                                <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Cidade:</label>
+                                        <input type="text" class="form-control" value="{{ $provider->address->city->name }}" readonly>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 

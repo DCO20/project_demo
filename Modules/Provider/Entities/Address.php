@@ -23,6 +23,7 @@ class Address extends Model
      */
     protected $fillable = [
         'provider_id',
+        'city_id',
         'zipcode',
         'street',
         'number',
@@ -50,5 +51,15 @@ class Address extends Model
     public function provider()
     {
         return $this->belongsTo(Provider::class);
+    }
+
+    /**
+     * Relacionamento para o endereço
+     *
+     *  @var array
+     */
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

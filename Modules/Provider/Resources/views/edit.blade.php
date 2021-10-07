@@ -158,6 +158,42 @@
                                         </div>
                                     </div>
 
+                                    {{-- UF --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>UF:<span class="text-danger"> *</span></label>
+                                            <select name="state" class="form-controll select2" id="state" required style="width: 100%;">
+
+                                                <option value="">Selecionar</option>
+
+                                                <option value="{{ $provider->address->city->state->id }}" selected>{{ $provider->address->city->state->abbr }}</option>
+
+                                                @foreach ($states as $state)
+                                                    <option value="{{ $state->id }}">{{ $state->abbr }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {{-- Cidades --}}
+                                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Cidade:<span class="text-danger"> *</span></label>
+                                            <select name="city_id" class="form-controll select2" id="city" style="width: 100%;">
+
+                                                <option value="">Selecionar</option>
+
+                                                <option value="{{ $provider->address->city->id }}" selected>{{ $provider->address->city->name }}</option>
+
+                                                @foreach ($cities as $city)
+                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

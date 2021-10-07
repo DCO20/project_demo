@@ -4,9 +4,12 @@ namespace Modules\Provider\Http\Controllers;
 
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
+use Modules\Provider\Entities\City;
 use Modules\Provider\Entities\Provider;
+use Modules\Provider\Entities\State;
 use Modules\Provider\Services\ProviderService;
 use Modules\Provider\Http\Requests\ProviderRequest;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProviderController extends Controller
 {
@@ -60,13 +63,29 @@ class ProviderController extends Controller
     }
 
     /**
+     * Carregamento das cidades.
+     *
+     * @return json
+     */
+    public function loadCity(Request $request)
+    {
+        $cities = City::where('state_id', $request->state_id)
+            ->orderby('name')
+            ->get();
+
+        return response()->json($cities);
+    }
+
+    /**
      * Exibe a tela de cadastro
      *
      * @return \Illuminate\View\View
      */
     public function create()
     {
-        return view('provider::create');
+        $states = State::orderBy('name')->get();
+
+        return view('provider::create', compact('states'));
     }
 
     /**
@@ -92,7 +111,7 @@ class ProviderController extends Controller
      */
     public function show($id)
     {
-        $provider = $this->provider->with('address')
+        $provider = $this->provider->with('address.city.state')
             ->findOrFail($id);
 
         return view('provider::show', compact('provider'));
@@ -106,10 +125,16 @@ class ProviderController extends Controller
      */
     public function edit($id)
     {
-        $provider = $this->provider->with('address')
+        $provider = $this->provider->with('address.city.state')
             ->findOrFail($id);
 
-        return view('provider::edit', compact('provider'));
+        $states = State::orderBy('name')
+            ->where('id', '!=', $provider->address->city->state_id)
+            ->get();
+
+        $cities = City::where('state_id', $provider->address->city->state_id)->get();
+
+        return view('provider::edit', compact('provider', 'states', 'cities'));
     }
 
     /**

@@ -18,6 +18,8 @@ $(document).ready(function () {
 
     $("#summernote-disable").summernote("disable");
 
+    $(".select2").select2();
+
     $("#ajax-datatable").DataTable({
         processing: true,
         serverSide: true,
@@ -39,5 +41,42 @@ $(document).ready(function () {
         language: {
             url: datatable_url,
         },
+    });
+
+    $("#state").on("change", function () {
+        var token = $("input[name='_token']").val();
+
+        $.ajax({
+            url: $("#route_load_address").val(),
+            type: "POST",
+            data: {
+                state_id: $(this).val(),
+            },
+            dataType: "json",
+            beforeSend: function (request) {
+                return request.setRequestHeader("X-CSRF-Token", token);
+            },
+            success: function (cities) {
+                $("#city").attr("disabled", true);
+
+                $("#city option").remove();
+
+                $("#city").append("<option>Selecione</option>");
+
+                $.each(cities, function (key, city) {
+                    $("#city").append(
+                        '<option value="' +
+                            city.id +
+                            '">' +
+                            city.name +
+                            "</option>"
+                    );
+                });
+
+                $("#city").attr("disabled", false);
+
+                $("#city").attr("required", true);
+            },
+        });
     });
 });

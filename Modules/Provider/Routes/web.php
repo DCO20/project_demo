@@ -13,6 +13,9 @@ Route::group([
     Route::post('/datatable', [ProviderController::class, 'dataTable'])
         ->name('datatable');
 
+    Route::post('/cidade/carregamento-cidades', [ProviderController::class, 'loadCity'])
+        ->name('loadcity');
+
     Route::get('/{id}/ver', [ProviderController::class, 'show'])
         ->name('show');
 
