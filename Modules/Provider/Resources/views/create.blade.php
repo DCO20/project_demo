@@ -94,6 +94,79 @@
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">
+                                    Dados do Endereço
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    {{-- CEP --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CEP:<span class="text-danger">*</span></label>
+                                            <input type="text" name="zipcode" class="form-control mask-zipcode" required>
+                                        </div>
+                                    </div>
+
+
+                                    {{-- Logradouro --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Logradouro:<span class="text-danger">*</span></label>
+                                            <input type="text" name="street" class="form-control" required>
+                                        </div>
+                                    </div>
+
+
+                                    {{-- Número --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Número:<span class="text-danger">*</span></label>
+                                            <input type="text" name="number" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    {{-- Complemento --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Complemento:</label>
+                                            <input type="text" name="complement" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    {{-- Bairro --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Bairro:<span class="text-danger">*</span></label>
+                                            <input type="text" name="district" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    {{-- Ponto de referência --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Ponto de referência:</label>
+                                            <input type="text" name="ref_point" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="card-footer"></div>
+
+                        </div>
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">
                                     Observação
                                 </h3>
                                 <div class="card-tools">

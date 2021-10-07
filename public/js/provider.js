@@ -12,6 +12,8 @@ $(document).ready(function () {
 
     $(".mask-cnpj").mask("00.000.000/0000-00", { reverse: true });
 
+    $(".mask-zipcode").mask("00000-000", { reverse: true });
+
     $("#summernote").summernote();
 
     $("#summernote-disable").summernote("disable");

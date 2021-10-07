@@ -3,6 +3,7 @@
 namespace Modules\Provider\Services;
 
 use Illuminate\Support\Facades\DB;
+use Modules\Provider\Entities\Address;
 use Modules\Provider\Entities\Provider;
 
 class ProviderService
@@ -19,7 +20,19 @@ class ProviderService
         DB::beginTransaction();
 
         try {
-            Provider::updateOrCreate(['id' => $id], $request);
+            $provider = Provider::updateOrCreate(['id' => $id], $request);
+
+            $data = [
+                'provider_id' => $provider->id,
+                'zipcode' => $request['zipcode'],
+                'street' => $request['street'],
+                'number' => $request['number'],
+                'complement' => $request['complement'],
+                'district' => $request['district'],
+                'ref_point' => $request['ref_point']
+            ];
+
+            Address::updateOrCreate(['id' => $provider->address->id ?? null], $data);
 
             DB::commit();
         } catch (\Exception $e) {

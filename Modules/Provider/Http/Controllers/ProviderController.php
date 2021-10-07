@@ -92,7 +92,8 @@ class ProviderController extends Controller
      */
     public function show($id)
     {
-        $provider = $this->provider->findOrFail($id);
+        $provider = $this->provider->with('address')
+            ->findOrFail($id);
 
         return view('provider::show', compact('provider'));
     }
@@ -105,7 +106,8 @@ class ProviderController extends Controller
      */
     public function edit($id)
     {
-        $provider = $this->provider->findOrFail($id);
+        $provider = $this->provider->with('address')
+            ->findOrFail($id);
 
         return view('provider::edit', compact('provider'));
     }

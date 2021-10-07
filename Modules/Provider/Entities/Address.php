@@ -14,7 +14,7 @@ class Address extends Model
      *
      * @var string $table
      */
-    protected $table = "adresses";
+    protected $table = "addresses";
 
     /**
      * Atributos da tabela do banco de dados

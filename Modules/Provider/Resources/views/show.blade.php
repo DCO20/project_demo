@@ -89,6 +89,79 @@
                     <div class="card card-default">
                         <div class="card-header">
                             <h3 class="card-title">
+                                Dados do Endereço
+                            </h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+
+                            <div class="row">
+
+                                {{-- CEP --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>CEP:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control mask-zipcode" readonly value="{{ $provider->address->zipcode }}">
+                                    </div>
+                                </div>
+
+
+                                {{-- Logradouro --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Logradouro:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->street }}">
+                                    </div>
+                                </div>
+
+
+                                {{-- Número --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Número:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->number }}">
+                                    </div>
+                                </div>
+
+                                {{-- Complemento --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Complemento:</label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->complement }}">
+                                    </div>
+                                </div>
+
+                                {{-- Bairro --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Bairro:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->district }}">
+                                    </div>
+                                </div>
+
+                                {{-- Ponto de referência --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Ponto de referência:</label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->ref_point }}">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer"></div>
+
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">
                                 Observação
                             </h3>
                             <div class="card-tools">
