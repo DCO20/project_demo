@@ -78,6 +78,8 @@
                         <div class="card-footer"></div>
 
                     </div>
+                </div>
+                <div class="card card-outline card-secondary">
                     <div class="card card-default">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -149,7 +151,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>UF:</label>
-                                        <input type="text" class="form-control" value="{{ $provider->address->city->state->abbr }}"  readonly>
+                                        <input type="text" class="form-control" value="{{ $provider->address->city->state->abbr }}" readonly>
                                     </div>
                                 </div>
 
@@ -168,6 +170,8 @@
                         <div class="card-footer"></div>
 
                     </div>
+                </div>
+                <div class="card card-outline card-secondary">
                     <div class="card card-default">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -198,23 +202,24 @@
                         <div class="card-footer"></div>
 
                     </div>
+                </div>
 
-                    {{-- Editar e excluir --}}
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-primary">
-                                    <i class="fas fa-pen"></i> Editar
-                                </a>
-                                <a href="{{ route('provider.confirm_delete', $provider->id) }}" class="btn btn-danger">
-                                    <i class="fas fa-trash"></i> Excluir
-                                </a>
-                            </div>
+                {{-- Editar e excluir --}}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-primary">
+                                <i class="fas fa-pen"></i> Editar
+                            </a>
+                            <a href="{{ route('provider.confirm_delete', $provider->id) }}" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
 

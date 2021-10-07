@@ -91,6 +91,8 @@
                             <div class="card-footer"></div>
 
                         </div>
+                    </div>
+                    <div class="card card-outline card-secondary">
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">
@@ -191,6 +193,8 @@
                             <div class="card-footer"></div>
 
                         </div>
+                    </div>
+                    <div class="card card-outline card-secondary">
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">
@@ -221,21 +225,22 @@
                             <div class="card-footer"></div>
 
                         </div>
+                    </div>
 
-                        {{-- Botão que salva os dados --}}
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fa fa-plus fa-fw"></i> Cadastrar
-                                    </button>
-                                </div>
+                    {{-- Botão que salva os dados --}}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus fa-fw"></i> Cadastrar
+                                </button>
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 
 @endsection
