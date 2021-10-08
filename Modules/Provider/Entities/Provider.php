@@ -80,4 +80,14 @@ class Provider extends Model
     {
         return $this->hasOne(Address::class);
     }
+
+    /**
+     * Relacionamento com contatos
+     *
+     *  @var array
+     */
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
 }
