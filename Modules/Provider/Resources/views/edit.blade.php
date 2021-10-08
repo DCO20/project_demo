@@ -70,7 +70,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Nome Fantasia:<span class="text-danger">*</span></label>
-                                            <input type="text" name="trade_name"  id="trade_name" class="form-control" required value="{{ $provider->trade_name }}">
+                                            <input type="text" name="trade_name" id="trade_name" class="form-control" required value="{{ $provider->trade_name }}">
                                         </div>
                                     </div>
 
