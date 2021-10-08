@@ -51,7 +51,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Razão social:</label>
-                                        <input type="text" class="form-control" readonly value="{{ $provider->corporate_name }}">
+                                        <input type="text" class="form-control" readonly value="{{ $provider->legal_name }}">
                                     </div>
                                 </div>
 
@@ -60,7 +60,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Nome Fantasia:</label>
-                                        <input type="text" class="form-control" readonly value="{{ $provider->fantasy_name }}">
+                                        <input type="text" class="form-control" readonly value="{{ $provider->trade_name }}">
                                     </div>
                                 </div>
 

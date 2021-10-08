@@ -33,8 +33,8 @@ class Provider extends Model
      */
     protected $fillable = [
         'cnpj',
-        'corporate_name',
-        'fantasy_name',
+        'legal_name',
+        'trade_name',
         'active',
         'note'
     ];

@@ -61,7 +61,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Razão social:<span class="text-danger">*</span></label>
-                                            <input type="text" name="corporate_name" class="form-control" required value="{{ $provider->corporate_name }}">
+                                            <input type="text" name="legal_name" class="form-control" required value="{{ $provider->legal_name }}">
                                         </div>
                                     </div>
 
@@ -70,7 +70,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Nome Fantasia:<span class="text-danger">*</span></label>
-                                            <input type="text" name="fantasy_name" class="form-control" required value="{{ $provider->fantasy_name }}">
+                                            <input type="text" name="trade_name" class="form-control" required value="{{ $provider->trade_name }}">
                                         </div>
                                     </div>
 
@@ -114,7 +114,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>CEP:<span class="text-danger">*</span></label>
-                                            <input type="text" name="zipcode" class="form-control mask-zipcode" required value="{{ $provider->address->zipcode }}">
+                                            <input type="text" name="zipcode" id="cep class="form-control mask-zipcode" required value="{{ $provider->address->zipcode }}">
                                         </div>
                                     </div>
 
@@ -123,7 +123,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Logradouro:<span class="text-danger">*</span></label>
-                                            <input type="text" name="street" class="form-control" required value="{{ $provider->address->street }}">
+                                            <input type="text" name="street" id="logradouro" class="form-control" required value="{{ $provider->address->street }}">
                                         </div>
                                     </div>
 
@@ -148,7 +148,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Bairro:<span class="text-danger">*</span></label>
-                                            <input type="text" name="district" class="form-control" required value="{{ $provider->address->district }}">
+                                            <input type="text" name="district" id="bairro" class="form-control" required value="{{ $provider->address->district }}">
                                         </div>
                                     </div>
 

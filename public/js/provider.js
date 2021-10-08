@@ -4,7 +4,8 @@ $(document).ready(function () {
     //-----------------------------------------------------
 
     var token = $("input[name='_token']").val(),
-        datatable_url = window.location.origin + "/datatable/pt-br.json";
+        datatable_url = window.location.origin + "/datatable/pt-br.json",
+        searched_city = "";
 
     //-----------------------------------------------------
     // Instance of plugins
@@ -48,50 +49,61 @@ $(document).ready(function () {
             .val()
             .replace(/[^0-9]/g, "");
 
-        if (cnpj.length != 11) {
-            var url = "https://www.receitaws.com.br/v1/cnpj/" + cnpj;
+        var url = "https://www.receitaws.com.br/v1/cnpj/" + cnpj;
 
-            $.ajax({
-                url: url,
-                crossDomain: true,
-                type: "GET",
-                dataType: "jsonp",
-
-                success: function (data) {
-                    console.log(data);
-                    if (data.nome == undefined) {
-                        $("#message").append(
-                            "<p>O cnpj não consta no sistema.</p>"
-                        );
-                    } else {
-                        $("#corporate_name").val(data.nome);
-                        $("#fantasy_name").val(data.fantasia);
-                    }
-                },
-            });
+        if (cnpj.length != 14) {
+            return false;
         }
+
+        $.ajax({
+            url: url,
+            crossDomain: true,
+            type: "GET",
+            dataType: "jsonp",
+            success: function (data) {
+                if (data.nome == undefined) {
+                    $("#message").append(
+                        "<p>O cnpj não consta no sistema.</p>"
+                    );
+                } else {
+                    $("#legal_name").val(data.nome);
+                    $("#trade_name").val(data.fantasia);
+                }
+            },
+        });
     }
 
     function searchZipCode() {
-        var numZipcode = $("#cep").val().replace("-", "");
-        var url = "https://viacep.com.br/ws/" + numZipcode + "/json/";
+        var zipcode = $("#cep").val().replace("-", "");
+
+        var url = "https://viacep.com.br/ws/" + zipcode + "/json/";
+
+        if (zipcode.length != 8) {
+            return false;
+        }
+
         $.ajax({
             url: url,
             crossDomain: true,
             type: "GET",
             dataType: "json",
-
             success: function (data) {
-                console.log(data);
-                $("#uf").select2("val", data.uf);
-                $("#uf").trigger("change");
+                $("#uf")
+                    .find("option:contains('" + data.uf + "')")
+                    .prop("selected", true)
+                    .trigger("change");
+
+                searched_city = data.localidade;
+
                 $("#logradouro").val(data.logradouro);
+
                 $("#bairro").val(data.bairro);
             },
         });
     }
 
-    $("#uf").on("change", function () {
+    function searchCity() {
+        $("#uf").on("change");
         var token = $("input[name='_token']").val();
 
         $.ajax({
@@ -121,13 +133,23 @@ $(document).ready(function () {
                     );
                 });
 
-                $("#city").attr("disabled", false);
+                if (searched_city != "") {
+                    $("#city")
+                        .find("option:contains('" + searched_city + "')")
+                        .prop("selected", true)
+                        .trigger("change");
 
-                $("#city").attr("required", true);
+                    searched_city = "";
+                }
+
+                $("#city").prop("disabled", false);
+
+                $("#city").prop("required", true);
             },
         });
-    });
+    }
 
     $(document).delegate("#cep", "input", searchZipCode);
     $(document).delegate("#cnpj", "input", searchCNPJ);
+    $(document).delegate("#uf", "select", searchCity);
 });

@@ -61,7 +61,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Razão social:<span class="text-danger">*</span></label>
-                                            <input type="text" name="corporate_name" id="corporate_name" class="form-control" required>
+                                            <input type="text" name="legal_name" id="corporate_name" class="form-control" required>
                                         </div>
                                     </div>
 
@@ -70,7 +70,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Nome Fantasia:<span class="text-danger">*</span></label>
-                                            <input type="text" name="fantasy_name" id="fantasy_name" class="form-control" required>
+                                            <input type="text" name="trade_name" id="fantasy_name" class="form-control" required>
                                         </div>
                                     </div>
 
