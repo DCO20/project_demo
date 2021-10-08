@@ -15,11 +15,26 @@ $(document).ready(function () {
 
     $(".mask-zipcode").mask("00000-000", { reverse: true });
 
+    $(".mask-phone-cell").mask("(00) 00000-0000");
+
     $("#summernote").summernote();
 
     $("#summernote-disable").summernote("disable");
 
     $(".select2").select2();
+
+    $("#add").click(function () {
+
+        i++;
+
+        $("#contact").append(
+            ' <div class="col-md-6" id="row'+ i +'"><div class="form-group"><label>Celular:<span class="text-danger">*</span></label><input type="text" name="phone_cell[]" class="form-control mask-phone-cell" required></div></div><div class="col-md-6"><div class="form-group"><label>Email:<span class="text-danger">*</span></label><input type="email" name="email[]" class="form-control" required></div></div><div class="col-md-12"><div class="text-right"><a href="#" class="text-primary" id="'+ i +'">Remover</a></div></div> '
+        );
+    });
+
+    $("#btn-delete").click(function () {
+        $("#contact").prop("col-md-6").remove();
+    });
 
     $("#ajax-datatable").DataTable({
         processing: true,

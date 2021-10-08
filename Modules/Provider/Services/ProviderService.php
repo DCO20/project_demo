@@ -4,12 +4,13 @@ namespace Modules\Provider\Services;
 
 use Illuminate\Support\Facades\DB;
 use Modules\Provider\Entities\Address;
+use Modules\Provider\Entities\Contact;
 use Modules\Provider\Entities\Provider;
 
 class ProviderService
 {
     /**
-     * Método que cria um produto
+     * Método que cria um fornecedor
      * @param array $request
      * @param int|null $id
      *
@@ -21,6 +22,14 @@ class ProviderService
 
         try {
             $provider = Provider::updateOrCreate(['id' => $id], $request);
+
+            $data = [
+                'provider_id' => $provider->id,
+                'phone_cell' => $request['phone_cell'],
+                'email' => $request['email']
+            ];
+
+            Contact::updateOrCreate(['id' => $provider->contacts->id ?? null], $data);
 
             $data = [
                 'provider_id' => $provider->id,

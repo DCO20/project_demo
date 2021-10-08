@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('provider_id');
             $table->string('phone_cell');
-            $table->string('phone_fixed')->nullable();
+            $table->string('email');
             $table->timestamps();
 
             $table->foreign('provider_id')->references('id')->on('providers');

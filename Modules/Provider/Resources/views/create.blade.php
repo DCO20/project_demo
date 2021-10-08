@@ -97,6 +97,53 @@
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">
+                                    Dados do Contato
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+
+                                <div class="row" id="contact">
+
+                                    {{-- Celular --}}
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Celular:<span class="text-danger">*</span></label>
+                                            <input type="text" name="phone_cell[]" class="form-control mask-phone-cell" required>
+                                        </div>
+                                    </div>
+
+                                    {{-- Telefone Fixo --}}
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Email:<span class="text-danger">*</span></label>
+                                            <input type="email" name="email[]" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    {{-- Adicionar --}}
+                                    <div class="col-md-12">
+                                        <div class="text-right">
+                                            <a href="#" class="text-primary" id="add">Adicionar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer"></div>
+
+                        </div>
+                    </div>
+                    <div class="card card-outline card-secondary">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">
                                     Dados do Endereço
                                 </h3>
                                 <div class="card-tools">

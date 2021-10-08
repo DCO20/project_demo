@@ -18,17 +18,12 @@ class ProviderRequest extends FormRequest
             'legal_name' => 'required',
             'trade_name' => 'required',
             'active' => 'required',
-            'note' => 'nullable',
             'zipcode' => 'required',
             'street' => 'required',
             'number' => 'required',
-            'complement' => 'nullable',
             'district' => 'required',
-            'ref_point' => 'nullable',
-            'state' => 'required',
-            'city' => 'required',
             'phone_cell' => 'required',
-            'phone_fixed' => 'nullable'
+
         ];
     }
 
