@@ -34,8 +34,8 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "cnpj" },
-            { data: "corporate_name" },
-            { data: "fantasy_name" },
+            { data: "legal_name" },
+            { data: "trade_name" },
             { data: "active" },
             { data: "action", orderable: false, searchable: false },
         ],
@@ -66,6 +66,7 @@ $(document).ready(function () {
                         "<p>O cnpj não consta no sistema.</p>"
                     );
                 } else {
+                    $("#message").hide();
                     $("#legal_name").val(data.nome);
                     $("#trade_name").val(data.fantasia);
                 }
@@ -102,8 +103,7 @@ $(document).ready(function () {
         });
     }
 
-    function searchCity() {
-        $("#uf").on("change");
+    $("#uf").on("change", function () {
         var token = $("input[name='_token']").val();
 
         $.ajax({
@@ -147,9 +147,8 @@ $(document).ready(function () {
                 $("#city").prop("required", true);
             },
         });
-    }
+    });
 
     $(document).delegate("#cep", "input", searchZipCode);
     $(document).delegate("#cnpj", "input", searchCNPJ);
-    $(document).delegate("#uf", "input", searchCity);
 });

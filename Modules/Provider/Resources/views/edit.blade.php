@@ -53,6 +53,7 @@
                                         <div class="form-group">
                                             <label>CNPJ:<span class="text-danger">*</span></label>
                                             <input type="text" name="cnpj" class="form-control mask-cnpj" required value="{{ $provider->cnpj }}">
+                                            <span id="message" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -114,7 +115,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>CEP:<span class="text-danger">*</span></label>
-                                            <input type="text" name="zipcode" id="cep class="form-control mask-zipcode" required value="{{ $provider->address->zipcode }}">
+                                            <input type="text" name="zipcode" id="cep" class="form-control mask-zipcode" required value="{{ $provider->address->zipcode }}">
                                         </div>
                                     </div>
 
