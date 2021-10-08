@@ -44,7 +44,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Razão social:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $provider->corporate_name }}">
+                                    <input type="text" class="form-control" readonly value="{{ $provider->legal_name }}">
                                 </div>
                             </div>
 

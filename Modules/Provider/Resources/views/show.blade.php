@@ -11,14 +11,6 @@
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                <a href="{{ route('provider.confirm_delete', $provider->id) }}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
-            </div>
         </div>
     </div>
 @endsection
@@ -59,7 +51,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Razão social:</label>
-                                        <input type="text" class="form-control" readonly value="{{ $provider->corporate_name }}">
+                                        <input type="text" class="form-control" readonly value="{{ $provider->legal_name }}">
                                     </div>
                                 </div>
 
@@ -68,7 +60,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Nome Fantasia:</label>
-                                        <input type="text" class="form-control" readonly value="{{ $provider->fantasy_name }}">
+                                        <input type="text" class="form-control" readonly value="{{ $provider->trade_name }}">
                                     </div>
                                 </div>
 
@@ -86,6 +78,100 @@
                         <div class="card-footer"></div>
 
                     </div>
+                </div>
+                <div class="card card-outline card-secondary">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Dados do Endereço
+                            </h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+
+                            <div class="row">
+
+                                {{-- CEP --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>CEP:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control mask-zipcode" readonly value="{{ $provider->address->zipcode }}">
+                                    </div>
+                                </div>
+
+
+                                {{-- Logradouro --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Logradouro:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->street }}">
+                                    </div>
+                                </div>
+
+
+                                {{-- Número --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Número:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->number }}">
+                                    </div>
+                                </div>
+
+                                {{-- Complemento --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Complemento:</label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->complement }}">
+                                    </div>
+                                </div>
+
+                                {{-- Bairro --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Bairro:<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->district }}">
+                                    </div>
+                                </div>
+
+                                {{-- Ponto de referência --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Ponto de referência:</label>
+                                        <input type="text" class="form-control" readonly value="{{ $provider->address->ref_point }}">
+                                    </div>
+                                </div>
+
+                                {{-- UF --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>UF:</label>
+                                        <input type="text" class="form-control" value="{{ $provider->address->city->state->abbr }}" readonly>
+                                    </div>
+                                </div>
+
+                                {{-- Cidades --}}
+                                <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Cidade:</label>
+                                        <input type="text" class="form-control" value="{{ $provider->address->city->name }}" readonly>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer"></div>
+
+                    </div>
+                </div>
+                <div class="card card-outline card-secondary">
                     <div class="card card-default">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -116,20 +202,25 @@
                         <div class="card-footer"></div>
 
                     </div>
+                </div>
 
-                    {{-- Botão que salva os dados --}}
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-plus fa-fw"></i> Salvar
-                                </button>
-                            </div>
+                {{-- Editar e excluir --}}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <a href="{{ route('provider.edit', $provider->id) }}" class="btn btn-primary">
+                                <i class="fas fa-pen"></i> Editar
+                            </a>
+                            <a href="{{ route('provider.confirm_delete', $provider->id) }}" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
 @endsection

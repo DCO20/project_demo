@@ -33,8 +33,8 @@ class Provider extends Model
      */
     protected $fillable = [
         'cnpj',
-        'corporate_name',
-        'fantasy_name',
+        'legal_name',
+        'trade_name',
         'active',
         'note'
     ];
@@ -69,5 +69,15 @@ class Provider extends Model
     public function getFormattedActiveAttribute()
     {
         return $this->active ? "Sim" : "Não";
+    }
+
+    /**
+     * Relacionamento com endereço
+     *
+     *  @var array
+     */
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }

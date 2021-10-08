@@ -15,10 +15,16 @@ class ProviderRequest extends FormRequest
     {
         return [
             'cnpj' => 'required',
-            'corporate_name' => 'required',
-            'fantasy_name' => 'required',
+            'legal_name' => 'required',
+            'trade_name' => 'required',
             'active' => 'required',
             'note' => 'nullable',
+            'zipcode' => 'required',
+            'street' => 'required',
+            'number' => 'required',
+            'complement' => 'nullable',
+            'district' => 'required',
+            'ref_point' => 'nullable'
         ];
     }
 

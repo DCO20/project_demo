@@ -53,6 +53,7 @@
                                         <div class="form-group">
                                             <label>CNPJ:<span class="text-danger">*</span></label>
                                             <input type="text" name="cnpj" class="form-control mask-cnpj" required value="{{ $provider->cnpj }}">
+                                            <span id="message" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -61,7 +62,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Razão social:<span class="text-danger">*</span></label>
-                                            <input type="text" name="corporate_name" class="form-control" required value="{{ $provider->corporate_name }}">
+                                            <input type="text" name="legal_name" id="legal_name" class="form-control" required value="{{ $provider->legal_name }}">
                                         </div>
                                     </div>
 
@@ -70,7 +71,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Nome Fantasia:<span class="text-danger">*</span></label>
-                                            <input type="text" name="fantasy_name" class="form-control" required value="{{ $provider->fantasy_name }}">
+                                            <input type="text" name="trade_name" id="trade_name" class="form-control" required value="{{ $provider->trade_name }}">
                                         </div>
                                     </div>
 
@@ -91,6 +92,119 @@
                             <div class="card-footer"></div>
 
                         </div>
+                    </div>
+                    <div class="card card-outline card-secondary">
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Dados do Endereço
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    {{-- CEP --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>CEP:<span class="text-danger">*</span></label>
+                                            <input type="text" name="zipcode" id="cep" class="form-control mask-zipcode" required value="{{ $provider->address->zipcode }}">
+                                        </div>
+                                    </div>
+
+
+                                    {{-- Logradouro --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Logradouro:<span class="text-danger">*</span></label>
+                                            <input type="text" name="street" id="logradouro" class="form-control" required value="{{ $provider->address->street }}">
+                                        </div>
+                                    </div>
+
+
+                                    {{-- Número --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Número:<span class="text-danger">*</span></label>
+                                            <input type="text" name="number" class="form-control" required value="{{ $provider->address->number }}">
+                                        </div>
+                                    </div>
+
+                                    {{-- Complemento --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Complemento:</label>
+                                            <input type="text" name="complement" class="form-control" value="{{ $provider->address->complement }}">
+                                        </div>
+                                    </div>
+
+                                    {{-- Bairro --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Bairro:<span class="text-danger">*</span></label>
+                                            <input type="text" name="district" id="bairro" class="form-control" required value="{{ $provider->address->district }}">
+                                        </div>
+                                    </div>
+
+                                    {{-- Ponto de referência --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Ponto de referência:</label>
+                                            <input type="text" name="ref_point" class="form-control" value="{{ $provider->address->ref_point }}">
+                                        </div>
+                                    </div>
+
+                                    {{-- UF --}}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>UF:<span class="text-danger"> *</span></label>
+                                            <select name="state" class="form-controll select2" id="state" required style="width: 100%;">
+
+                                                <option value="">Selecionar</option>
+
+                                                <option value="{{ $provider->address->city->state->id }}" selected>{{ $provider->address->city->state->abbr }}</option>
+
+                                                @foreach ($states as $state)
+                                                    <option value="{{ $state->id }}">{{ $state->abbr }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {{-- Cidades --}}
+                                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Cidade:<span class="text-danger"> *</span></label>
+                                            <select name="city_id" class="form-controll select2" id="city" style="width: 100%;">
+
+                                                <option value="">Selecionar</option>
+
+                                                <option value="{{ $provider->address->city->id }}" selected>{{ $provider->address->city->name }}</option>
+
+                                                @foreach ($cities as $city)
+                                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer"></div>
+
+                        </div>
+                    </div>
+                    <div class="card card-outline card-secondary">
                         <div class="card card-default">
                             <div class="card-header">
                                 <h3 class="card-title">
@@ -121,21 +235,22 @@
                             <div class="card-footer"></div>
 
                         </div>
+                    </div>
 
-                        {{-- Botão que salva os dados --}}
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fa fa-plus fa-fw"></i> Salvar
-                                    </button>
-                                </div>
+                    {{-- Botão que salva os dados --}}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-plus fa-fw"></i> Salvar
+                                </button>
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 
 @endsection
