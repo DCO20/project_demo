@@ -20,7 +20,8 @@ class Contact extends Model
      */
     protected $fillable = [
         'provider_id',
-        'phone'
+        'phone_cell',
+        'phone_fixed'
     ];
 
     /**
