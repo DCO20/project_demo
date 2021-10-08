@@ -24,7 +24,10 @@ class ProviderRequest extends FormRequest
             'number' => 'required',
             'complement' => 'nullable',
             'district' => 'required',
-            'ref_point' => 'nullable'
+            'ref_point' => 'nullable',
+            'state' => 'required',
+            'city' => 'required',
+            'phone' => 'required'
         ];
     }
 
