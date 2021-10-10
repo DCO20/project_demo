@@ -23,17 +23,23 @@ $(document).ready(function () {
 
     $(".select2").select2();
 
-    $("#add").click(function () {
+    var i = 1;
 
+    $(".add_contact").click(function () {
         i++;
 
-        $("#contact").append(
-            ' <div class="col-md-6" id="row'+ i +'"><div class="form-group"><label>Celular:<span class="text-danger">*</span></label><input type="text" name="phone_cell[]" class="form-control mask-phone-cell" required></div></div><div class="col-md-6"><div class="form-group"><label>Email:<span class="text-danger">*</span></label><input type="email" name="email[]" class="form-control" required></div></div><div class="col-md-12"><div class="text-right"><a href="#" class="text-primary" id="'+ i +'">Remover</a></div></div> '
+        $(".contact").append(
+            ' <div class="row" id="row' +
+                i +
+                '"><div class="col-md-3"><div class="form-group"><label>Telefone:<span class="text-danger">*</span></label><input type="text" name="contacts[0][phone][0][number]" class="form-control mask-phone-cell" required></div></div><div class="col-md-3"><div class="form-group"><label>Tipo:<span class="text-danger">*</span></label><select name="contacts[0][phone][0][type]" class="form-control" style="width: 100% !important" required=""><option value="">Selecione</option><option value="residential">Residencial</option><option value="commercial">Comercial</option><option value="cellphone">Celular</option></select></div></div><div class="col-md-3"><div class="form-group"><label>E-mail:<span class="text-danger">*</span></label><input type="email" name="contacts[0][email][0][email]" class="form-control" required></div></div> <div class="col-md-3"><div class="form-group"><label>Tipo:<span class="text-danger">*</span></label><select name="contacts[0][email][0][type]" class="form-control type-email" style="width: 100% !important"><option value="">Selecione</option><option value="personal">Pessoal</option><option value="commercial">Comercial</option><option value="other">Outro</option></select></div></div><div class="col-md-12"><div><a href="javascript:void(0)" class="text-secondary remove-contact" id="' +
+                i +
+                '" data-step="7" style="text-decoration: underline">Remover</a></div></div></div>  '
         );
     });
 
-    $("#btn-delete").click(function () {
-        $("#contact").prop("col-md-6").remove();
+    $(document).on("click", ".remove-contact", function () {
+        var button_id = $(this).attr('id');
+        $("#row" + button_id + "").remove();
     });
 
     $("#ajax-datatable").DataTable({

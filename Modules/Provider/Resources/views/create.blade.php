@@ -108,31 +108,63 @@
 
                             <div class="card-body">
 
+                                <div class="row">
 
-                                <div class="row" id="contact">
+                                    <div class=" col-md-12 contact">
+                                        <div class="row">
 
-                                    {{-- Celular --}}
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Celular:<span class="text-danger">*</span></label>
-                                            <input type="text" name="phone_cell[]" class="form-control mask-phone-cell" required>
+                                            {{-- Celular --}}
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Telefone:<span class="text-danger">*</span></label>
+                                                    <input type="text" name="contacts[0][phone][0][number]" class="form-control mask-phone-cell" required>
+                                                </div>
+                                            </div>
+
+                                            {{-- Select Tipo Telefone --}}
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Tipo:<span class="text-danger">*</span></label>
+                                                    <select name="contacts[0][phone][0][type]" class="form-control" style="width: 100% !important" required="">
+                                                        <option value="">Selecione</option>
+                                                        <option value="residential">Residencial</option>
+                                                        <option value="commercial">Comercial</option>
+                                                        <option value="cellphone">Celular</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            {{-- Telefone Fixo --}}
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>E-mail:<span class="text-danger">*</span></label>
+                                                    <input type="email" name="contacts[0][email][0][email]" class="form-control" required>
+                                                </div>
+                                            </div>
+
+                                            {{-- Select Tipo Email --}}
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Tipo:<span class="text-danger">*</span></label>
+                                                    <select name="contacts[0][email][0][type]" class="form-control type-email" style="width: 100% !important" required>
+                                                        <option value="">Selecione</option>
+                                                        <option value="personal">Pessoal</option>
+                                                        <option value="commercial">Comercial</option>
+                                                        <option value="other">Outro</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            {{-- Adicionar --}}
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="btn-float"><a href="javascript:void(0)" class="add_contact text-secondary" data-step="7" style="text-decoration: underline">Adicionar</a> </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                    {{-- Telefone Fixo --}}
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Email:<span class="text-danger">*</span></label>
-                                            <input type="email" name="email[]" class="form-control" required>
-                                        </div>
-                                    </div>
-
-                                    {{-- Adicionar --}}
-                                    <div class="col-md-12">
-                                        <div class="text-right">
-                                            <a href="#" class="text-primary" id="add">Adicionar</a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
