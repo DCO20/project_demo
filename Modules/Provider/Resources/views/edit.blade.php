@@ -29,6 +29,7 @@
                     {{-- Elementos Ocultos --}}
                     @csrf
                     @method('PUT')
+                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
 
                     <div class="card card-outline card-secondary">
                         <div class="card card-default">
@@ -178,7 +179,6 @@
                                     </div>
 
                                     {{-- Cidades --}}
-                                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Cidade:<span class="text-danger"> *</span></label>

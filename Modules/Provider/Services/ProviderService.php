@@ -23,10 +23,17 @@ class ProviderService
         try {
             $provider = Provider::updateOrCreate(['id' => $id], $request);
 
+
+            //$request['phone']
+
+
+
             $data = [
                 'provider_id' => $provider->id,
-                'phone_cell' => $request['phone_cell'],
-                'email' => $request['email']
+                'number' => $request['number'],
+                'phone_type' => $request['phone_type'],
+                'email' => $request['email'],
+                'email_type' => $request['email_type']
             ];
 
             Contact::updateOrCreate(['id' => $provider->contacts->id ?? null], $data);

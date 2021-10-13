@@ -22,11 +22,10 @@ class ProviderRequest extends FormRequest
             'street' => 'required',
             'number' => 'required',
             'district' => 'required',
-            'phone' => 'required',
-            'phone_type' => 'required',
-            'email' => 'required',
-            'email_type' => 'required'
-
+            'number.*' => 'required',
+            'phone_type.*' => 'required',
+            'email.*' => 'required',
+            'email_type.*' => 'required'
         ];
     }
 

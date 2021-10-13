@@ -63,9 +63,10 @@ class ProviderController extends Controller
     }
 
     /**
-     * Carregamento das cidades.
+     * Carregamento das cidades
+     * @param Request $request
      *
-     * @return json
+     * @return JsonResponse
      */
     public function loadCity(Request $request)
     {
@@ -132,7 +133,9 @@ class ProviderController extends Controller
             ->where('id', '!=', $provider->address->city->state_id)
             ->get();
 
-        $cities = City::where('state_id', $provider->address->city->state_id)->get();
+        $cities = City::where('state_id', $provider->address->city->state_id)
+            ->where('id', '!=', $provider->address->city->id)
+            ->get();
 
         return view('provider::edit', compact('provider', 'states', 'cities'));
     }

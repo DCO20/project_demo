@@ -28,6 +28,7 @@
 
                     {{-- Elementos Ocultos --}}
                     @csrf
+                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
 
                     <div class="card card-outline card-secondary">
                         <div class="card card-default">
@@ -117,7 +118,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Telefone:<span class="text-danger">*</span></label>
-                                                    <input type="text" name="contacts[0][phone][0][number]" class="form-control mask-phone-cell" required>
+                                                    <input type="text" name="phones[0][number]" class="form-control mask-phone-cell" required>
                                                 </div>
                                             </div>
 
@@ -125,7 +126,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Tipo:<span class="text-danger">*</span></label>
-                                                    <select name="contacts[0][phone][0][type]" class="form-control" style="width: 100% !important" required="">
+                                                    <select name="phones[0][phone_type]" class="form-control" style="width: 100% !important" required="">
                                                         <option value="">Selecione</option>
                                                         <option value="residential">Residencial</option>
                                                         <option value="commercial">Comercial</option>
@@ -138,7 +139,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>E-mail:<span class="text-danger">*</span></label>
-                                                    <input type="email" name="contacts[0][email][0][email]" class="form-control" required>
+                                                    <input type="email" name="emails[0][email]" class="form-control" required>
                                                 </div>
                                             </div>
 
@@ -146,7 +147,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Tipo:<span class="text-danger">*</span></label>
-                                                    <select name="contacts[0][email][0][type]" class="form-control type-email" style="width: 100% !important" required>
+                                                    <select name="emails[0][email_type]" class="form-control type-email" style="width: 100% !important" required>
                                                         <option value="">Selecione</option>
                                                         <option value="personal">Pessoal</option>
                                                         <option value="commercial">Comercial</option>
@@ -158,7 +159,9 @@
                                             {{-- Adicionar --}}
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <div class="btn-float"><a href="javascript:void(0)" class="add_contact text-secondary" data-step="7" style="text-decoration: underline">Adicionar</a> </div>
+                                                    <div class="btn-float">
+                                                        <a href="javascript:void(0)" class="add_contact text-secondary" style="text-decoration: underline;">Adicionar</a>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -257,7 +260,6 @@
                                     </div>
 
                                     {{-- Cidade --}}
-                                    <input type="hidden" id="route_load_address" value="{{ route('provider.loadcity') }}">
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Cidade:<span class="text-danger"> *</span></label>

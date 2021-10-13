@@ -5,7 +5,8 @@ $(document).ready(function () {
 
     var token = $("input[name='_token']").val(),
         datatable_url = window.location.origin + "/datatable/pt-br.json",
-        searched_city = "";
+        searched_city = "",
+        contact = 1;
 
     //-----------------------------------------------------
     // Instance of plugins
@@ -23,22 +24,47 @@ $(document).ready(function () {
 
     $(".select2").select2();
 
-    var i = 1;
-
     $(".add_contact").click(function () {
-        i++;
+        contact++;
 
         $(".contact").append(
-            ' <div class="row" id="row' +
-                i +
-                '"><div class="col-md-3"><div class="form-group"><label>Telefone:<span class="text-danger">*</span></label><input type="text" name="contacts[0][phone][0][number]" class="form-control mask-phone-cell" required></div></div><div class="col-md-3"><div class="form-group"><label>Tipo:<span class="text-danger">*</span></label><select name="contacts[0][phone][0][type]" class="form-control" style="width: 100% !important" required=""><option value="">Selecione</option><option value="residential">Residencial</option><option value="commercial">Comercial</option><option value="cellphone">Celular</option></select></div></div><div class="col-md-3"><div class="form-group"><label>E-mail:<span class="text-danger">*</span></label><input type="email" name="contacts[0][email][0][email]" class="form-control" required></div></div> <div class="col-md-3"><div class="form-group"><label>Tipo:<span class="text-danger">*</span></label><select name="contacts[0][email][0][type]" class="form-control type-email" style="width: 100% !important"><option value="">Selecione</option><option value="personal">Pessoal</option><option value="commercial">Comercial</option><option value="other">Outro</option></select></div></div><div class="col-md-12"><div><a href="javascript:void(0)" class="text-secondary remove-contact" id="' +
-                i +
-                '" data-step="7" style="text-decoration: underline">Remover</a></div></div></div>  '
+            '<div class="row">' +
+                '<div class="col-md-3">' +
+                '<div class= "form-group">' +
+                '<label> Telefone: <span class="text-danger">*</span></label>' +
+                '<input type = "text" name= "phones[1][number]" class= "form-control mask-phone-cell" required>' +
+                "</div></div>" +
+                '<div class= "col-md-3">' +
+                '<div class= "form-group">' +
+                '<label> Tipo: <span class="text-danger">*</span></label>' +
+                '<select name="phones[1][phone_type]" class="form-control" style="width: 100% !important" required="">' +
+                '<option value = "" > Selecione</option><option value="residential">Residencial</option> ' +
+                '<option value="commercial">Comercial</option>' +
+                '<option value="cellphone">Celular</option> ' +
+                "</select></div></div>" +
+                '<div class= "col-md-3">' +
+                '<div class="form-group"> ' +
+                '<label>E-mail:<span class="text-danger">*</span></label>' +
+                '<input type="email" name="emails[1][email]" class="form-control" required>' +
+                "</div></div > " +
+                '<div class="col-md-3">' +
+                '<div class="form-group">' +
+                '<label>Tipo:<span class="text-danger">*</span></label>' +
+                '<select name="emails[1][email_type]" class="form-control type-email" style="width: 100% !important">' +
+                '<option value="">Selecione</option>' +
+                '<option value="personal">Pessoal</option>' +
+                '<option value="commercial">Comercial</option>' +
+                '<option value="other">Outro</option>' +
+                "</select></div></div >" +
+                '<div class="col-md-12">' +
+                '<div><a href="javascript:void(0)" class="text-secondary remove-contact"' +
+                'style="text-decoration: underline" > Remover</a>' +
+                "</div></div></div> "
         );
     });
 
     $(document).on("click", ".remove-contact", function () {
-        var button_id = $(this).attr('id');
+        var button_id = $(this).attr("id");
         $("#row" + button_id + "").remove();
     });
 
@@ -64,6 +90,10 @@ $(document).ready(function () {
             url: datatable_url,
         },
     });
+
+    //-----------------------------------------------------
+    // Defining a function
+    //-----------------------------------------------------
 
     function searchCNPJ() {
         var cnpj = $("#cnpj")
@@ -124,8 +154,12 @@ $(document).ready(function () {
         });
     }
 
-    $("#uf").on("change", function () {
-        var token = $("input[name='_token']").val();
+    function loadCities() {
+        $("#city").prop("disabled", true);
+
+        $("#city option").remove();
+
+        $("#city").append("<option value=''>Selecione</option>");
 
         $.ajax({
             url: $("#route_load_address").val(),
@@ -138,12 +172,6 @@ $(document).ready(function () {
                 return request.setRequestHeader("X-CSRF-Token", token);
             },
             success: function (cities) {
-                $("#city").attr("disabled", true);
-
-                $("#city option").remove();
-
-                $("#city").append("<option>Selecione</option>");
-
                 $.each(cities, function (key, city) {
                     $("#city").append(
                         '<option value="' +
@@ -168,8 +196,13 @@ $(document).ready(function () {
                 $("#city").prop("required", true);
             },
         });
-    });
+    }
+
+    //-----------------------------------------------------
+    // Defining a call function
+    //-----------------------------------------------------
 
     $(document).delegate("#cep", "input", searchZipCode);
     $(document).delegate("#cnpj", "input", searchCNPJ);
+    $(document).delegate("#uf", "change", loadCities);
 });
