@@ -55,7 +55,7 @@ class CategoryController extends Controller
             ->addColumn("action", function ($category) {
                 return $category->actionView();
             })
-            ->rawColumns(['active', 'description', 'action'])
+            ->rawColumns(['active', 'action'])
             ->make(true);
     }
 
