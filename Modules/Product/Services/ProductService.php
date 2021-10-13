@@ -19,9 +19,8 @@ class ProductService
         DB::beginTransaction();
 
         try {
-            $product = Product::updateOrCreate(['id' => $id], $request);
+            Product::updateOrCreate(['id' => $id], $request);
 
-            return $product;
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
