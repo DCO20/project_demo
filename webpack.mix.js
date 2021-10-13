@@ -69,8 +69,3 @@ mix.scripts(
     "public/js/product.js"
 );
 
-// Fornecedores JS
-mix.scripts(
-    "Modules/Provider/Resources/assets/js/provider.js",
-    "public/js/provider.js"
-);
