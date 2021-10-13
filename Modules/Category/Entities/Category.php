@@ -3,6 +3,7 @@
 namespace Modules\Category\Entities;
 
 use App\Traits\Presentable;
+use Modules\Product\Entities\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Presenter\CategoryPresenter;
@@ -66,5 +67,15 @@ class Category extends Model
     public function getFormattedActiveAttribute()
     {
         return $this->active ? "Sim" : "Não";
+    }
+
+    /**
+     * Relacionamento com produtos
+     *
+     *  @var array
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withTrashed();
     }
 }
