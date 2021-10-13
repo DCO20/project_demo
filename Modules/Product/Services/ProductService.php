@@ -21,11 +21,11 @@ class ProductService
         try {
             $product =Product::updateOrCreate(['id' => $id], $request);
 
-            $product->categories()->sync($request['categories'] ?? '');
-
-            return $product;
+            $product->categories()->sync($request['categories'] ?? []);
 
             DB::commit();
+
+            return $product;
         } catch (\Exception $e) {
             DB::rollBack();
 

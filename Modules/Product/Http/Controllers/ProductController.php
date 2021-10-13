@@ -4,6 +4,7 @@ namespace Modules\Product\Http\Controllers;
 
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
+use Modules\Category\Entities\Category;
 use Modules\Product\Entities\Product;
 use Modules\Product\Services\ProductService;
 use Modules\Product\Http\Requests\ProductRequest;
@@ -77,7 +78,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product::create');
+        $categories = Category::where('active', true)->get();
+
+        return view('product::create', compact('categories'));
     }
 
     /**
@@ -103,7 +106,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = $this->product->findOrFail($id);
+        $product = $this->product->with('categories')
+            ->findOrFail($id);
 
         return view('product::show', compact('product'));
     }
@@ -116,7 +120,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->product->findOrFail($id);
+        $product = $this->product->with('categories')
+            ->findOrFail($id);
+
+        $categories = Category::where('active', true)
+            ->whereNotIn('id', $product->categories->pluck('id'))
+            ->get();
 
         return view('product::edit', compact('product', 'categories'));
     }

@@ -43,7 +43,7 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" required value="{{ $product->name }}">
@@ -51,7 +51,7 @@
                                 </div>
 
                                  {{-- Preço --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Preço:<span class="text-danger">*</span></label>
                                         <input type="text" name="price" class="form-control money" required value="{{ $product->formatted_price }}">
@@ -59,7 +59,7 @@
                                 </div>
 
                                 {{-- Ativo --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Ativo:<span class="text-danger">*</span></label>
                                         <select name="active" class="form-control select2" style="width: 100%;" required>
@@ -68,6 +68,36 @@
                                             <option value="0" @if (!$product->active)  selected @endif>Não</option>
 
                                         </select>
+                                    </div>
+                                </div>
+
+                                {{-- Categorias --}}
+                                <div class="col-md-12">
+                                    <label>Categorias:</label>
+                                    <div class="row">
+
+                                        @foreach ($product->categories as $category)
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="{{ $category->id }}" selected>
+                                                        <label class="form-check-label">{{ $category->name }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                        @foreach ($categories as $category)
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}">
+                                                        <label class="form-check-label">{{ $category->name }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
 

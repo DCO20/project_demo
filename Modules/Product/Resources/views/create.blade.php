@@ -72,6 +72,25 @@
                                     </div>
                                 </div>
 
+                                {{-- Categorias --}}
+                                <div class="col-md-12">
+                                    <label>Categorias:</label>
+                                    <div class="row">
+
+                                        @foreach ($categories as $category)
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}">
+                                                        <label class="form-check-label">{{ $category->name }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 

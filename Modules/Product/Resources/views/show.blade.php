@@ -41,7 +41,7 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nome:</span></label>
                                     <input type="text" class="form-control" readonly value="{{ $product->name }}">
@@ -49,7 +49,7 @@
                             </div>
 
                             {{-- Preço --}}
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Preço:</label>
                                     <input type="text" name="price" class="form-control money" readonly value="{{ $product->formatted_price }}">
@@ -57,10 +57,29 @@
                             </div>
 
                             {{-- Ativo --}}
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ativo:</label>
                                     <input type="text" class="form-control" readonly value="{{ $product->formatted_active }}">
+                                </div>
+                            </div>
+
+                            {{-- Categorias --}}
+                            <div class="col-md-12">
+                                <label>Categorias:</label>
+                                <div class="row">
+
+                                    @foreach ($product->categories as $category)
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-check" >
+                                                    <input class="form-check-input" type="checkbox" value="{{ $category->id }}" selected disabled>
+                                                    <label class="form-check-label">{{ $category->name }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
                                 </div>
                             </div>
 
