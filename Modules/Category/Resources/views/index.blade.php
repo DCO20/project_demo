@@ -47,7 +47,6 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Ativo</th>
-                                    <th>Descrição</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -57,7 +56,6 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Ativo</th>
-                                    <th>Descrição</th>
                                     <th>Ações</th>
                                 </tr>
                             </tfoot>

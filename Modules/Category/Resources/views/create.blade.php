@@ -65,16 +65,6 @@
                                 </div>
 
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Descrição:</label>
-                                        <textarea name="description" id="summernote" cols="50" rows="5" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                         <div class="card-footer"></div>

@@ -49,38 +49,28 @@
                             </div>
 
                         </div>
-
-                        {{-- Descrição --}}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Descrição:</label>
-                                    <textarea name="description" id="summernote-disable" cols="50" rows="5" class="form-control">{!! $category->description !!} </textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <form action="{{ route('category.delete', $category->id) }}" method="post">
-
-                                {{-- Elementos Ocultos --}}
-                                @csrf
-                                @method('DELETE')
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i> Excluir
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
                     </div>
 
                     <div class="card-footer"></div>
 
+                </div>
+
+                {{-- Botão que exclui os dados --}}
+                <div class="row">
+                    <form action="{{ route('category.delete', $category->id) }}" method="post">
+
+                        {{-- Elementos Ocultos --}}
+                        @csrf
+                        @method('DELETE')
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Excluir
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
