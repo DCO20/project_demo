@@ -19,7 +19,11 @@ class ProductService
         DB::beginTransaction();
 
         try {
-            Product::updateOrCreate(['id' => $id], $request);
+            $product =Product::updateOrCreate(['id' => $id], $request);
+
+            $product->categories()->sync($request['categories'] ?? '');
+
+            return $product;
 
             DB::commit();
         } catch (\Exception $e) {
