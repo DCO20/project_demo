@@ -7,47 +7,64 @@ use Modules\Product\Entities\Product;
 
 class ProductService
 {
-    /**
-     * Método que cria um produto
-     * @param array $request
-     * @param int|null $id
-     *
-     * @return void
-     */
-    public function updateOrCreate($request, $id = null)
-    {
-        DB::beginTransaction();
+	/*--------------------------------------------------------------------------
+	| Main Function
+	|--------------------------------------------------------------------------
+	|
+	| Métodos principais do CRUD.
+	| Define os métodos e as regras de negócio relacionadas ao CRUD.
+	|
+	*/
 
-        try {
-            Product::updateOrCreate(['id' => $id], $request);
+	/**
+	 * Cadastra ou atualiza o registro
+	 *
+	 * @param \Modules\Product\Entities\Product $product
+	 * @param int|null $id
+	 *
+	 * @return void
+	 */
 
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
+	public function updateOrCreate($request, $id = null)
+	{
+		DB::beginTransaction();
 
-            abort(500);
-        }
-    }
+		try {
+
+			$product = Product::updateOrCreate(['id' => $id], $request);
+
+			$product->categories()->sync($request['categories'] ?? []);
+
+			DB::commit();
+
+			return $product;
+		} catch (\Exception $e) {
+			DB::rollBack();
+
+			abort(500);
+		}
+	}
 
 
-    /**
-     * Exclui e retorna a tela inicial
-     * @param Modules\Product\Entities\Product $product
-     * @param int|null $id
-     *
-     * @return void
-     */
-    public function removeData($product)
-    {
-        DB::beginTransaction();
+	/**
+	 * Exclui e retorna a tela inicial
+	 *
+	 * @param \Modules\Product\Entities\Product $product
+	 * @param int|null $id
+	 *
+	 * @return void
+	 */
+	public function removeData($product)
+	{
+		DB::beginTransaction();
 
-        try {
-            $product->delete();
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
+		try {
+			$product->delete();
+			DB::commit();
+		} catch (\Exception $e) {
+			DB::rollBack();
 
-            abort(500);
-        }
-    }
+			abort(500);
+		}
+	}
 }

@@ -2,55 +2,66 @@
 
 namespace Modules\Category\Services;
 
-use Illuminate\Support\Facades\DB;
+use DB;
 use Modules\Category\Entities\Category;
 
 class CategoryService
 {
-    /**
-     * Método que cria uma categoria
-     * @param array $request
-     * @param int|null $id
-     *
-     * @return void
-     */
-    public function updateOrCreate($request, $id = null)
-    {
-        DB::beginTransaction();
+	/*--------------------------------------------------------------------------
+	| Main Function
+	|--------------------------------------------------------------------------
+	|
+	| Métodos principais do CRUD.
+	| Define os métodos e as regras de negócio relacionadas ao CRUD.
+	|
+	*/
 
-        try {
-            Category::updateOrCreate(
-                [
-                    'id' => $id
-                ],
-                $request
-            );
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
+	/**
+	 * Cadastra ou atualiza o registro
+	 *
+	 * @param array $request
+	 * @param int|null $id
+	 *
+	 * @return void
+	 */
+	public function updateOrCreate($request, $id = null)
+	{
+		DB::beginTransaction();
 
-            abort(500);
-        }
-    }
+		try {
 
-    /**
-     * Exclui e retorna a tela inicial
-     * @param Modules\Category\Entities\Category $category
-     * @param int|null $id
-     *
-     * @return void
-     */
-    public function removeData($category)
-    {
-        DB::beginTransaction();
+			Category::updateOrCreate([
+				'id' => $id
+			], $request);
 
-        try {
-            $category->delete();
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
+			DB::commit();
+		} catch (\Exception $e) {
+			DB::rollBack();
 
-            abort(500);
-        }
-    }
+			abort(500);
+		}
+	}
+
+	/**
+	 * Exclui e retorna a tela inicial
+	 *
+	 * @param \Modules\Category\Entities\Category $category
+	 *
+	 * @return void
+	 */
+	public function removeData($category)
+	{
+		DB::beginTransaction();
+
+		try {
+
+			$category->delete();
+
+			DB::commit();
+		} catch (\Exception $e) {
+			DB::rollBack();
+
+			abort(500);
+		}
+	}
 }

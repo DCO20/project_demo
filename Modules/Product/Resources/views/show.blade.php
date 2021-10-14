@@ -11,14 +11,6 @@
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                <a href="{{ route('product.confirm_delete', $product->id) }}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
-            </div>
         </div>
     </div>
 @endsection
@@ -41,7 +33,7 @@
                         <div class="row">
 
                             {{-- Nome --}}
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nome:</span></label>
                                     <input type="text" class="form-control" readonly value="{{ $product->name }}">
@@ -49,7 +41,7 @@
                             </div>
 
                             {{-- Preço --}}
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Preço:</label>
                                     <input type="text" name="price" class="form-control money" readonly value="{{ $product->formatted_price }}">
@@ -57,7 +49,7 @@
                             </div>
 
                             {{-- Ativo --}}
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ativo:</label>
                                     <input type="text" class="form-control" readonly value="{{ $product->formatted_active }}">
@@ -70,6 +62,56 @@
                     <div class="card-footer"></div>
 
                 </div>
+
+                <div class="card card-outline card-secondary">
+
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Dados da Categorias
+                        </h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+
+                            {{-- Categorias --}}
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    @foreach ($product->categories as $category)
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="{{ $category->id }}" checked disabled>
+                                                    <label class="form-check-label">{{ $category->name }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer"></div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 text-right">
+                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">
+                            <i class="fas fa-pen"></i> Editar
+                        </a>
+                        <a href="{{ route('product.confirm_delete', $product->id) }}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

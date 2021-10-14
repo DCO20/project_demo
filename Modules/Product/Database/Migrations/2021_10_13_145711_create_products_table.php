@@ -13,14 +13,16 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->boolean('active');
-            $table->decimal('price', 19, 2);
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        Schema::create(
+            'products', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->boolean('active');
+                $table->decimal('price', 19, 2);
+                $table->timestamps();
+                $table->softDeletes();
+            }
+        );
     }
 
     /**

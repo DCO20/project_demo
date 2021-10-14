@@ -10,7 +10,7 @@ $(document).ready(function () {
     // Instance of plugins
     //-----------------------------------------------------
 
-    $(".money").mask("0.000.000.000,00", {
+    $(".money").mask("0.000.000.000.000.000.000,00", {
         reverse: true,
         placeholder: "R$ 0,00",
     });
@@ -32,6 +32,7 @@ $(document).ready(function () {
             { data: "name" },
             { data: "active" },
             { data: "price" },
+            { data: "category" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {
