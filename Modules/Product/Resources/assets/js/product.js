@@ -10,7 +10,7 @@ $(document).ready(function () {
     // Instance of plugins
     //-----------------------------------------------------
 
-    $(".money").mask("0.000.000.000,00", {
+    $(".money").mask("0.000.000.000.000.000.000,00", {
         reverse: true,
         placeholder: "R$ 0,00",
     });
