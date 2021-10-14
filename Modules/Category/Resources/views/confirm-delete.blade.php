@@ -35,7 +35,6 @@
                         </div>
 
                         <div class="card-body">
-
                             <div class="row">
 
                                 {{-- Nome --}}
@@ -70,7 +69,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
 
                 </form>

@@ -39,7 +39,6 @@
                         </div>
 
                         <div class="card-body">
-
                             <div class="row">
 
                                 {{-- Nome --}}

@@ -72,7 +72,6 @@
                     </div>
 
                     <div class="card-body">
-
                         <div class="row">
 
                             {{-- Categorias --}}
@@ -80,6 +79,7 @@
                                 <div class="row">
 
                                     @foreach ($product->categories as $category)
+
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <div class="form-check">
@@ -88,6 +88,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     @endforeach
 
                                 </div>

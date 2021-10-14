@@ -10,56 +10,56 @@ use Modules\Product\Presenter\ProductPresenter;
 
 class Product extends Model
 {
-    use SoftDeletes,
-        Presentable;
+	use SoftDeletes,
+		Presentable;
 
-    /**
-     * Presenter
-     *
-     * @var string $presenter
-     */
-    protected $presenter = ProductPresenter::class;
+	/**
+	 * Presenter
+	 *
+	 * @var string $presenter
+	 */
+	protected $presenter = ProductPresenter::class;
 
-    /**
-     * Tabela do banco de dados
-     *
-     * @var string $table
-     */
-    protected $table = 'products';
+	/**
+	 * Tabela do banco de dados
+	 *
+	 * @var string $table
+	 */
+	protected $table = 'products';
 
-    /**
-     * Atributos da tabela do banco de dados
-     *
-     *  @var array $fillable
-     */
-    protected $fillable = [
-        'name',
-        'active',
-        'price'
-    ];
+	/**
+	 * Atributos da tabela do banco de dados
+	 *
+	 * @var array $fillable
+	 */
+	protected $fillable = [
+		'name',
+		'active',
+		'price'
+	];
 
-    /**
-     * Trativa da tabela do banco de dados
-     *
-     *  @var array $casts
-     */
-    protected $casts = [
-        'active' => 'boolean',
-        'price' => 'float'
-    ];
+	/**
+	 * Trativa da tabela do banco de dados
+	 *
+	 * @var array $casts
+	 */
+	protected $casts = [
+		'active' => 'boolean',
+		'price' => 'float'
+	];
 
-    /**
-     * Atributos da tabela do banco de dados
-     *
-     *  @var array $dates
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at'
-    ];
+	/**
+	 * Atributos da tabela do banco de dados
+	 *
+	 * @var array $dates
+	 */
+	protected $dates = [
+		'created_at',
+		'updated_at',
+		'deleted_at'
+	];
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Accessors
 	|--------------------------------------------------------------------------
@@ -69,36 +69,35 @@ class Product extends Model
 	|
 	*/
 
-    /**
-     * Retorna sim ou não
-     *
-     */
-    public function getFormattedActiveAttribute()
-    {
-        return $this->active ? "Sim" : "Não";
-    }
+	/**
+	 * Retorna sim ou não
+	 */
+	public function getFormattedActiveAttribute()
+	{
+		return $this->active ? "Sim" : "Não";
+	}
 
-    /**
-     * Formata o atributo
-     *
-     * @return string
-     */
-    public function getFormattedPriceAttribute()
-    {
-        return number_format($this->attributes['price'], 2, ',', '.');
-    }
+	/**
+	 * Formata o atributo
+	 *
+	 * @return string
+	 */
+	public function getFormattedPriceAttribute()
+	{
+		return number_format($this->attributes['price'], 2, ',', '.');
+	}
 
-    /**
-     * Formata o atributo
-     *
-     * @return string
-     */
-    public function formatCategoryName()
-    {
-        return $this->categories()->pluck('name')->implode(", ");
-    }
+	/**
+	 * Formata o atributo
+	 *
+	 * @return string
+	 */
+	public function formatCategoryName()
+	{
+		return $this->categories()->pluck('name')->implode(", ");
+	}
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Mutators
 	|--------------------------------------------------------------------------
@@ -108,17 +107,19 @@ class Product extends Model
 	|
 	*/
 
-    /**
-     * Formata o atributo
-     *
-     * @return void
-     */
-    public function setPriceAttribute($value)
-    {
-        $this->attributes['price'] = str_replace(',', '.', str_replace('.', '', $value));
-    }
+	/**
+	 * Formata o atributo
+	 *
+	 * @return void
+	 */
+	public function setPriceAttribute($value)
+	{
+		$formatted_value = str_replace(',', '.', str_replace('.', '', $value));
 
-    /*
+		$this->attributes['price'] = $formatted_value;
+	}
+
+	/*
 	|--------------------------------------------------------------------------
 	| Relationship
 	|--------------------------------------------------------------------------
@@ -129,15 +130,15 @@ class Product extends Model
 	|
 	*/
 
-    /**
-     * Relacionamento com categorias
-     *
-     *
-     */
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class)
-            ->orderBy('name', 'ASC')
-            ->withTrashed();
-    }
+	/**
+	 * Obtêm as categorias
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function categories()
+	{
+		return $this->belongsToMany(Category::class)
+			->orderBy('name', 'ASC')
+			->withTrashed();
+	}
 }

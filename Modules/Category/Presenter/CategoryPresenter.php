@@ -6,7 +6,7 @@ use App\Presenter\Presenter;
 
 class CategoryPresenter extends Presenter
 {
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Function View
 	|--------------------------------------------------------------------------
@@ -16,14 +16,14 @@ class CategoryPresenter extends Presenter
 	|
 	*/
 
-    /**
-     * Obtém o label de ativo ou inativo
-     *
-     * @return string
-     */
-    public function actionView()
-    {
-        return '<div class="dropdown">
+	/**
+	 * Obtém o label de ativo ou inativo
+	 *
+	 * @return string
+	 */
+	public function actionView()
+	{
+		return '<div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-cog" aria-hidden="true"></i>
@@ -33,5 +33,5 @@ class CategoryPresenter extends Presenter
                 <a class="dropdown-item" href="' . route('category.edit', $this->model->id) . '">Editar</a>
                 <a class="dropdown-item" href="' . route('category.confirm_delete', $this->model->id) . '">Excluir</a>
                 </div>';
-    }
+	}
 }
