@@ -48,7 +48,6 @@ class Category extends Model
         'deleted_at'
     ];
 
-
     /**
      * Trativa da tabela do banco de dados
      *
@@ -61,8 +60,8 @@ class Category extends Model
     /**
      * Formata o atributo
      *
-     * @param string $value
-     * @return boolean
+     * @param string
+     * @return string
      */
     public function getFormattedActiveAttribute()
     {
@@ -72,7 +71,7 @@ class Category extends Model
     /**
      * Relacionamento com produtos
      *
-     *  @var array
+     *
      */
     public function products()
     {

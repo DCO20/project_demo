@@ -72,6 +72,26 @@
                                     </div>
                                 </div>
 
+                            </div>
+                        </div>
+
+                        <div class="card-footer"></div>
+
+                    </div>
+
+                    <div class="card card-outline card-secondary">
+
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Dados da Categoria
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+
+
+                            <div class="row">
+
                                 {{-- Categorias --}}
                                 <div class="col-md-12">
                                     <label>Categorias:</label>
@@ -97,7 +117,6 @@
                         <div class="card-footer"></div>
 
                     </div>
-
                     {{-- Botão que salva os dados --}}
                     <div class="row">
                         <div class="col-md-3">

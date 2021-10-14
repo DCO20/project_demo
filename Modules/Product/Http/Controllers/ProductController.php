@@ -81,7 +81,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('active', true)->get();
+        $categories = Category::where('active', true)->orderBy('name', 'ASC')->get();
 
         return view('product::create', compact('categories'));
     }
@@ -123,11 +123,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->product->with('categories')
-            ->findOrFail($id);
+        $product = $this->product->with('categories')->findOrFail($id);
 
         $categories = Category::where('active', true)
             ->whereNotIn('id', $product->categories->pluck('id'))
+            ->orderBy('name', 'ASC')
             ->get();
 
         return view('product::edit', compact('product', 'categories'));

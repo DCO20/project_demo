@@ -96,17 +96,19 @@ class Product extends Model
     /**
      * Relacionamento com categorias
      *
-     *  @var array
+     *
      */
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withTrashed();
+        return $this->belongsToMany(Category::class)
+            ->orderBy('name', 'ASC')
+            ->withTrashed();
     }
 
     /**
      * Formata o atributo
      *
-     * @param string $value
+     * @param string
      * @return string
      */
     public function formatCategoryName()

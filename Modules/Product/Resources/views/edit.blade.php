@@ -34,7 +34,7 @@
 
                         <div class="card-header">
                             <h3 class="card-title">
-                                Dados da Estados
+                                Dados do Produtos
                             </h3>
                         </div>
 
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
 
-                                 {{-- Preço --}}
+                                {{-- Preço --}}
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Preço:<span class="text-danger">*</span></label>
@@ -71,23 +71,45 @@
                                     </div>
                                 </div>
 
+                            </div>
+                        </div>
+
+                        <div class="card-footer"></div>
+
+                    </div>
+
+                    <div class="card card-outline card-secondary">
+
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Dados da Categorias
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+
                                 {{-- Categorias --}}
                                 <div class="col-md-12">
                                     <label>Categorias:</label>
                                     <div class="row">
 
                                         @foreach ($product->categories as $category)
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="{{ $category->id }}" selected>
+                                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}" checked>
                                                         <label class="form-check-label">{{ $category->name }}</label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         @endforeach
 
                                         @foreach ($categories as $category)
+
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="form-check">
@@ -96,6 +118,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         @endforeach
 
                                     </div>
@@ -107,7 +130,6 @@
                         <div class="card-footer"></div>
 
                     </div>
-
                     {{-- Botão que salva os dados --}}
                     <div class="row">
                         <div class="col-md-3">

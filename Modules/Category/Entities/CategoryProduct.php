@@ -24,9 +24,9 @@ class CategoryProduct extends Model
     ];
 
     /**
-     * Relacionamento com category
+     * Relacionamento com categoria
      *
-     *  @var array
+     *
      */
     public function category()
     {
@@ -34,9 +34,9 @@ class CategoryProduct extends Model
     }
 
     /**
-     * Relacionamento com product
+     * Relacionamento com produto
      *
-     *  @var array
+     *
      */
     public function product()
     {
