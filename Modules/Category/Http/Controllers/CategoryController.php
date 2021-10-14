@@ -17,7 +17,8 @@ class CategoryController extends Controller
     /**
      * Método Construtor
      *
-     * @param category $category
+     * @param \Modules\Category\Entities\Category
+     * @param \Modules\Category\Services\CategoryService;
      * @return void
      */
     public function __construct(
@@ -55,7 +56,10 @@ class CategoryController extends Controller
             ->addColumn("action", function ($category) {
                 return $category->actionView();
             })
-            ->rawColumns(['active', 'action'])
+            ->rawColumns([
+                'active',
+                'action'
+            ])
             ->make(true);
     }
 
@@ -72,7 +76,7 @@ class CategoryController extends Controller
     /**
      * Cadastra e retorna para a tela inicial
      *
-     * @param Requests\CategoryRequest $request
+     * @param \Modules\Category\Http\Requests\CategoryRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CategoryRequest $request)
@@ -113,7 +117,7 @@ class CategoryController extends Controller
     /**
      * Atualiza e retorna para a tela de edição
      *
-     * @param Requests\CategoryRequest $request
+     * @param \Modules\Category\Http\Requests\CategoryRequest $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */

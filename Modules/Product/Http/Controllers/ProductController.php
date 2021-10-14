@@ -18,7 +18,8 @@ class ProductController extends Controller
     /**
      * Método Construtor
      *
-     * @param product $product
+     * @param \Modules\Product\Entities\Product
+     * @param \Modules\Product\Services\ProductService
      * @return void
      */
     public function __construct(
@@ -70,7 +71,10 @@ class ProductController extends Controller
             ->addColumn("action", function ($product) {
                 return $product->actionView();
             })
-            ->rawColumns(['active', 'action'])
+            ->rawColumns([
+                'active',
+                'action'
+            ])
             ->make(true);
     }
 
@@ -89,7 +93,7 @@ class ProductController extends Controller
     /**
      * Cadastra e retorna para a tela inicial
      *
-     * @param Requests\ProductRequest $request
+     * @param \Modules\Product\Http\Requests\ProductRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ProductRequest $request)
@@ -136,7 +140,7 @@ class ProductController extends Controller
     /**
      * Atualiza e retorna para a tela de edição
      *
-     * @param Requests\ProductRequest $request
+     * @param \Modules\Product\Http\Requests\ProductRequest $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */

@@ -8,7 +8,7 @@ use Modules\Product\Entities\Product;
 class ProductService
 {
     /**
-     * Método que cria um produto
+     * Cadastra ou atualiza o registro
      * @param array $request
      * @param int|null $id
      *

@@ -8,7 +8,7 @@ use Modules\Category\Entities\Category;
 class CategoryService
 {
     /**
-     * Método que cria uma categoria
+     * Cadastra ou atualiza o registro
      * @param array $request
      * @param int|null $id
      *
@@ -36,7 +36,6 @@ class CategoryService
     /**
      * Exclui e retorna a tela inicial
      * @param Modules\Category\Entities\Category $category
-     * @param int|null $id
      *
      * @return void
      */

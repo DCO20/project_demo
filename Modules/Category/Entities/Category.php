@@ -57,16 +57,36 @@ class Category extends Model
         'active' => 'boolean'
     ];
 
+    /*
+	|--------------------------------------------------------------------------
+	| Accessors
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos GET desta entidade.
+	| Estes métodos permitem formatar os atributos Eloquent obtidos do banco de dados.
+	|
+	*/
+
     /**
      * Formata o atributo
      *
-     * @param string
      * @return string
      */
     public function getFormattedActiveAttribute()
     {
         return $this->active ? "Sim" : "Não";
     }
+
+    /*
+	|--------------------------------------------------------------------------
+	| Relationship
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos das entidades relacionadas.
+	| Estes métodos são responsáveis pelas relações e permitem acessar
+	| os atributos Eloquent obtidas das mesmas.
+	|
+	*/
 
     /**
      * Relacionamento com produtos
