@@ -92,7 +92,6 @@
 
                                 {{-- Categorias --}}
                                 <div class="col-md-12">
-                                    <label>Categorias:</label>
                                     <div class="row">
 
                                         @foreach ($product->categories as $category)
