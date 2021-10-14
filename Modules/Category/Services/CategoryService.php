@@ -7,6 +7,15 @@ use Modules\Category\Entities\Category;
 
 class CategoryService
 {
+    /*--------------------------------------------------------------------------
+    | Main Function
+    |--------------------------------------------------------------------------
+    |
+    | Métodos principais do CRUD.
+    | Define os métodos e as regras de negócio relacionadas ao CRUD.
+    |
+    */
+
     /**
      * Cadastra ou atualiza o registro
      * @param array $request
@@ -19,12 +28,12 @@ class CategoryService
         DB::beginTransaction();
 
         try {
+
             Category::updateOrCreate(
                 [
                     'id' => $id
-                ],
-                $request
-            );
+                ], $request);
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

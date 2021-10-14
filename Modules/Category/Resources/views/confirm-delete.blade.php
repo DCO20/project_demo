@@ -20,49 +20,49 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-outline card-secondary">
 
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            Dados do Categorias
-                        </h3>
-                    </div>
+                <form action="{{ route('category.delete', $category->id) }}" method="post">
 
-                    <div class="card-body">
+                    {{-- Elementos Ocultos --}}
+                    @csrf
+                    @method('DELETE')
 
-                        <div class="row">
-
-                            {{-- Nome --}}
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Nome:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $category->name }}">
-                                </div>
-                            </div>
-
-                            {{-- Ativo --}}
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Ativo:</label>
-                                    <input type="text" class="form-control" readonly value="{{ $category->formatted_active }}">
-                                </div>
-                            </div>
-
+                    <div class="card card-outline card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Dados do Categorias
+                            </h3>
                         </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                {{-- Nome --}}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nome:</label>
+                                        <input type="text" class="form-control" readonly value="{{ $category->name }}">
+                                    </div>
+                                </div>
+
+                                {{-- Ativo --}}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Ativo:</label>
+                                        <input type="text" class="form-control" readonly value="{{ $category->formatted_active }}">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer"></div>
+
                     </div>
 
-                    <div class="card-footer"></div>
-
-                </div>
-
-                {{-- Botão que exclui os dados --}}
-                <div class="row">
-                    <form action="{{ route('category.delete', $category->id) }}" method="post">
-
-                        {{-- Elementos Ocultos --}}
-                        @csrf
-                        @method('DELETE')
-
+                    {{-- Botão --}}
+                    <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-danger">
@@ -70,8 +70,10 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
-                </div>
+
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>

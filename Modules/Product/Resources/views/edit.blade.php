@@ -130,7 +130,8 @@
                         <div class="card-footer"></div>
 
                     </div>
-                    {{-- Botão que salva os dados --}}
+
+                    {{-- Botão --}}
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">

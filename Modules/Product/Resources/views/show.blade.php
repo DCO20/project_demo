@@ -11,14 +11,6 @@
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                <a href="{{ route('product.confirm_delete', $product->id) }}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
-            </div>
         </div>
     </div>
 @endsection
@@ -91,7 +83,7 @@
                                     @foreach ($product->categories as $category)
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <div class="form-check" >
+                                                <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value="{{ $category->id }}" checked disabled>
                                                     <label class="form-check-label">{{ $category->name }}</label>
                                                 </div>
@@ -108,6 +100,18 @@
                     <div class="card-footer"></div>
 
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-2 text-right">
+                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary">
+                            <i class="fas fa-pen"></i> Editar
+                        </a>
+                        <a href="{{ route('product.confirm_delete', $product->id) }}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

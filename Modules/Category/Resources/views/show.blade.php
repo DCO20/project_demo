@@ -11,14 +11,6 @@
                     <li class="breadcrumb-item active">Ver</li>
                 </ol>
             </div>
-            <div class="col-sm-2 text-right">
-                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">
-                    <i class="fas fa-pen"></i> Editar
-                </a>
-                <a href="{{ route('category.confirm_delete', $category->id) }}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i> Excluir
-                </a>
-            </div>
         </div>
     </div>
 @endsection
@@ -62,6 +54,18 @@
                     <div class="card-footer"></div>
 
                 </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">
+                            <i class="fas fa-pen"></i> Editar
+                        </a>
+                        <a href="{{ route('category.confirm_delete', $category->id) }}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Excluir
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
