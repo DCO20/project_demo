@@ -48,6 +48,7 @@
                                     <th>Nome</th>
                                     <th>Ativo</th>
                                     <th>Preço</th>
+                                     <th>Categoria</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,7 @@
                                     <th>Nome</th>
                                     <th>Ativo</th>
                                     <th>Preço</th>
+                                    <th>Categoria</th>
                                     <th>Ações</th>
                                 </tr>
                             </tfoot>

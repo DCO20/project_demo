@@ -102,4 +102,15 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class)->withTrashed();
     }
+
+    /**
+     * Formata o atributo
+     *
+     * @param string $value
+     * @return string
+     */
+    public function formatCategoryName()
+    {
+        return $this->categories()->pluck('name')->implode(", ");
+    }
 }

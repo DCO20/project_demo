@@ -64,6 +64,9 @@ class ProductController extends Controller
                     $q->where('price', 'LIKE', '%' . $formatted_price . '%');
                 }
             )
+            ->addColumn("category", function ($product) {
+                return $product->formatCategoryName();
+            })
             ->addColumn("action", function ($product) {
                 return $product->actionView();
             })

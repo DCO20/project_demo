@@ -32,6 +32,7 @@ $(document).ready(function () {
             { data: "name" },
             { data: "active" },
             { data: "price" },
+            { data: "category" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {
