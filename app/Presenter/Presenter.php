@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class Presenter
 {
-    protected $model;
+	protected $model;
 
-    /**
-     * Presenter constructor.
-     *
-     * @param Model $model
-     */
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
+	/**
+	 * Presenter constructor.
+	 *
+	 * @param Model $model
+	 */
+	public function __construct(Model $model)
+	{
+		$this->model = $model;
+	}
 
-    /*
+	/*
 	|--------------------------------------------------------------------------
 	| Entity
 	|--------------------------------------------------------------------------
@@ -28,19 +28,19 @@ abstract class Presenter
 	|
 	*/
 
-    /**
-     * Chamada do Modelo
-     *
-     * @param mixed $method
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call($method, $arguments)
-    {
-        if (!method_exists($this->model, $method)) {
-            throw new \BadMethodCallException("Nenhum método {$method}");
-        }
+	/**
+	 * Chamada do Modelo
+	 *
+	 * @param mixed $method
+	 * @param array $arguments
+	 * @return mixed
+	 */
+	public function __call($method, $arguments)
+	{
+		if (!method_exists($this->model, $method)) {
+			throw new \BadMethodCallException("Nenhum método {$method}");
+		}
 
-        return call_user_func_array([$this->model, $method], $arguments);
-    }
+		return call_user_func_array([$this->model, $method], $arguments);
+	}
 }

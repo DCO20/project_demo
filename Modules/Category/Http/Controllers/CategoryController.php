@@ -17,8 +17,8 @@ class CategoryController extends Controller
 	/**
 	 * Método Construtor
 	 *
-	 * @param  \Modules\Category\Entities\Category
-	 * @param  \Modules\Category\Services\CategoryService;
+	 * @param \Modules\Category\Entities\Category $category
+	 * @param \Modules\Category\Services\CategoryService $category_service
 	 * @return void
 	 */
 	public function __construct(

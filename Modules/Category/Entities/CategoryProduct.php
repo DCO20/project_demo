@@ -3,6 +3,7 @@
 namespace Modules\Category\Entities;
 
 use Modules\Product\Entities\Product;
+use Illuminate\Database\Eloquent\Model;
 
 class CategoryProduct extends Model
 {
