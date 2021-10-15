@@ -5,7 +5,7 @@ namespace Modules\Purveyor\Entities;
 use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Product\Presenter\PurveyorPresenter;
+use Modules\Purveyor\Presenter\PurveyorPresenter;
 
 class Purveyor extends Model
 {

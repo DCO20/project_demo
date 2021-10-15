@@ -5,7 +5,7 @@ namespace Modules\Purveyor\Services;
 use DB;
 use Modules\Purveyor\Entities\Purveyor;
 
-class PurveyortService
+class PurveyorService
 {
 	/*--------------------------------------------------------------------------
 	| Main Function
