@@ -25,6 +25,13 @@ class CategoryProduct extends Model
 	];
 
 	/**
+	 * Indicates if the model should be timestamped.
+	 *
+	 * @var bool
+	 */
+	public $timestamps = false;
+
+	/**
 	 * Obtém as categoria
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
