@@ -38,8 +38,6 @@
                         </div>
 
                         <div class="card-body">
-
-
                             <div class="row">
 
                                 {{-- Nome --}}
@@ -69,6 +67,44 @@
                                             <option value="0">Não</option>
 
                                         </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer"></div>
+
+                    </div>
+
+                    <div class="card card-outline card-secondary">
+
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Dados da Categoria
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                {{-- Categorias --}}
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                        @foreach ($categories as $category)
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{ $category->id }}">
+                                                        <label class="form-check-label">{{ $category->name }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        @endforeach
+
                                     </div>
                                 </div>
 
