@@ -29,7 +29,6 @@ class CategoryService
 		DB::beginTransaction();
 
 		try {
-
 			Category::updateOrCreate([
 				'id' => $id
 			], $request);
@@ -54,7 +53,6 @@ class CategoryService
 		DB::beginTransaction();
 
 		try {
-
 			$category->delete();
 
 			DB::commit();
