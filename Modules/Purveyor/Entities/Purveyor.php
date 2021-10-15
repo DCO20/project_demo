@@ -4,6 +4,7 @@ namespace Modules\Purveyor\Entities;
 
 use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Entities\Category;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Purveyor\Presenter\PurveyorPresenter;
 
@@ -74,5 +75,28 @@ class Purveyor extends Model
 	public function getFormattedActiveAttribute()
 	{
 		return $this->active ? "Sim" : "Não";
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Relationship
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos das entidades relacionadas.
+	| Estes métodos são responsáveis pelas relações e permitem acessar
+	| os atributos Eloquent obtidas das mesmas.
+	|
+	*/
+
+	/**
+	 * Obtêm as categorias
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function categories()
+	{
+		return $this->belongsToMany(Category::class)
+			->orderBy('name', 'ASC')
+			->withTrashed();
 	}
 }
