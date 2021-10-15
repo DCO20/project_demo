@@ -47,6 +47,7 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>CNPJ</th>
+                                    <th>Categoria</th>
                                     <th>Ativo</th>
                                     <th>Ações</th>
                                 </tr>
@@ -57,6 +58,7 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>CNPJ</th>
+                                    <th>Categoria</th>
                                     <th>Ativo</th>
                                     <th>Ações</th>
                                 </tr>

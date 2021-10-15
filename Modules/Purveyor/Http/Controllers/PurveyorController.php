@@ -59,6 +59,12 @@ class PurveyorController extends Controller
 				}
 			)
 			->addColumn(
+				"category",
+				function ($product) {
+					return $product->formatCategoryName();
+				}
+			)
+			->addColumn(
 				"action",
 				function ($purveyor) {
 					return $purveyor->actionView();

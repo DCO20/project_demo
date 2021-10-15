@@ -70,6 +70,16 @@ class Purveyor extends Model
 	*/
 
 	/**
+	 * Formata o atributo
+	 *
+	 * @return string
+	 */
+	public function formatCategoryName()
+	{
+		return $this->categories()->pluck('name')->implode(", ");
+	}
+
+	/**
 	 * Retorna sim ou não
 	 */
 	public function getFormattedActiveAttribute()

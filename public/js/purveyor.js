@@ -28,6 +28,7 @@ $(document).ready(function () {
             { data: "id" },
             { data: "name" },
             { data: "cnpj" },
+            { data: "category" },
             { data: "active" },
             { data: "action", orderable: false, searchable: false },
         ],
