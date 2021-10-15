@@ -69,3 +69,8 @@ mix.scripts(
     "public/js/product.js"
 );
 
+// Fornecedor JS
+mix.scripts(
+    "Modules/Purveyor/Resources/assets/js/purveyor.js",
+    "public/js/purveyor.js"
+);

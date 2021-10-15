@@ -22,6 +22,12 @@
                         <p>Produtos</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('purveyor.index') }}" class="nav-link {{ Ekko::isActiveRoute('purveyor*') }}">
+                       <i class="fas fa-users"></i>
+                        <p>Fornecedores</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

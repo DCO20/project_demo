@@ -29,7 +29,6 @@ class ProductService
 		DB::beginTransaction();
 
 		try {
-
 			$product = Product::updateOrCreate(['id' => $id], $request);
 
 			$product->categories()->sync($request['categories'] ?? []);
@@ -56,7 +55,6 @@ class ProductService
 		DB::beginTransaction();
 
 		try {
-
 			$product->delete();
 
 			DB::commit();

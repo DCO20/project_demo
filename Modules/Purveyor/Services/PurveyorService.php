@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Category\Services;
+namespace Modules\Purveyor\Services;
 
 use DB;
-use Modules\Category\Entities\Category;
+use Modules\Purveyor\Entities\Purveyor;
 
-class CategoryService
+class PurveyorService
 {
 	/*--------------------------------------------------------------------------
 	| Main Function
@@ -29,9 +29,7 @@ class CategoryService
 		DB::beginTransaction();
 
 		try {
-			Category::updateOrCreate([
-				'id' => $id
-			], $request);
+			Purveyor::updateOrCreate(['id' => $id], $request);
 
 			DB::commit();
 		} catch (\Exception $e) {
@@ -44,16 +42,16 @@ class CategoryService
 	/**
 	 * Exclui e retorna a tela inicial
 	 *
-	 * @param \Modules\Category\Entities\Category $category
+	 * @param \Modules\Purveyor\Entities\Purveyor $purveyor
 	 *
 	 * @return void
 	 */
-	public function removeData($category)
+	public function removeData($purveyor)
 	{
 		DB::beginTransaction();
 
 		try {
-			$category->delete();
+			$purveyor->delete();
 
 			DB::commit();
 		} catch (\Exception $e) {
