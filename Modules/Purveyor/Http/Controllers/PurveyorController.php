@@ -2,15 +2,37 @@
 
 namespace Modules\Purveyor\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
+use Modules\Purveyor\Entities\Purveyor;
+use Modules\Purveyor\Services\PurveyorService;
+use Modules\Purveyor\Http\Requests\PurveyorRequest;
 
 class PurveyorController extends Controller
 {
+    protected $purveyor;
+
+    protected $purveyor_service;
+
     /**
-     * Display a listing of the resource.
-     * @return Renderable
+     * Método Construtor
+     *
+     * @param \Modules\PurveyorEntities\Purveyor $purveyor
+     * @param \Modules\Purveyor\Services\PurveyorService $purveyor_service
+     * @return void
+     */
+    public function __construct(
+        Purveyor $purveyor,
+        PurveyorService $purveyor_service
+    ) {
+        $this->purveyor = $purveyor;
+        $this->purveyor_service = $purveyor_service;
+    }
+
+    /**
+     * Exibe a tela inicial com a listagem de dados.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -18,8 +40,42 @@ class PurveyorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
+     * Obtêm os dados para a tabela
+     *
+     * @codeCoverageIgnore
+     *
+     * @return string
+     */
+    public function dataTable()
+    {
+        $purveyors = $this->purveyor->query();
+
+        return DataTables::of($purveyors)
+            ->editColumn(
+                "active",
+                function ($purveyor) {
+                    return $purveyor->formatted_active;
+                }
+            )
+            ->addColumn(
+                "action",
+                function ($purveyor) {
+                    return $purveyor->actionView();
+                }
+            )
+            ->rawColumns(
+                [
+                    'active',
+                    'action'
+                ]
+            )
+            ->make(true);
+    }
+
+    /**
+     * Exibe a tela de cadastro
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -27,53 +83,91 @@ class PurveyorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     * Cadastra e retorna para a tela inicial
+     *
+     * @param  \Modules\purveyor\Http\Requests\PurveyorRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PurveyorRequest $request)
     {
-        //
+        $this->purveyor_service->updateOrCreate($request->all());
+
+        return redirect()
+            ->route('purveyor.index')
+            ->with('message', 'Cadastro realizado com sucesso.');
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
+     * Exibe os dados
+     *
+     * @param  int $id
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        return view('purveyor::show');
+        $purveyor = $this->purveyor->findOrFail($id);
+
+        return view('purveyor::show', compact('purveyor'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
+     * Exibe os dados para edição
+     *
+     * @param  int $id
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        return view('purveyor::edit');
+        $purveyor = $this->purveyor->findOrFail($id);
+
+        return view('purveyor::edit', compact('purveyor'));
     }
 
     /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
+     * Atualiza e retorna para a tela de edição
+     *
+     * @param  \Modules\purveyor\Http\Requests\PurveyorRequest $request
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(PurveyorRequest $request, $id)
     {
-        //
+        $purveyor = $this->purveyor->findOrFail($id);
+
+        $this->purveyor_service->updateOrCreate($request->all(), $purveyor->id);
+
+        return redirect()
+            ->route('purveyor.edit', $purveyor->id)
+            ->with('message', 'Atualização realizada com sucesso.');
     }
 
     /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
+     * Exibe a tela para exclusão
+     *
+     * @param  int $id
+     * @return \Illuminate\View\View
      */
-    public function destroy($id)
+    public function confirmDelete($id)
     {
-        //
+        $purveyor = $this->purveyor->findOrFail($id);
+
+        return view('purveyor::confirm-delete', compact('purveyor'));
+    }
+
+    /**
+     * Exclui e retorna para a tela inicial
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $purveyor = $this->purveyor->findOrFail($id);
+
+        $this->purveyor_service->removeData($purveyor);
+
+        return redirect()
+            ->route('purveyor.index')
+            ->with('message', 'Exclusão realizada com sucesso.');
     }
 }
