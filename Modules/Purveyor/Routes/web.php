@@ -4,7 +4,7 @@ use Modules\Purveyor\Http\Controllers\PurveyorController;
 
 Route::group(
 	[
-		'prefix' => 'dashboard/fornecedores',
+		'prefix' => 'dashboard/fornecedor',
 		'as' => 'purveyor.'
 	],
 	function () {
