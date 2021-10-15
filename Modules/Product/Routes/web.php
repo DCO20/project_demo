@@ -4,7 +4,7 @@ use Modules\Product\Http\Controllers\ProductController;
 
 Route::group(
 	[
-	'prefix' => 'dashboard/product',
+	'prefix' => 'dashboard/produtos',
 	'as' => 'product.'
 	],
 	function () {

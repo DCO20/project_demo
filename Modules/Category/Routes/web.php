@@ -4,7 +4,7 @@ use Modules\Category\Http\Controllers\CategoryController;
 
 Route::group(
 	[
-	'prefix' => 'dashboard/category',
+	'prefix' => 'dashboard/categorias',
 	'as' => 'category.'
 	],
 	function () {
