@@ -4,5 +4,6 @@
     "State": true,
     "Category": true,
     "Product": true,
-    "Provider": true
+    "Provider": true,
+    "Purveyor": true
 }
