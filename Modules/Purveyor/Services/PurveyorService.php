@@ -22,16 +22,20 @@ class PurveyorService
 	 * @param array $request
 	 * @param int|null $id
 	 *
-	 * @return void
+	 * @return \Modules\Purveyor\Entities\Purveyor
 	 */
 	public function updateOrCreate($request, $id = null)
 	{
 		DB::beginTransaction();
 
 		try {
-			Purveyor::updateOrCreate(['id' => $id], $request);
+			$purveyor = Purveyor::updateOrCreate(['id' => $id], $request);
+
+			$purveyor->categories()->sync($request['categories'] ?? []);
 
 			DB::commit();
+
+			return $purveyor;
 		} catch (\Exception $e) {
 			DB::rollBack();
 

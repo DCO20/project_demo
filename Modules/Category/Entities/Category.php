@@ -5,6 +5,7 @@ namespace Modules\Category\Entities;
 use App\Traits\Presentable;
 use Modules\Product\Entities\Product;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Purveyor\Entities\Purveyor;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Presenter\CategoryPresenter;
 
@@ -96,5 +97,15 @@ class Category extends Model
 	public function products()
 	{
 		return $this->belongsToMany(Product::class)->withTrashed();
+	}
+
+	/**
+	 * Obtêm os fornecedores
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function purveyors()
+	{
+		return $this->belongsToMany(Purveyor::class)->withTrashed();
 	}
 }
