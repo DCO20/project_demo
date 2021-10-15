@@ -4,6 +4,7 @@ namespace Modules\Purveyor\Http\Controllers;
 
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
+use Modules\Category\Entities\Category;
 use Modules\Purveyor\Entities\Purveyor;
 use Modules\Purveyor\Services\PurveyorService;
 use Modules\Purveyor\Http\Requests\PurveyorRequest;
@@ -79,7 +80,9 @@ class PurveyorController extends Controller
 	 */
 	public function create()
 	{
-		return view('purveyor::create');
+		$categories = Category::where('active', true)->orderBy('name', 'ASC')->get();
+
+		return view('purveyor::create', compact('categories'));
 	}
 
 	/**
@@ -105,7 +108,8 @@ class PurveyorController extends Controller
 	 */
 	public function show($id)
 	{
-		$purveyor = $this->purveyor->findOrFail($id);
+		$purveyor = $this->purveyor->with('categories')
+			->findOrFail($id);
 
 		return view('purveyor::show', compact('purveyor'));
 	}
@@ -118,9 +122,15 @@ class PurveyorController extends Controller
 	 */
 	public function edit($id)
 	{
-		$purveyor = $this->purveyor->findOrFail($id);
+		$purveyor = $this->purveyor->with('categories')
+			->findOrFail($id);
 
-		return view('purveyor::edit', compact('purveyor'));
+		$categories = Category::where('active', true)
+			->whereNotIn('id', $purveyor->categories->pluck('id'))
+			->orderBy('name', 'ASC')
+			->get();
+
+		return view('purveyor::edit', compact('purveyor', 'categories'));
 	}
 
 	/**
