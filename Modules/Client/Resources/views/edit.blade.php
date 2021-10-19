@@ -86,7 +86,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Ativo:<span class="text-danger">*</span></label>
-                                        <select name="active" class="form-control select2" style="width: 100%;" required>
+                                        <select name="active" class="form-control" style="width: 100%;" required>
 
                                             <option value="1" @if ($client->active) selected @endif>Sim</option>
                                             <option value="0" @if (!$client->active)  selected @endif>Não</option>

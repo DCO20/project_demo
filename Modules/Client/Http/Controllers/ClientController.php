@@ -84,11 +84,49 @@ class ClientController extends Controller
 				}
 			)
 			->filterColumn(
+				'genre',
+				function ($q, $keyword) {
+
+					$formatted_keyword = strtolower($keyword);
+
+					$genre = '';
+
+					if ($formatted_keyword == 'masculino') {
+						$genre = 'M';
+					}
+
+					if ($formatted_keyword == 'feminino') {
+						$genre = 'F';
+					}
+
+					$q->where('genre', $genre);
+				}
+			)
+			->filterColumn(
 				'price',
 				function ($q, $keyword) {
 					$formatted_price = str_replace(',', '.', str_replace('.', '', $keyword));
 
 					$q->where('price', 'LIKE', '%' . $formatted_price . '%');
+				}
+			)
+			->filterColumn(
+				'active',
+				function ($q, $keyword) {
+
+					$formatted_keyword = strtolower($keyword);
+
+					$active = null;
+
+					if ($formatted_keyword == 'não') {
+						$active = false;
+					}
+
+					if ($formatted_keyword == 'sim') {
+						$active = true;
+					}
+
+					$q->where('active', $active);
 				}
 			)
 			->addColumn(
