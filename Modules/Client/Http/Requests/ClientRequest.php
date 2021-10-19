@@ -17,6 +17,7 @@ class ClientRequest extends FormRequest
 			'name' => 'required',
 			'price' => 'required',
 			'date_birthday' => 'required',
+			'genre' => 'required',
 			'active' => 'required'
 		];
 	}

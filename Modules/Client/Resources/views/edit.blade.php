@@ -42,7 +42,7 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" required value="{{ $client->name }}">
@@ -50,7 +50,7 @@
                                 </div>
 
                                 {{-- Data de Nascimento --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Data de Nascimento:<span class="text-danger">*</span></label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -62,8 +62,20 @@
                                     </div>
                                 </div>
 
+                                {{-- Gênero --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Gênero:<span class="text-danger">*</span></label>
+                                        <select name="genre" class="form-control" style="width: 100%;" required>
+                                            <option value="{{ Client::FEMALE }}" @if ($client->genre == Client::FEMALE) selected @endif>Feminino</option>
+                                            <option value="{{ Client::MALE }}" @if ($client->genre == Client::MALE)  selected @endif>Masculino</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
                                 {{-- Mensalidade --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Mensalidade:<span class="text-danger">*</span></label>
                                         <input type="text" name="price" class="form-control money" required value="{{ $client->formatted_price }}">
@@ -71,7 +83,7 @@
                                 </div>
 
                                 {{-- Ativo --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Ativo:<span class="text-danger">*</span></label>
                                         <select name="active" class="form-control select2" style="width: 100%;" required>

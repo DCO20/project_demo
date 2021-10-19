@@ -41,7 +41,7 @@
                             <div class="row">
 
                                 {{-- Nome --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nome:<span class="text-danger">*</span></label>
                                         <input type="text" name="name" class="form-control" required>
@@ -49,15 +49,29 @@
                                 </div>
 
                                 {{-- Data de Nascimento --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Data de Nascimento:<span class="text-danger">*</span></label>
                                         <input type="date" name="date_birthday" class="form-control" required>
                                     </div>
                                 </div>
 
+                                 {{-- Gênero --}}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Gênero:<span class="text-danger">*</span></label>
+                                        <select name="genre" class="form-control" style="width: 100%;" required>
+
+                                            <option value="">Selecione</option>
+                                            <option value="F">Feminino</option>
+                                            <option value="M">Masculino</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
                                 {{-- Mensalidade --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label> Mensalidade:<span class="text-danger">*</span></label>
                                         <input type="text" name="price" class="form-control money" required>
@@ -65,7 +79,7 @@
                                 </div>
 
                                 {{-- Ativo --}}
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Ativo:<span class="text-danger">*</span></label>
                                         <select name="active" class="form-control" style="width: 100%;" required>

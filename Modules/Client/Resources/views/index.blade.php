@@ -47,6 +47,7 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Data de Nascimento</th>
+                                    <th>Gênero</th>
                                     <th>Ativo</th>
                                     <th>Preço</th>
                                     <th>Ações</th>
@@ -58,6 +59,7 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Data de Nascimento</th>
+                                    <th>Gênero</th>
                                     <th>Ativo</th>
                                     <th>Preço</th>
                                     <th>Ações</th>

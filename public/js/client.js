@@ -36,6 +36,7 @@ $(document).ready(function () {
             { data: "id" },
             { data: "name" },
             { data: "date_birthday" },
+            { data: "genre" },
             { data: "active" },
             { data: "price" },
             { data: "action", orderable: false, searchable: false },

@@ -12,6 +12,10 @@ class Client extends Model
 	use SoftDeletes,
 		Presentable;
 
+	const FEMALE = "F";
+
+	const MALE = "M";
+
 	/**
 	 * Presenter
 	 *
@@ -34,6 +38,7 @@ class Client extends Model
 	protected $fillable = [
 		'name',
 		'date_birthday',
+		'genre',
 		'active',
 		'price'
 	];
@@ -72,6 +77,8 @@ class Client extends Model
 
 	/**
 	 * Retorna sim ou não
+	 *
+	 * @return string
 	 */
 	public function getFormattedActiveAttribute()
 	{
@@ -96,6 +103,16 @@ class Client extends Model
 	public function getFormattedDateBirthdayAttribute()
 	{
 		return $this->date_birthday->format('d/m/Y');
+	}
+
+	/**
+	 * Retorna feminino ou masculino
+	 *
+	 * @return string
+	 */
+	public function getFormattedGenreAttribute()
+	{
+		return $this->genre == self::FEMALE ? "Feminino" : "Masculino";
 	}
 
 	/*

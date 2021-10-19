@@ -58,6 +58,12 @@ class ClientController extends Controller
 				}
 			)
 			->editColumn(
+				"genre",
+				function ($client) {
+					return $client->formatted_genre;
+				}
+			)
+			->editColumn(
 				"price",
 				function ($client) {
 					return $client->formatted_price;

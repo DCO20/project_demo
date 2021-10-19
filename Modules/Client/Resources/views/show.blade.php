@@ -47,6 +47,14 @@
                                 </div>
                             </div>
 
+                             {{-- Gênero --}}
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Gênero:</label>
+                                    <input type="text" class="form-control" readonly value="{{ $client->formatted_genre }}">
+                                </div>
+                            </div>
+
                             {{-- Mensalidade --}}
                             <div class="col-md-3">
                                 <div class="form-group">

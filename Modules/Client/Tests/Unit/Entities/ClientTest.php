@@ -26,6 +26,16 @@ class ClientTest extends TestCase
         $this->assertEquals($this->client->formatted_active, $expected_result);
     }
 
+    /**
+     * @dataProvider genreAttributeDataProvider
+     */
+    public function test_it_formats_genre_attribute($value, $expected_result)
+    {
+        $this->client->genre = $value;
+
+        $this->assertEquals($this->client->formatted_genre, $expected_result);
+    }
+
     public function test_it_formats_price_attribute()
     {
         $this->client->price = '1.000,00';
@@ -50,6 +60,19 @@ class ClientTest extends TestCase
         yield 'formatted_active deve retornar Não' => [
             'value' => false,
             'expected_result' => 'Não'
+        ];
+    }
+
+    public function genreAttributeDataProvider()
+    {
+        yield 'formatted_genre deve retornar Feminino' => [
+            'value' => Client::FEMALE,
+            'expected_result' => 'Feminino'
+        ];
+
+        yield 'formatted_genre deve retornar Masculino' => [
+            'value' => Client::MALE,
+            'expected_result' => 'Masculino'
         ];
     }
 }
