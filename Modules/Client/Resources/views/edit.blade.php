@@ -53,7 +53,12 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Data de Nascimento:<span class="text-danger">*</span></label>
-                                        <input type="date" name="date_birthday" class="form-control" required value="{{ $client->formatted_date_birthday }}">
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="text" name="date_birthday" class="form-control datetimepicker-input" data-target="#reservationdate" required value="{{ $client->formatted_date_birthday }}"/>
+                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 

@@ -10,6 +10,11 @@ $(document).ready(function () {
     // Instance of plugins
     //-----------------------------------------------------
 
+    //Date picker
+    $("#reservationdate").datetimepicker({
+        format: "L",
+    });
+
     $(".money").mask("0.000.000.000.000.000.000,00", {
         reverse: true,
         placeholder: "R$ 0,00",
@@ -30,7 +35,7 @@ $(document).ready(function () {
         columns: [
             { data: "id" },
             { data: "name" },
-            { data: "date_birthday"},
+            { data: "date_birthday" },
             { data: "active" },
             { data: "price" },
             { data: "action", orderable: false, searchable: false },
