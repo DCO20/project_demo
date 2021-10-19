@@ -72,9 +72,9 @@ class ClientController extends Controller
 			->filterColumn(
 				'date_birthday',
 				function ($q, $keyword) {
-					$formatted_date = implode('-', array_reverse(explode('/', $keyword)));
+					$formatted_date_birthday = implode('-', array_reverse(explode('/', $keyword)));
 
-					$q->where('date_birthday', 'LIKE', '%' . $formatted_date . '%');
+					$q->where('date_birthday', 'LIKE', '%' . $formatted_date_birthday . '%');
 				}
 			)
 			->filterColumn(
