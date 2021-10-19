@@ -3,5 +3,6 @@
     "/js/adminlte.js": "/js/adminlte.js",
     "/js/category.js": "/js/category.js",
     "/js/product.js": "/js/product.js",
-    "/js/purveyor.js": "/js/purveyor.js"
+    "/js/purveyor.js": "/js/purveyor.js",
+    "/js/client.js": "/js/client.js"
 }

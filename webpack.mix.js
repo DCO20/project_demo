@@ -74,3 +74,8 @@ mix.scripts(
     "Modules/Purveyor/Resources/assets/js/purveyor.js",
     "public/js/purveyor.js"
 );
+// Cliente JS
+mix.scripts(
+    "Modules/Client/Resources/assets/js/client.js",
+    "public/js/client.js"
+);
