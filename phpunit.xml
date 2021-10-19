@@ -20,6 +20,20 @@
             <directory suffix=".php">./app</directory>
              <directory suffix=".php">./Modules</directory>
         </include>
+        <exclude>
+            <directory>./app/Notifications</directory>
+            <directory>./app/Presenter</directory>
+            <directory>./app/Console</directory>
+            <directory>./app/Exceptions</directory>
+            <directory>./app/Http</directory>
+            <directory>./app/Providers</directory>
+            <directory>./Modules/**/config</directory>
+            <directory>./Modules/**/Database</directory>
+            <directory>./Modules/**/Providers</directory>
+            <directory>./Modules/**/Routes</directory>
+            <directory>./Modules/**/Tests</directory>
+            <directory>./Modules/**/resources</directory>
+        </exclude>
     </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>

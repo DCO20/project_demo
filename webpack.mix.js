@@ -15,6 +15,7 @@ const mix = require("laravel-mix");
 mix.combine(
     [
         "node_modules/admin-lte/plugins/fontawesome-free/css/all.css",
+        "node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css",
         "node_modules/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.css",
         "node_modules/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.css",
         "node_modules/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.css",
@@ -49,6 +50,8 @@ mix.combine(
         "node_modules/admin-lte/plugins/datatables-buttons/js/dataTables.buttons.js",
         "node_modules/admin-lte/plugins/datatables-buttons/js/buttons.bootstrap4.js",
         "node_modules/admin-lte/plugins/select2/js/select2.js",
+        "node_modules/moment/moment.js",
+        "node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js",
         "resources/js/jquery.mask.js",
         "node_modules/admin-lte/dist/js/adminlte.js",
         "node_modules/admin-lte/plugins/summernote/summernote-bs4.js",
@@ -73,4 +76,9 @@ mix.scripts(
 mix.scripts(
     "Modules/Purveyor/Resources/assets/js/purveyor.js",
     "public/js/purveyor.js"
+);
+// Cliente JS
+mix.scripts(
+    "Modules/Client/Resources/assets/js/client.js",
+    "public/js/client.js"
 );

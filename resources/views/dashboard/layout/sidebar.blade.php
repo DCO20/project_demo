@@ -11,6 +11,12 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
+                    <a href="{{ route('client.index') }}" class="nav-link {{ Ekko::isActiveRoute('client*') }}">
+                       <i class="fas fa-users"></i>
+                        <p>Clientes</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('purveyor.index') }}" class="nav-link {{ Ekko::isActiveRoute('purveyor*') }}">
                        <i class="fas fa-users"></i>
                         <p>Fornecedores</p>
