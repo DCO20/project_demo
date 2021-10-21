@@ -77,8 +77,15 @@ mix.scripts(
     "Modules/Purveyor/Resources/assets/js/purveyor.js",
     "public/js/purveyor.js"
 );
+
 // Cliente JS
 mix.scripts(
     "Modules/Client/Resources/assets/js/client.js",
     "public/js/client.js"
+);
+
+// Pedido JS
+mix.scripts(
+    "Modules/Suit/Resources/assets/js/suit.js",
+    "public/js/suit.js"
 );

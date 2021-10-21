@@ -230,7 +230,8 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
 		'Ekko' => Laravelista\Ekko\Frameworks\Laravel\Facade::class,
-		'Client' => Modules\Client\Entities\Client::class
+		'Client' => Modules\Client\Entities\Client::class,
+		'Suit' => Modules\Suit\Entities\Suit::class
 	],
 
 ];

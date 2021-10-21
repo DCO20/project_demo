@@ -3,6 +3,7 @@
 namespace Modules\Client\Entities;
 
 use App\Traits\Presentable;
+use Modules\Suit\Entities\Suit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Client\Presenter\ClientPresenter;
@@ -139,6 +140,26 @@ class Client extends Model
 		$this->attributes['price'] = $formatted_value;
 	}
 
+	/*
+	|--------------------------------------------------------------------------
+	| Relationship
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos das entidades relacionadas.
+	| Estes métodos são responsáveis pelas relações e permitem acessar
+	| os atributos Eloquent obtidas das mesmas.
+	|
+	*/
+
+	/**
+	 * Obtêm as clientes
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function suits()
+	{
+		return $this->belongsToMany(Suit::class)->withTrashed();
+	}
 
 	/*
 	|--------------------------------------------------------------------------
