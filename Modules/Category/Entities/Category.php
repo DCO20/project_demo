@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Purveyor\Entities\Purveyor;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Presenter\CategoryPresenter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
 	use SoftDeletes,
-		Presentable;
+		Presentable,
+		HasFactory;
 
 	/**
 	 * Presenter
@@ -107,5 +109,25 @@ class Category extends Model
 	public function purveyors()
 	{
 		return $this->belongsToMany(Purveyor::class)->withTrashed();
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Defining a Function
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos complementares a esta entidade.
+	| Estes métodos permitem definir as regras de negócio ou demais ações desta entidade.
+	|
+	*/
+
+	/**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return \Modules\Category\Database\factories\CategoryFactory::new();
 	}
 }

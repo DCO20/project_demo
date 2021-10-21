@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Category\Tests\Unit\Enties;
+namespace Modules\Category\Tests\Unit\Entities;
 
 use Tests\TestCase;
 use Modules\Category\Entities\Category;

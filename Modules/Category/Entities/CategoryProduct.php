@@ -4,9 +4,13 @@ namespace Modules\Category\Entities;
 
 use Modules\Product\Entities\Product;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Entities\Category;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CategoryProduct extends Model
 {
+	use HasFactory;
+
 	/**
 	 * Tabela do banco de dados
 	 *
@@ -49,5 +53,25 @@ class CategoryProduct extends Model
 	public function product()
 	{
 		return $this->belongsTo(Product::class);
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Defining a Function
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos complementares a esta entidade.
+	| Estes métodos permitem definir as regras de negócio ou demais ações desta entidade.
+	|
+	*/
+
+	/**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return \Modules\Category\Database\factories\CategoryProductFactory::new();
 	}
 }

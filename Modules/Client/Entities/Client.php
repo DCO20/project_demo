@@ -6,11 +6,13 @@ use App\Traits\Presentable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Client\Presenter\ClientPresenter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Client extends Model
 {
 	use SoftDeletes,
-		Presentable;
+		Presentable,
+		HasFactory;
 
 	const FEMALE = "F";
 
@@ -135,5 +137,26 @@ class Client extends Model
 		$formatted_value = str_replace(',', '.', str_replace('.', '', $value));
 
 		$this->attributes['price'] = $formatted_value;
+	}
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| Defining a Function
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos complementares a esta entidade.
+	| Estes métodos permitem definir as regras de negócio ou demais ações desta entidade.
+	|
+	*/
+
+	/**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return \Modules\Client\Database\factories\ClientFactory::new();
 	}
 }

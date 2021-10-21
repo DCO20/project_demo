@@ -60,8 +60,8 @@ class PurveyorController extends Controller
 			)
 			->addColumn(
 				"category",
-				function ($product) {
-					return $product->formatCategoryName();
+				function ($purveyor) {
+					return $purveyor->formatCategoryName();
 				}
 			)
 			->addColumn(

@@ -3,10 +3,14 @@
 namespace Modules\Category\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Entities\Category;
 use Modules\Purveyor\Entities\Purveyor;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CategoryPurveyor extends Model
 {
+	use HasFactory;
+
 	/**
 	 * Tabela do banco de dados
 	 *
@@ -49,5 +53,15 @@ class CategoryPurveyor extends Model
 	public function purveyor()
 	{
 		return $this->belongsTo(Purveyor::class);
+	}
+
+	/**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return \Modules\Category\Database\factories\CategoryPurveyorFactory::new();
 	}
 }
