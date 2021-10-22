@@ -52,7 +52,7 @@ class PurveyorControllerTest extends TestCase
 
     public function test_route_show()
     {
-        $purveyor = Purveyor::factory()->create();
+        $purveyor = purveyor::factory()->hasCategories()->create();
 
         $response = $this->get(route('purveyor.show', [
             'id' => $purveyor->id
@@ -65,7 +65,7 @@ class PurveyorControllerTest extends TestCase
 
     public function test_route_edit()
     {
-        $purveyor = Purveyor::factory()->create();
+        $purveyor = purveyor::factory()->hasCategories()->create();
 
         $response = $this->get(route('purveyor.edit', [
             'id' => $purveyor->id

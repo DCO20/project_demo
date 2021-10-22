@@ -28,13 +28,13 @@ class SuitControllerTest extends TestCase
 
     public function test_route_store()
     {
-        $Client = Client::factory()->create();
+        $client = Client::factory()->create();
 
         $data = [
             'suit_date' => '2021-10-21',
             'status' => Suit::FINISHED,
             'note' => 'Teste',
-            'clients' => $Client->pluck('id')
+            'clients' => $client->pluck('id')
         ];
 
         $response = $this->post(route('suit.store'), $data);
@@ -52,28 +52,28 @@ class SuitControllerTest extends TestCase
 
     public function test_route_show()
     {
-        $Suit = Suit::factory()->create();
+        $suit = Suit::factory()->hasClients()->create();
 
         $response = $this->get(route('suit.show', [
-            'id' => $Suit->id
+            'id' => $suit->id
         ]));
 
         $response->assertSuccessful();
 
-        $response->assertSee($Suit->formatted_suit_date);
+        $response->assertSee($suit->formatted_suit_date);
     }
 
     public function test_route_edit()
     {
-        $Suit = Suit::factory()->create();
+       $suit = Suit::factory()->hasClients()->create();
 
         $response = $this->get(route('suit.edit', [
-            'id' => $Suit->id
+            'id' => $suit->id
         ]));
 
         $response->assertSuccessful();
 
-        $response->assertSee($Suit->formatted_suit_date);
+        $response->assertSee($suit->formatted_suit_date);
     }
 
     public function test_route_update()
@@ -102,7 +102,7 @@ class SuitControllerTest extends TestCase
 
     public function test_route_confirm_delete()
     {
-        $suit = Suit::factory()->create();
+        $suit = Suit::factory()->hasClients()->create();
 
         $response = $this->get(route('suit.confirm_delete', [
             'id' => $suit->id

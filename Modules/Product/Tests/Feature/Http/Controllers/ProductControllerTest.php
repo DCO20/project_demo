@@ -52,7 +52,7 @@ class ProductControllerTest extends TestCase
 
     public function test_route_show()
     {
-        $product = Product::factory()->create();
+        $product = Product::factory()->hasCategories()->create();
 
         $response = $this->get(route('product.show', [
             'id' => $product->id
@@ -65,7 +65,7 @@ class ProductControllerTest extends TestCase
 
     public function test_route_edit()
     {
-        $product = product::factory()->create();
+        $product = Product::factory()->hasCategories()->create();
 
         $response = $this->get(route('product.edit', [
             'id' => $product->id
