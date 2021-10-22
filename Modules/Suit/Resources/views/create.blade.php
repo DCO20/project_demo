@@ -55,8 +55,8 @@
                                         <select name="status" class="form-control" style="width: 100%;" required>
 
                                             <option value="">Selecione</option>
-                                            <option value="Finished">Finalizado</option>
-                                            <option value="Pending">Pendente</option>
+                                            <option value="{{ Suit::FINISHED }}">Finalizado</option>
+                                            <option value="{{ Suit::PENDING }}">Pendente</option>
 
                                         </select>
                                     </div>

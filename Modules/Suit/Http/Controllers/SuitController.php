@@ -49,7 +49,7 @@ class SuitController extends Controller
 	 */
 	public function dataTable()
 	{
-		$suits = $this->suit->query();
+		$suits = $this->suit->with('clients');
 
 		return DataTables::of($suits)
 			->editColumn(

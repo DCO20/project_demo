@@ -49,7 +49,7 @@ class PurveyorController extends Controller
 	 */
 	public function dataTable()
 	{
-		$purveyors = $this->purveyor->query();
+		$purveyors = $this->purveyor->with('categories');
 
 		return DataTables::of($purveyors)
 			->editColumn(
