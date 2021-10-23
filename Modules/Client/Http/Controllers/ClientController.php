@@ -135,12 +135,10 @@ class ClientController extends Controller
 					return $client->actionView();
 				}
 			)
-			->rawColumns(
-				[
-					'active',
-					'action'
-				]
-			)
+			->rawColumns([
+				'active',
+				'action'
+			])
 			->make(true);
 	}
 

@@ -78,7 +78,7 @@ class Purveyor extends Model
 	 */
 	public function formatCategoryName()
 	{
-		return $this->categories()->pluck('name')->implode(", ");
+		return $this->categories->pluck('name')->implode(", ");
 	}
 
 	/**

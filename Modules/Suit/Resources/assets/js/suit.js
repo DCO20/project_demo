@@ -42,4 +42,14 @@ $(document).ready(function () {
             url: datatable_url,
         },
     });
+
+    function addPurveyor() {
+        console.log("oi");
+    }
+
+    //-----------------------------------------------------
+    // Defining a call function
+    //-----------------------------------------------------
+
+    $(document).delegate(".add-purveyor", "click", addPurveyor);
 });

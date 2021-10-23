@@ -7,15 +7,17 @@ use Modules\Client\Entities\Client;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Suit\Presenter\SuitPresenter;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Suit extends Model
 {
 	use SoftDeletes,
+		HasFactory,
 		Presentable;
 
-	const PENDING = "Pending";
-
 	const FINISHED = "Finished";
+
+	const PENDING = "Pending";
 
 	/**
 	 * Presenter
@@ -91,7 +93,7 @@ class Suit extends Model
 	 */
 	public function formatClientName()
 	{
-		return $this->clients()->pluck('name')->implode(", ");
+		return $this->clients->pluck('name')->implode(", ");
 	}
 
 	/*
@@ -115,5 +117,25 @@ class Suit extends Model
 		return $this->belongsToMany(Client::class)
 			->orderBy('name', 'ASC')
 			->withTrashed();
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Defining a Function
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos complementares a esta entidade.
+	| Estes métodos permitem definir as regras de negócio ou demais ações desta entidade.
+	|
+	*/
+
+	/**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return \Modules\Suit\Database\factories\SuitFactory::new();
 	}
 }

@@ -3,6 +3,7 @@
 namespace Modules\Client\Entities;
 
 use Modules\Suit\Entities\Suit;
+use Modules\Client\Entities\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -52,5 +53,25 @@ class ClientSuit extends Model
 	public function suit()
 	{
 		return $this->belongsTo(Suit::class);
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Defining a Function
+	|--------------------------------------------------------------------------
+	|
+	| Definição dos métodos complementares a esta entidade.
+	| Estes métodos permitem definir as regras de negócio ou demais ações desta entidade.
+	|
+	*/
+
+	/**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return \Modules\Client\Database\factories\ClientSuitFactory::new();
 	}
 }

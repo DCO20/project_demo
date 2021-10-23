@@ -30,7 +30,7 @@ class ClientControllerTest extends TestCase
         $data = [
             'name' => 'Danilo Oliveira',
             'date_birthday' => '2021-10-21',
-            'genre' => 'M',
+            'genre' => Client::MALE,
             'active' => true,
             'price' => '100.00'
         ];
@@ -81,7 +81,7 @@ class ClientControllerTest extends TestCase
         $data = [
             'name' => 'Danilo Oliveira',
             'date_birthday' => '2021-10-21',
-            'genre' => 'M',
+            'genre' => Client::MALE,
             'active' => true,
             'price' => '100.00'
         ];
