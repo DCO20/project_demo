@@ -3,6 +3,7 @@
 namespace Modules\Client\Entities;
 
 use Modules\Suit\Entities\Suit;
+use Modules\Client\Entities\Client;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

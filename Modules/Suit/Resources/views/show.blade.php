@@ -24,7 +24,7 @@
 
                     <div class="card-header">
                         <h3 class="card-title">
-                            Dados do Pedidos
+                            Dados do Pedido
                         </h3>
                     </div>
 
