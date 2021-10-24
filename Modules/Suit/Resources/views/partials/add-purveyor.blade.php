@@ -1,12 +1,18 @@
-<div class="row">
+<div class="row row-purveyor">
 
     {{-- Fornecedor --}}
     <div class="col-md-3">
         <div class="form-group">
             <label>Fornecedor:<span class="text-danger">*</span></label>
-            <select name="status" class="form-control select2" style="width: 100%;" required>
+            <select name="purveyors[]" class="form-control select2 select-purveyor" style="width: 100%;" required>
 
                 <option value="">Selecione</option>
+
+                @foreach ($purveyors as $purveyor)
+                    ​
+                    <option value="{{ $purveyor->id }}">{{ $purveyor->name }}</option>
+                    ​
+                @endforeach
 
             </select>
         </div>
@@ -16,7 +22,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>Categoria:<span class="text-danger">*</span></label>
-            <select name="status" class="form-control select2" style="width: 100%;" disabled>
+            <select name="categories[]" class="form-control select2 select-category" style="width: 100%;" disabled>
 
                 <option value="">Selecione</option>
 
@@ -28,7 +34,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>Produto:<span class="text-danger">*</span></label>
-            <select name="status" class="form-control select2" style="width: 100%;" disabled>
+            <select name="products[]" class="form-control select2 select-product" style="width: 100%;" disabled>
 
                 <option value="">Selecione</option>
 
@@ -40,7 +46,7 @@
     <div class="col-md-1">
         <div class="form-group">
             <label>Preço:<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" placeholder="0.00" readonly>
+            <input name="price[]" type="text" class="form-control" placeholder="0.00" readonly>
         </div>
     </div>
 
@@ -48,12 +54,12 @@
     <div class="col-md-1">
         <label>Quantidade:<span class="text-danger">*</span></label>
         <div class="form-group">
-            <input type="number" min="1" class="form-control" placeholder="qtd">
+            <input name="qtds[]" type="number" min="1" class="form-control" placeholder="qtd">
         </div>
     </div>
 
     {{-- Remover Fornecedor --}}
-    <div class="col-md-12 text-right">
+    <div class="col-md-12 text-right remove" style="display: none">
         <div class="form-group">
             <a href="javascript:void(0)" class="text-secondary remove-purveyor" style="text-decoration: underline;">Remover</a>
         </div>

@@ -35,5 +35,8 @@ Route::group(
 
 		Route::delete('/{id}/excluir', [SuitController::class, 'delete'])
 		->name('delete');
+
+		Route::post('/adicionar-fornecedor', [SuitController::class, 'addPurveyor'])
+		->name('add_purveyor');
 	}
 );

@@ -28,6 +28,7 @@
 
                     {{-- Elementos Ocultos --}}
                     @csrf
+                    <input type="hidden" name="route_add_purveyor" value="{{ route('suit.add_purveyor') }}">
 
                     <div class="card card-outline card-secondary">
 
@@ -91,71 +92,22 @@
                             <h3 class="card-title">
                                 Dados do Pedido do Fornecedor
                             </h3>
+                            {{-- Adicionar Fornecedor --}}
+                            <div class="col-md-12 text-right">
+                                <div class="form-group">
+                                    <a href="javascript:void(0)" class="text-secondary add-purveyor" style="text-decoration: underline;">Adicionar</a>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-body">
-                            <div class="row">
 
-                                {{-- Fornecedor --}}
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Fornecedor:<span class="text-danger">*</span></label>
-                                        <select name="status" class="form-control select2" style="width: 100%;" required>
-
-                                            <option value="">Selecione</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                {{-- Categoria --}}
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Categoria:<span class="text-danger">*</span></label>
-                                        <select name="status" class="form-control select2" style="width: 100%;" disabled>
-
-                                            <option value="">Selecione</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                {{-- Produto --}}
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Produto:<span class="text-danger">*</span></label>
-                                        <select name="status" class="form-control select2" style="width: 100%;" disabled>
-
-                                            <option value="">Selecione</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                {{-- Preço --}}
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <label>Preço:<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="0.00" readonly>
-                                    </div>
-                                </div>
-
-                                {{-- Quantidade --}}
-                                <div class="col-md-1">
-                                    <label>Quantidade:<span class="text-danger">*</span></label>
-                                    <div class="form-group">
-                                        <input type="number" min="1" class="form-control" placeholder="qtd">
-                                    </div>
-                                </div>
-
-                                {{-- Adicionar Fornecedor --}}
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <a href="javascript:void(0)" class="text-secondary add-purveyor" style="text-decoration: underline;">Adicionar</a>
-                                    </div>
-                                </div>
-
+                            <div id="div-purveyors">
+                                ​
+                                @include('suit::partials.add-purveyor')
+                                ​
                             </div>
+
                         </div>
 
                         <div class="card-footer"></div>

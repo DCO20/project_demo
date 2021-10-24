@@ -4,15 +4,14 @@ $(document).ready(function () {
     //-----------------------------------------------------
 
     var token = $("input[name='_token']").val(),
-        datatable_url = window.location.origin + "/datatable/pt-br.json";
+        datatable_url = window.location.origin + "/datatable/traductionBR.json",
+        route_add_purveyor = $("input[name='route_add_purveyor']").val(),
+        index_purveyor_count =
+            $("input[name='index_purveyor_count']").val() || 0;
 
     //-----------------------------------------------------
     // Instance of plugins
     //-----------------------------------------------------
-
-    $("#reservationdate").datetimepicker({
-        format: "L",
-    });
 
     $("#summernote").summernote();
 
@@ -32,10 +31,9 @@ $(document).ready(function () {
         },
         columns: [
             { data: "id" },
-            { data: "suit_date" },
-            { data: "status" },
-            { data: "client" },
             { data: "note" },
+            { data: "status" },
+            { data: "date" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {
@@ -43,13 +41,99 @@ $(document).ready(function () {
         },
     });
 
+    //-----------------------------------------------------
+    // Defining a function
+    //-----------------------------------------------------
+
+    /**
+     * Adiciona fornecedor
+     */
     function addPurveyor() {
-        console.log("oi");
+        index_purveyor_count++;
+
+        $.ajax({
+            url: route_add_purveyor,
+            data: {
+                index: index_purveyor_count,
+            },
+            type: "POST",
+            dataType: "JSON",
+            beforeSend: function (request) {
+                return request.setRequestHeader("X-CSRF-Token", token);
+            },
+        })
+            .done(function (data) {
+                if (data && data.success && data.html) {
+                    var html = $(data.html);
+
+                    $("#div-purveyors")
+                        .append(html)
+                        .find(".row-purveyor:last")
+                        .show(300);
+                    $(".remove").show(300);
+                }
+            })
+            .fail(function (xhr, textStatus, error) {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+            });
     }
 
+    /**
+     * Adiciona fornecedor
+     */
+    function removePurveyor() {
+        index_purveyor_count++;
+
+        $.ajax({
+            url: route_add_purveyor,
+            data: {
+                index: index_purveyor_count,
+            },
+            type: "POST",
+            dataType: "JSON",
+            beforeSend: function (request) {
+                return request.setRequestHeader("X-CSRF-Token", token);
+            },
+        })
+            .done(function (data) {
+                if (data && data.success && data.html) {
+                    var html = $(data.html);
+
+                    $("#div-purveyors")
+                        .append(html)
+                        .find(".row-purveyor:last")
+                        .remove();
+                }
+            })
+            .fail(function (xhr, textStatus, error) {
+                console.log(xhr.statusText);
+                console.log(textStatus);
+                console.log(error);
+            });
+    }
+
+    function changePurveyor() {
+        var _this = $(this);
+
+        var row_purveyor = _this.closest(".row-purveyor");
+
+        row_purveyor
+            .find(".select-category")
+            .attr("disabled", false)
+            .prop("required", true);
+
+        row_purveyor
+            .find(".select-product")
+            .attr("disabled", false)
+            .prop("required", true);
+    }
     //-----------------------------------------------------
     // Defining a call function
     //-----------------------------------------------------
 
     $(document).delegate(".add-purveyor", "click", addPurveyor);
+    $(document).delegate(".remove-purveyor", "click", removePurveyor);
+    $(document).delegate(".select-purveyor", "change", changePurveyor);
 });
