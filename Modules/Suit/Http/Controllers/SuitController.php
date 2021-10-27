@@ -7,7 +7,9 @@ use Modules\Suit\Entities\Suit;
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
 use Modules\Client\Entities\Client;
+use Modules\Product\Entities\Product;
 use Modules\Suit\Services\SuitService;
+use Modules\Category\Entities\Category;
 use Modules\Purveyor\Entities\Purveyor;
 use Modules\Suit\Http\Requests\SuitRequest;
 
@@ -123,8 +125,7 @@ class SuitController extends Controller
 	{
 		$clients = Client::where('active', true)->orderBy('name', 'AsC')->get();
 
-		$purveyors = Purveyor::where('active', true)->with('categories')
-			->orderBy('name', 'AsC')->get();
+		$purveyors = Purveyor::where('active', true)->orderBy('name', 'AsC')->get();
 
 		return view('suit::create', compact('clients', 'purveyors'));
 	}
@@ -240,5 +241,37 @@ class SuitController extends Controller
 			])
 				->render()
 		]);
+	}
+
+	/**
+	 * Carregamento das categorias
+	 * @param Request $request
+	 *
+	 */
+	public function loadCategory(Request $request)
+	{
+		$categories = Category::whereHas('purveyors', function ($q) use ($request) {
+			$q->where('purveyor_id', $request->purveyor_id);
+		})
+			->orderby('name')
+			->get();
+
+		return response()->json($categories);
+	}
+
+	/**
+	 * Carregamento dos produtos
+	 * @param Request $request
+	 *
+	 */
+	public function loadProduct(Request $request)
+	{
+		$products = Product::whereHas('categories', function ($q) use ($request) {
+			$q->where('category_id', $request->category_id);
+		})
+			->orderby('name')
+			->get();
+
+		return response()->json($products);
 	}
 }
