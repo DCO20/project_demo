@@ -16,11 +16,16 @@ class CreateSuitsTable extends Migration
     {
         Schema::create('suits', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('client_id');
             $table->date('suit_date');
             $table->enum('status', [Suit::PENDING, Suit::FINISHED]);
-            $table->text('note')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('client_id')
+                    ->references('id')
+                    ->on('clients');
         });
     }
 

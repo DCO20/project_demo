@@ -71,7 +71,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Clientes:<span class="text-danger">*</span></label>
-                                        <select name="clients[]" multiple="multiple" class="form-control select2" style="width: 100%;" required>
+                                        <select name="client_id" multiple="multiple" class="form-control select2" style="width: 100%;" required>
 
                                             @foreach ($suit->clients as $client)
                                                 <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
@@ -107,7 +107,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Observação:</label>
-                                        <textarea name="note" id="summernote" cols="50" rows="5" class="form-control">{!! $suit->note !!}</textarea>
+                                        <textarea name="description" id="summernote" cols="50" rows="5" class="form-control">{!! $suit->description !!}</textarea>
                                     </div>
                                 </div>
 

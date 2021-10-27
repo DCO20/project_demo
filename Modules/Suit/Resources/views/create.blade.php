@@ -69,7 +69,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Clientes:<span class="text-danger">*</span></label>
-                                        <select name="clients[]" multiple="multiple" class="form-control select2" style="width: 100%;" required>
+                                        <select name="client_id" class="form-control select2" style="width: 100%;" required>
 
                                             <option value="">Selecione</option>
 
@@ -143,7 +143,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Observação:</label>
-                                        <textarea name="note" id="summernote" cols="50" rows="5" class="form-control"></textarea>
+                                        <textarea name="description" id="summernote" cols="50" rows="5" class="form-control"></textarea>
                                     </div>
                                 </div>
 

@@ -154,11 +154,11 @@ class Client extends Model
 	/**
 	 * Obtêm as clientes
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function suits()
+	public function suit()
 	{
-		return $this->belongsToMany(Suit::class)->withTrashed();
+		return $this->belongsTo(Suit::class)->withTrashed();
 	}
 
 	/*

@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <label>Cliente:</label>
 
-                                        <select multiple="multiple" class="form-control select2" style="width: 100%;" disabled>
+                                        <select class="form-control select2" style="width: 100%;" disabled>
 
                                             @foreach ($suit->clients as $client)
                                                 <option value="{{ $client->id }}" selected>{{ $client->name }}</option>

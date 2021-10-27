@@ -39,9 +39,10 @@ class Suit extends Model
 	 * @var array $fillable
 	 */
 	protected $fillable = [
+		'client_id',
 		'suit_date',
 		'status',
-		'note'
+		'description'
 	];
 
 	/**
@@ -110,11 +111,11 @@ class Suit extends Model
 	/**
 	 * Obtêm as clientes
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function clients()
 	{
-		return $this->belongsToMany(Client::class)
+		return $this->hasMany(Client::class)
 			->orderBy('name', 'ASC')
 			->withTrashed();
 	}

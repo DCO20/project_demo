@@ -22,20 +22,16 @@ class SuitService
 	 * @param array $request
 	 * @param int|null $id
 	 *
-	 * @return \Modules\Suit\Entities\Suit
+	 * @return void
 	 */
 	public function updateOrCreate($request, $id = null)
 	{
 		DB::beginTransaction();
 
 		try {
-			$suit = Suit::updateOrCreate(['id' => $id], $request);
-
-			$suit->clients()->sync($request['clients'] ?? []);
+			Suit::updateOrCreate(['id' => $id], $request);
 
 			DB::commit();
-
-			return $suit;
 		} catch (\Exception $e) {
 			DB::rollBack();
 
