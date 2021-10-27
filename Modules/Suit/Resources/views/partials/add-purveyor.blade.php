@@ -1,22 +1,28 @@
-<div class="row">
+<div class="row row-purveyor">
 
     {{-- Fornecedor --}}
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
             <label>Fornecedor:<span class="text-danger">*</span></label>
-            <select name="status" class="form-control select2" style="width: 100%;" required>
+            <select name="purveyors[]" class="form-control select2 select-purveyor" style="width: 100%;" required>
 
                 <option value="">Selecione</option>
+
+                @foreach ($purveyors as $purveyor)
+                    ​
+                    <option value="{{ $purveyor->id }}">{{ $purveyor->name }}</option>
+                    ​
+                @endforeach
 
             </select>
         </div>
     </div>
 
     {{-- Categoria --}}
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
             <label>Categoria:<span class="text-danger">*</span></label>
-            <select name="status" class="form-control select2" style="width: 100%;" disabled>
+            <select name="categories[]" class="form-control select2 select-category" style="width: 100%;" disabled>
 
                 <option value="">Selecione</option>
 
@@ -25,10 +31,10 @@
     </div>
 
     {{-- Produto --}}
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group">
             <label>Produto:<span class="text-danger">*</span></label>
-            <select name="status" class="form-control select2" style="width: 100%;" disabled>
+            <select name="products[]" class="form-control select2 select-product" style="width: 100%;" disabled>
 
                 <option value="">Selecione</option>
 
@@ -37,26 +43,42 @@
     </div>
 
     {{-- Preço --}}
-    <div class="col-md-1">
+    <div class="col-md-2">
         <div class="form-group">
-            <label>Preço:<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" placeholder="0.00" readonly>
+            <label>Preço:</label>
+            <input name="price[]" type="text" class="form-control data-price" placeholder="R$ 0,00" readonly>
         </div>
     </div>
 
     {{-- Quantidade --}}
-    <div class="col-md-1">
+    <div class="col-md-2">
         <label>Quantidade:<span class="text-danger">*</span></label>
         <div class="form-group">
-            <input type="number" min="1" class="form-control" placeholder="qtd">
+            <input name="amount[]" type="number" min="1" class="form-control amount-product" required>
         </div>
     </div>
 
-    {{-- Remover Fornecedor --}}
-    <div class="col-md-12 text-right">
+    {{-- Total --}}
+    <div class="col-md-2 text-center">
+        <label>Total:</label>
         <div class="form-group">
-            <a href="javascript:void(0)" class="text-secondary remove-purveyor" style="text-decoration: underline;">Remover</a>
+            <input type="text" name="total" class="form-control total" placeholder="R$ 0,00">
         </div>
     </div>
+
+    @if ($purveyor_index != 0)
+
+        {{-- Remover Fornecedor --}}
+        <div class="col-md-12 text-right">
+            <div class="form-group">
+                <a href="javascript:void(0)" class="text-secondary remove-purveyor" style="text-decoration: underline;">Remover</a>
+            </div>
+        </div>
+
+    @endif
 
 </div>
+
+@section('footer-extras')
+    <script src="{{ mix('js/suit.js') }}"></script>
+@endsection

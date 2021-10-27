@@ -2,11 +2,15 @@
 
 namespace Modules\Suit\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Modules\Suit\Entities\Suit;
 use Yajra\DataTables\DataTables;
 use Illuminate\Routing\Controller;
 use Modules\Client\Entities\Client;
+use Modules\Product\Entities\Product;
 use Modules\Suit\Services\SuitService;
+use Modules\Category\Entities\Category;
+use Modules\Purveyor\Entities\Purveyor;
 use Modules\Suit\Http\Requests\SuitRequest;
 
 class SuitController extends Controller
@@ -121,7 +125,9 @@ class SuitController extends Controller
 	{
 		$clients = Client::where('active', true)->orderBy('name', 'AsC')->get();
 
-		return view('suit::create', compact('clients'));
+		$purveyors = Purveyor::where('active', true)->orderBy('name', 'AsC')->get();
+
+		return view('suit::create', compact('clients', 'purveyors'));
 	}
 
 	/**
@@ -219,5 +225,53 @@ class SuitController extends Controller
 		return redirect()
 			->route('suit.index')
 			->with('message', 'Exclusão realizada com sucesso.');
+	}
+
+	public function addPurveyor(Request $request)
+	{
+		$purveyors = Purveyor::where('active', true)
+			->with('categories')
+			->get();
+
+		return response()->json([
+			'success' => true,
+			'html' => view('suit::partials.add-purveyor', [
+				'purveyor_index' => $request->index,
+				'purveyors' => $purveyors
+			])
+				->render()
+		]);
+	}
+
+	/**
+	 * Carregamento das categorias
+	 * @param Request $request
+	 *
+	 */
+	public function loadCategory(Request $request)
+	{
+		$categories = Category::whereHas('purveyors', function ($q) use ($request) {
+			$q->where('purveyor_id', $request->purveyor_id);
+		})
+			->orderby('name')
+			->get();
+
+		return response()->json($categories);
+	}
+
+	/**
+	 * Carregamento dos produtos
+	 * @param Request $request
+	 *
+	 */
+	public function loadProduct(Request $request)
+	{
+		$products = Product::whereHas('categories', function ($q) use ($request) {
+			$q->where('category_id', $request->category_id);
+		})
+			->orderby('name')
+			->get();
+
+		return response()->json($products);
 	}
 }
