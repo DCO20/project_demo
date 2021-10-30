@@ -28,7 +28,7 @@
 
                     {{-- Elementos Ocultos --}}
                     @csrf
-                    <input type="hidden" name="route_add_purveyor" value="{{ route('suit.add_purveyor') }}">
+                    <input type="hidden" id="route_add_purveyor" value="{{ route('suit.add_purveyor') }}">
                     <input type="hidden" id="route_load_category" value="{{ route('suit.load_category') }}">
                     <input type="hidden" id="route_load_product" value="{{ route('suit.load_product') }}">
 
@@ -47,7 +47,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Data do pedido:<span class="text-danger">*</span></label>
-                                        <input type="date" name="suit_date" class="form-control" required>
+                                        <input type="date" name="date" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -69,7 +69,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Clientes:<span class="text-danger">*</span></label>
-                                        <select name="clients[]" multiple="multiple" class="form-control select2" style="width: 100%;" required>
+                                        <select name="client_id" class="form-control select2" style="width: 100%;" required>
 
                                             <option value="">Selecione</option>
 
@@ -85,7 +85,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Total do pedido:</label>
-                                        <input type="text" name="sum_total" class="form-control" id="sum-total" placeholder="R$ 0,00">
+                                        <input type="text" class="form-control" id="total" placeholder="R$ 0,00" readonly>
                                     </div>
                                 </div>
 
@@ -109,7 +109,6 @@
                                     <a href="javascript:void(0)" class="text-secondary" id="add-purveyor" style="text-decoration: underline;">Adicionar</a>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="card-body">
@@ -117,7 +116,7 @@
                             <div id="div-purveyors">
                                 ​
                                 @include('suit::partials.add-purveyor', [
-                                    'purveyor_index' => 0
+                                'purveyor_index' => 0
                                 ])
                                 ​
                             </div>
@@ -143,7 +142,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Observação:</label>
-                                        <textarea name="note" id="summernote" cols="50" rows="5" class="form-control"></textarea>
+                                        <textarea name="description" id="summernote" cols="50" rows="5" class="form-control"></textarea>
                                     </div>
                                 </div>
 

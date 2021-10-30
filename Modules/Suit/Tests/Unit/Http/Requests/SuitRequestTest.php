@@ -20,8 +20,13 @@ class SuitRequestTest extends TestCase
     public function test_it_has_rules()
     {
         $rules = [
-            'suit_date' => 'required',
-            'status' => 'required'
+            'date' => 'required', 'date_format:m/d/Y',
+            'status' => 'required',
+            'products.*.category_id' => 'required',
+            'products.*.product_id' => 'required',
+            'products.*.purveyor_id' => 'required',
+            'products.*.price' => 'required',
+            'products.*.amount' => 'required', 'min:1'
         ];
 
         $this->assertEquals($rules,  $this->form_request->rules());

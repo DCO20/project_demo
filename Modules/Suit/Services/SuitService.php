@@ -4,10 +4,12 @@ namespace Modules\Suit\Services;
 
 use DB;
 use Modules\Suit\Entities\Suit;
+use Modules\Suit\Entities\SuitProduct;
 
 class SuitService
 {
-	/*--------------------------------------------------------------------------
+	/*
+	|--------------------------------------------------------------------------
 	| Main Function
 	|--------------------------------------------------------------------------
 	|
@@ -21,21 +23,20 @@ class SuitService
 	 *
 	 * @param array $request
 	 * @param int|null $id
-	 *
-	 * @return \Modules\Suit\Entities\Suit
+	 * @return void
 	 */
 	public function updateOrCreate($request, $id = null)
 	{
 		DB::beginTransaction();
 
 		try {
-			$suit = Suit::updateOrCreate(['id' => $id], $request);
+			$suit = $this->suit($request, $id);
 
-			$suit->clients()->sync($request['clients'] ?? []);
+			$this->removeProducts($request['remove_products_ids'] ?? []);
+
+			$this->suitProducts($request['products'], $suit);
 
 			DB::commit();
-
-			return $suit;
 		} catch (\Exception $e) {
 			DB::rollBack();
 
@@ -44,10 +45,9 @@ class SuitService
 	}
 
 	/**
-	 * Exclui e retorna a tela inicial
+	 * Remove o registro
 	 *
 	 * @param \Modules\Suit\Entities\Suit $suit
-	 *
 	 * @return void
 	 */
 	public function removeData($suit)
@@ -63,5 +63,50 @@ class SuitService
 
 			abort(500);
 		}
+	}
+
+
+	/**
+	 * Cadastra ou atualiza o Pedido
+	 *
+	 * @param array $request
+	 * @param int|null $id
+	 * @return Suit
+	 */
+
+	public function suit($request, $id)
+	{
+		$data = [
+			'date' => $request['date'],
+			'status' => $request['status'],
+			'description' => $request['description'],
+			'client_id' => $request['client_id']
+		];
+
+		return Suit::updateOrCreate([
+			'id' => $id
+		], $data);
+	}
+
+	public function suitProducts($products, $suit)
+	{
+		foreach ($products as $product) {
+			$data = [
+				'purveyor_id' => $product['purveyor_id'],
+				'category_id' => $product['category_id'],
+				'product_id' =>	$product['product_id'],
+				'price'	=> $product['price'],
+				'amount' => $product['amount']
+			];
+
+			$suit->suitProducts()->updateOrCreate([
+				'id' => $product['id'] ?? null
+			], $data);
+		}
+	}
+
+	public function removeProducts($ids)
+	{
+		SuitProduct::whereIn('id', $ids)->delete();
 	}
 }

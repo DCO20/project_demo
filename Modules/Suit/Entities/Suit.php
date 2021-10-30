@@ -4,7 +4,11 @@ namespace Modules\Suit\Entities;
 
 use App\Traits\Presentable;
 use Modules\Client\Entities\Client;
+use Modules\Product\Entities\Product;
+use Modules\Suit\Entities\SuitProduct;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Entities\Category;
+use Modules\Purveyor\Entities\Purveyor;
 use Modules\Suit\Presenter\SuitPresenter;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,9 +43,10 @@ class Suit extends Model
 	 * @var array $fillable
 	 */
 	protected $fillable = [
-		'suit_date',
+		'client_id',
+		'date',
 		'status',
-		'note'
+		'description'
 	];
 
 	/**
@@ -52,7 +57,7 @@ class Suit extends Model
 	protected $dates = [
 		'created_at',
 		'updated_at',
-		'suit_date',
+		'date',
 		'deleted_at'
 	];
 
@@ -71,9 +76,9 @@ class Suit extends Model
 	 *
 	 * @return string
 	 */
-	public function getFormattedSuitDateAttribute()
+	public function getFormattedDateAttribute()
 	{
-		return $this->suit_date->format('d/m/Y');
+		return $this->date->format('d/m/Y');
 	}
 
 	/**
@@ -86,15 +91,6 @@ class Suit extends Model
 		return $this->status == self::PENDING ? "Pendente" : "Finalizado";
 	}
 
-	/**
-	 * Formata o atributo
-	 *
-	 * @return string
-	 */
-	public function formatClientName()
-	{
-		return $this->clients->pluck('name')->implode(", ");
-	}
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,15 +104,23 @@ class Suit extends Model
 	*/
 
 	/**
-	 * Obtêm as clientes
+	 * Obtém a cliente
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function clients()
+	public function client()
 	{
-		return $this->belongsToMany(Client::class)
-			->orderBy('name', 'ASC')
-			->withTrashed();
+		return $this->belongsTo(Client::class);
+	}
+
+	/**
+	 * Obtêm o pedido dos produtos
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function suitProducts()
+	{
+		return $this->hasMany(SuitProduct::class);
 	}
 
 	/*
@@ -137,5 +141,43 @@ class Suit extends Model
 	protected static function newFactory()
 	{
 		return \Modules\Suit\Database\factories\SuitFactory::new();
+	}
+
+	/**
+	 * Obtêm os fornecedores
+	 *
+	 * @return string
+	 */
+	public function filterPurveyor()
+	{
+		return Purveyor::where('id', '!=', $this->purveyor_id)->get();
+	}
+
+	/**
+	 * Obtêm as categorias
+	 *
+	 * @return string
+	 */
+	public function filterCategory($item)
+	{
+		return Category::whereHas('purveyors', function ($q) use ($item) {
+			$q->where('id', $item->purveyor_id);
+		})
+		->where('id', '!=', $item->category_id)
+		->get();
+	}
+
+	/**
+	 * Obtêm as produtos
+	 *
+	 * @return string
+	 */
+	public function filterProduct($item)
+	{
+		return Product::whereHas('categories', function ($q) use ($item) {
+			$q->where('id', $item->category_id);
+		})
+		->where('id', '!=', $item->product_id)
+		->get();
 	}
 }

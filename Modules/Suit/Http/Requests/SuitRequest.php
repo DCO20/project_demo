@@ -14,8 +14,13 @@ class SuitRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'suit_date' => 'required',
-			'status' => 'required'
+			'date' => 'required', 'date_format:m/d/Y',
+			'status' => 'required',
+			'products.*.category_id' => 'required',
+			'products.*.product_id' => 'required',
+			'products.*.purveyor_id' => 'required',
+			'products.*.price' => 'required',
+			'products.*.amount' => 'required', 'min:1'
 		];
 	}
 

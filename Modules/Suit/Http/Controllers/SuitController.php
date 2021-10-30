@@ -53,13 +53,13 @@ class SuitController extends Controller
 	 */
 	public function dataTable()
 	{
-		$suits = $this->suit->with('clients');
+		$suits = $this->suit->with('client');
 
 		return DataTables::of($suits)
 			->editColumn(
-				"suit_date",
+				"date",
 				function ($suit) {
-					return $suit->formatted_suit_date;
+					return $suit->formatted_date;
 				}
 			)
 			->editColumn(
@@ -71,7 +71,7 @@ class SuitController extends Controller
 			->addColumn(
 				"client",
 				function ($suit) {
-					return $suit->formatClientName();
+					return $suit->client->name;
 				}
 			)
 			->addColumn(
@@ -83,9 +83,9 @@ class SuitController extends Controller
 			->filterColumn(
 				'suit_date',
 				function ($q, $keyword) {
-					$formatted_suit_date = implode('-', array_reverse(explode('/', $keyword)));
+					$formatted_date = implode('-', array_reverse(explode('/', $keyword)));
 
-					$q->where('suit_date', 'LIKE', '%' . $formatted_suit_date . '%');
+					$q->where('suit_date', 'LIKE', '%' . $formatted_date . '%');
 				}
 			)
 			->filterColumn(
@@ -109,7 +109,7 @@ class SuitController extends Controller
 			)
 			->rawColumns(
 				[
-					'note',
+					'description',
 					'action'
 				]
 			)
@@ -153,7 +153,16 @@ class SuitController extends Controller
 	 */
 	public function show($id)
 	{
-		$suit = $this->suit->with('clients')
+		$suit = $this->suit->with([
+			'client',
+			'suitProducts' => function ($q) {
+				$q->with([
+					'category',
+					'product',
+					'purveyor'
+				]);
+			}
+		])
 			->findOrFail($id);
 
 		return view('suit::show', compact('suit'));
@@ -167,13 +176,20 @@ class SuitController extends Controller
 	 */
 	public function edit($id)
 	{
-		$suit = $this->suit->with('clients')
+		$suit = $this->suit->with([
+			'client',
+			'suitProducts' => function ($q) {
+				$q->with([
+					'category',
+					'product',
+					'purveyor'
+				]);
+			}
+		])
 			->findOrFail($id);
 
-
-
-		$clients = Client::where('active', true)
-			->whereNotIn('id', $suit->clients->pluck('id'))
+		$clients = Client::orderBy('name')
+			->where('id', '!=', $suit->client->id)
 			->get();
 
 		return view('suit::edit', compact('suit', 'clients'));
@@ -205,7 +221,7 @@ class SuitController extends Controller
 	 */
 	public function confirmDelete($id)
 	{
-		$suit = $this->suit->with('clients')->findOrFail($id);
+		$suit = $this->suit->with('client')->findOrFail($id);
 
 		return view('suit::confirm-delete', compact('suit'));
 	}
