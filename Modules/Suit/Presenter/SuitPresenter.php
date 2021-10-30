@@ -34,4 +34,20 @@ class SuitPresenter extends Presenter
                 <a class="dropdown-item" href="' . route('suit.confirm_delete', $this->model->id) . '">Excluir</a>
                 </div>';
 	}
+
+	/**
+	 * calcula o total dos produtos
+	 *
+	 * @return string
+	 */
+	public function total()
+	{
+		$total = 0;
+
+		foreach ($this->model->suitProducts as $item) {
+			$total += $item->price * $item->amount;
+		}
+
+		return "R$ " . number_format($total, 2, ',', '.');
+	}
 }

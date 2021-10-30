@@ -5,6 +5,10 @@ namespace Modules\Suit\Tests\Feature\Http\Controllers;
 use Tests\TestCase;
 use Modules\Suit\Entities\Suit;
 use Modules\Client\Entities\Client;
+use Modules\Product\Entities\Product;
+use Modules\Suit\Entities\SuitProduct;
+use Modules\Category\Entities\Category;
+use Modules\Purveyor\Entities\Purveyor;
 
 class SuitControllerTest extends TestCase
 {
@@ -30,11 +34,37 @@ class SuitControllerTest extends TestCase
     {
         $client = Client::factory()->create();
 
+        $purveyor = Purveyor::factory()->hasAttached(
+            Category::factory()->hasAttached(
+                Product::factory()->count(2)
+            )
+        )
+            ->create();
+
+        $purveyor->load('categories.products');
+
         $data = [
-            'suit_date' => '2021-10-21',
+            'date' => now()->format('Y-m-d'),
             'status' => Suit::FINISHED,
-            'note' => 'Teste',
-            'clients' => $client->pluck('id')
+            'description' => 'Teste',
+            'client_id' => $client->id,
+            'products' => [
+                0 => [
+                    'amount' => 10,
+                    'price' => '200.00',
+                    'purveyor_id' => $purveyor->id,
+                    'category_id' => $purveyor->categories->first()->id,
+                    'product_id' =>  $purveyor->categories->first()->products->first()->id
+                ],
+                1 => [
+                    'amount' => 10,
+                    'price' => '200.00',
+                    'purveyor_id' => $purveyor->id,
+                    'category_id' =>  $purveyor->categories->first()->id,
+                    'product_id' =>  $purveyor->categories->first()->products->last()->id
+                ],
+            ]
+
         ];
 
         $response = $this->post(route('suit.store'), $data);
@@ -46,13 +76,13 @@ class SuitControllerTest extends TestCase
         $this->assertDatabaseCount('suits', 1);
 
         $this->assertDatabaseHas('suits', [
-            'note' => 'Teste'
+            'description' => 'Teste'
         ]);
     }
 
     public function test_route_show()
     {
-        $suit = Suit::factory()->hasClients()->create();
+        $suit = Suit::factory()->hasClient()->hasSuitProducts()->create();
 
         $response = $this->get(route('suit.show', [
             'id' => $suit->id
@@ -65,7 +95,7 @@ class SuitControllerTest extends TestCase
 
     public function test_route_edit()
     {
-       $suit = Suit::factory()->hasClients()->create();
+        $suit = Suit::factory()->hasClient()->hasSuitProducts()->create();
 
         $response = $this->get(route('suit.edit', [
             'id' => $suit->id
@@ -78,15 +108,41 @@ class SuitControllerTest extends TestCase
 
     public function test_route_update()
     {
-        $Client = Client::factory()->create();
+        $suit =  Suit::factory()->create();
 
-        $suit = Suit::factory()->create();
+        $client = Client::factory()->create();
+
+        $purveyor = Purveyor::factory()->hasAttached(
+            Category::factory()->hasAttached(
+                Product::factory()->count(2)
+            )
+        )
+            ->create();
+
+        $purveyor->load('categories.products');
 
         $data = [
-            'suit_date' => '2021-10-21',
+            'date' => now()->format('Y-m-d'),
             'status' => Suit::FINISHED,
-            'note' => 'Teste',
-            'clients' => $Client->pluck('id')
+            'description' => 'Teste',
+            'client_id' => $client->id,
+            'products' => [
+                0 => [
+                    'amount' => 10,
+                    'price' => '200.00',
+                    'purveyor_id' => $purveyor->id,
+                    'category_id' => $purveyor->categories->first()->id,
+                    'product_id' =>  $purveyor->categories->first()->products->first()->id
+                ],
+                1 => [
+                    'amount' => 10,
+                    'price' => '200.00',
+                    'purveyor_id' => $purveyor->id,
+                    'category_id' =>  $purveyor->categories->first()->id,
+                    'product_id' =>  $purveyor->categories->first()->products->last()->id
+                ],
+            ]
+
         ];
 
         $response = $this->put(route('suit.update', $suit->id), $data);
@@ -96,13 +152,13 @@ class SuitControllerTest extends TestCase
         $response->assertSessionHas('message', 'Atualização realizada com sucesso.');
 
         $this->assertDatabaseHas('suits', [
-            'note' => 'Teste'
+            'description' => 'Teste'
         ]);
     }
 
     public function test_route_confirm_delete()
     {
-        $suit = Suit::factory()->hasClients()->create();
+        $suit = Suit::factory()->hasClient()->create();
 
         $response = $this->get(route('suit.confirm_delete', [
             'id' => $suit->id
@@ -110,7 +166,7 @@ class SuitControllerTest extends TestCase
 
         $response->assertSuccessful();
 
-        $response->assertSee($suit->formatted_suit_date);
+        $response->assertSee($suit->formatted_date);
     }
 
     public function test_route_delete()

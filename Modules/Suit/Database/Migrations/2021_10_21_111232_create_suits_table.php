@@ -17,7 +17,7 @@ class CreateSuitsTable extends Migration
         Schema::create('suits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id');
-            $table->date('suit_date');
+            $table->date('date');
             $table->enum('status', [Suit::PENDING, Suit::FINISHED]);
             $table->text('description')->nullable();
             $table->timestamps();

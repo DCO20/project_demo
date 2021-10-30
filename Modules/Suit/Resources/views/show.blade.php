@@ -32,15 +32,15 @@
                         <div class="row">
 
                             {{-- Data do Pedido --}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Data do Pedido:<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" readonly value="{{ $suit->formatted_suit_date }}">
+                                    <input type="text" class="form-control" readonly value="{{ $suit->formatted_date }}">
                                 </div>
                             </div>
 
                             {{-- Status --}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Status:</label>
                                     <select name="status" class="form-control select2" style="width: 100%;" disabled>
@@ -53,20 +53,52 @@
                             </div>
 
                             {{-- Clientes --}}
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Clientes:</label>
-                                    <select class="form-control select2" style="width: 100%;" disabled>
+                                    <label>Cliente:</label>
+                                    <input type="text" class="form-control" readonly value="{{ $suit->client->name }}">
+                                </div>
+                            </div>
 
-                                        @foreach ($suit->clients as $client)
-                                            <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
-                                        @endforeach
-
-                                    </select>
+                            {{-- Total do pedido --}}
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Total do pedido:</label>
+                                    <input type="text" class="form-control" id="total" placeholder="R$ 0,00" readonly value="{{ $suit->total() }}">
                                 </div>
                             </div>
 
                         </div>
+                    </div>
+
+                    <div class="card-footer"></div>
+
+                </div>
+
+                <div class="card card-outline card-secondary">
+
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Dados do Pedido do Fornecedor
+                        </h3>
+                    </div>
+
+                    <div class="card-body">
+
+                         <div id="div-purveyors">
+
+                            @foreach($suit->suitProducts as $index => $item)
+
+                            @include('suit::partials.add-purveyor', [
+                            'item' => $item,
+                            'purveyor_index' => $index,
+                            'show' => true
+                            ])
+
+                            @endforeach
+
+                        </div>
+
                     </div>
 
                     <div class="card-footer"></div>

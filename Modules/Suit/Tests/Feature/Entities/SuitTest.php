@@ -3,32 +3,28 @@
 namespace Modules\Suit\Tests\Feature\Entities;
 
 use Tests\TestCase;
-use Modules\Client\Entities\Client;
 use Modules\Suit\Entities\Suit;
+use Modules\Client\Entities\Client;
+use Modules\Suit\Entities\SuitProduct;
 
 class SuitTest extends TestCase
 {
-    public function test_it_formats_client_name_attribute()
+    public function test_suit_has_client()
     {
-        $Suit = Suit::factory()->hasAttached(
-            Client::factory()->create([
-                'name' => 'Danilo'
-            ])
-        )
-            ->create();
+        $suit = Suit::factory()->create();
 
-        $this->assertEquals('Danilo', $Suit->formatClientName());
+        $this->assertInstanceOf(Client::class, $suit->client);
     }
 
-    public function test_suit_has_clients()
+    public function test_suit_has_suit_products()
     {
-        $suit = Suit::factory()->hasAttached(
-            Client::factory()->count(2)
+        $suit = Suit::factory()->hasSuitProducts(
+            SuitProduct::factory()->count(2)
         )
             ->create();
 
-        $this->assertInstanceOf(Client::class, $suit->clients->first());
+        $this->assertInstanceOf(SuitProduct::class, $suit->suitProducts->first());
 
-        $this->assertInstanceOf(Client::class, $suit->clients->last());
+        $this->assertInstanceOf(SuitProduct::class, $suit->suitProducts->last());
     }
 }

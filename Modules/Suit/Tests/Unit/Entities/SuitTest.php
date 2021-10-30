@@ -28,9 +28,9 @@ class SuitTest extends TestCase
 
     public function test_it_formats_date_birthday_attribute()
     {
-        $this->Suit->suit_date = '2021-10-21';
+        $this->Suit->date = '2021-10-21';
 
-        $this->assertEquals($this->Suit->formatted_suit_date, '21/10/2021');
+        $this->assertEquals($this->Suit->formatted_date, '21/10/2021');
     }
 
     public function genreAttributeDataProvider()

@@ -4,10 +4,12 @@ $(document).ready(function () {
     //-----------------------------------------------------
 
     var token = $("input[name='_token']").val(),
-        datatable_url = window.location.origin + "/datatable/traductionBR.json",
-        route_add_purveyor = $("input[name='route_add_purveyor']").val(),
-        index_purveyor_count =
-            $("input[name='index_purveyor_count']").val() || 0;
+        datatable_url = window.location.origin + "/datatable/pt-br.json";
+        (route_add_purveyor = $("#route_add_purveyor").val()),
+        (route_load_category = $("#route_load_category").val()),
+        (route_load_product = $("#route_load_product").val()),
+        (route_datatable = $("#route_datatable").val()),
+        (index_item_count = $("#index_item_count").val() || 0);
 
     //-----------------------------------------------------
     // Instance of plugins
@@ -23,7 +25,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ajax: {
-            url: $("#route_datatable").val(),
+            url: route_datatable,
             type: "POST",
             beforeSend: function (request) {
                 return request.setRequestHeader("X-CSRF-Token", token);
@@ -31,9 +33,10 @@ $(document).ready(function () {
         },
         columns: [
             { data: "id" },
-            { data: "note" },
             { data: "status" },
             { data: "date" },
+            { data: "client" },
+            { data: "description" },
             { data: "action", orderable: false, searchable: false },
         ],
         language: {
@@ -49,12 +52,12 @@ $(document).ready(function () {
      * Adiciona fornecedor
      */
     function addPurveyor() {
-        index_purveyor_count++;
+        index_item_count++;
 
         $.ajax({
             url: route_add_purveyor,
             data: {
-                index: index_purveyor_count,
+                index: index_item_count,
             },
             type: "POST",
             dataType: "JSON",
@@ -71,47 +74,55 @@ $(document).ready(function () {
                         .find(".row-purveyor:last")
                         .show(300);
                 }
+
+                $(".select2").select2();
             })
             .fail(function (xhr, textStatus, error) {
                 console.log(xhr.statusText);
                 console.log(textStatus);
                 console.log(error);
             });
-
-        calculatorTotal();
     }
 
-    /**
-     * Remover fornecedor
-     */
-    function removePurveyor() {
-        $(this).closest(".row-purveyor").remove();
-
-        calculatorTotal();
-    }
-
-    /**
-     * carrega a categoria
-     */
-    function loadCategory() {
+    function changePurveyor() {
         var div = $(this).closest(".row-purveyor");
 
-        div.find(".select-category").prop("disabled", false);
+        div.find(".select-category")
+            .attr("readonly", false)
+            .prop("required", true);
 
-        div.find(".select-category").prop("required", true);
+        div.find(".select-product")
+            .attr("readonly", false)
+            .prop("required", true);
+
+        div.find(".sum-total").val("");
+
+        calculateTotal();
+    }
+
+    function removePurveyor() {
+        var div = $(this).closest(".row-purveyor");
+
+        div.prev().prop("name", "remove_products_ids[]");
+
+        div.remove();
+
+        calculateTotal();
+    }
+
+    function loadCategories() {
+        var div = $(this).closest(".row-purveyor");
 
         div.find(".select-category option").remove();
 
         div.find(".select-category").append(
-            "<option value=''>Selecione</option>"
+            '<option value="">Selecione</option>'
         );
 
         div.find(".select-category").trigger("change");
 
-        div.find(".total").val("");
-
         $.ajax({
-            url: $("#route_load_category").val(),
+            url: route_load_category,
             data: {
                 purveyor_id: $(this).val(),
             },
@@ -122,8 +133,10 @@ $(document).ready(function () {
             },
         })
             .done(function (categories) {
+                var select_category = div.find(".select-category");
+
                 $.each(categories, function (key, category) {
-                    div.find(".select-category").append(
+                    select_category.append(
                         '<option value="' +
                             category.id +
                             '">' +
@@ -137,29 +150,21 @@ $(document).ready(function () {
                 console.log(textStatus);
                 console.log(error);
             });
-
-        calculatorTotal();
     }
 
-    /**
-     * carrega o produto
-     */
-    function loadProduct() {
+    function loadProducts() {
         var div = $(this).closest(".row-purveyor");
-
-        div.find(".select-product").prop("disabled", false);
-
-        div.find(".select-product").prop("required", true);
 
         div.find(".select-product option").remove();
 
         div.find(".select-product").append(
-            "<option value=''>Selecione</option>"
+            '<option value="">Selecione</option>'
         );
+
         div.find(".select-product").trigger("change");
 
         $.ajax({
-            url: $("#route_load_product").val(),
+            url: route_load_product,
             data: {
                 category_id: $(this).val(),
             },
@@ -170,8 +175,10 @@ $(document).ready(function () {
             },
         })
             .done(function (products) {
+                var select_product = div.find(".select-product");
+
                 $.each(products, function (key, product) {
-                    div.find(".select-product").append(
+                    select_product.append(
                         '<option value="' +
                             product.id +
                             '" data-price="' +
@@ -187,14 +194,9 @@ $(document).ready(function () {
                 console.log(textStatus);
                 console.log(error);
             });
-
-        calculatorTotal();
     }
 
-    /**
-     * obtem o preço do produto
-     */
-    function dataPrice() {
+    function loadPrice() {
         var _this = $(this);
 
         var price =
@@ -202,12 +204,9 @@ $(document).ready(function () {
 
         var formatted_value = formatMoney(price);
 
-        _this.closest(".row-purveyor").find(".data-price").val(formatted_value);
+        _this.closest(".row-purveyor").find(".price").val(formatted_value);
     }
 
-    /**
-     * formata o preço do produto
-     */
     function formatMoney(value) {
         var converted_price = parseFloat(value);
 
@@ -219,30 +218,30 @@ $(document).ready(function () {
         return formatted_value;
     }
 
-    /**
-     * calcula preço do produto
-     */
-    function calculatorProduct() {
+    function formatPrice(value) {
+        var price = value.replace("R$", "").replace(".", "").replace(",", ".");
+
+        return parseFloat(price);
+    }
+
+    function calculateProduct() {
         var _this = $(this);
 
-        var price = _this.closest(".row-purveyor").find(".data-price").val();
+        var price = _this.closest(".row-purveyor").find(".price").val();
 
         var total = formatPrice(price) * parseInt(_this.val());
 
         var formatted_total = formatMoney(total);
 
-        _this.closest(".row-purveyor").find(".total").val(formatted_total);
+        _this.closest(".row-purveyor").find(".sum-total").val(formatted_total);
 
-        calculatorTotal();
+        calculateTotal();
     }
 
-    /**
-     * calcula o total dos produtos
-     */
-    function calculatorTotal() {
-         var total = 0;  //"1000.00"
+    function calculateTotal() {
+        var total = 0; //"1000.00"
 
-        $(".total").each(function () {
+        $(".sum-total").each(function () {
             var sum_total = $(this).val();
 
             var value = sum_total != "" ? formatPrice(sum_total) : 0;
@@ -252,26 +251,17 @@ $(document).ready(function () {
 
         var formatted_total = formatMoney(total);
 
-        $("#sum-total").val(formatted_total);
-    }
-
-    /**
-     * formata o total do produto
-     */
-    function formatPrice(value) {
-        var price = value.replace("R$", "").replace(".", "").replace(",", ".");
-
-        return parseFloat(price);
+        $("#total").val(formatted_total);
     }
 
     //-----------------------------------------------------
     // Defining a call function
     //-----------------------------------------------------
-
     $(document).delegate("#add-purveyor", "click", addPurveyor);
     $(document).delegate(".remove-purveyor", "click", removePurveyor);
-    $(document).delegate(".select-purveyor", "change", loadCategory);
-    $(document).delegate(".select-category", "change", loadProduct);
-    $(document).delegate(".select-product", "change", dataPrice);
-    $(document).delegate(".amount-product", "input", calculatorProduct);
+    $(document).delegate(".select-purveyor", "change", changePurveyor);
+    $(document).delegate(".select-purveyor", "change", loadCategories);
+    $(document).delegate(".select-category", "change", loadProducts);
+    $(document).delegate(".select-product", "change", loadPrice);
+    $(document).delegate(".amount", "input", calculateProduct);
 });

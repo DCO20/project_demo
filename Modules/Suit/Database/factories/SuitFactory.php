@@ -2,6 +2,7 @@
 namespace Modules\Suit\Database\factories;
 
 use Modules\Suit\Entities\Suit;
+use Modules\Client\Entities\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SuitFactory extends Factory
@@ -21,9 +22,10 @@ class SuitFactory extends Factory
     public function definition()
     {
         return [
-            'suit_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'client_id' => Client::factory()->create()->id,
+            'date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'status' => $this->faker->randomElement(['Finished', 'Pending']),
-            'note' => $this->faker->paragraph()
+            'description' => $this->faker->paragraph()
         ];
     }
 }

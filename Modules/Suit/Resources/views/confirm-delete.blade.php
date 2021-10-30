@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Data do Pedido:</label>
-                                        <input type="text" class="form-control" readonly value="{{ $suit->formatted_suit_date }}">
+                                        <input type="text" class="form-control" readonly value="{{ $suit->formatted_date }}">
                                     </div>
                                 </div>
 
@@ -48,15 +48,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Cliente:</label>
-
-                                        <select class="form-control select2" style="width: 100%;" disabled>
-
-                                            @foreach ($suit->clients as $client)
-                                                <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
-                                            @endforeach
-
-                                        </select>
-
+                                        <input type="text" class="form-control" readonly value="{{ $suit->client->name }}">
                                     </div>
                                 </div>
 

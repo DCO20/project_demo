@@ -10,7 +10,7 @@ class ClientTest extends TestCase
 {
     public function test_client_has_suits()
     {
-        $client = Client::factory()->hasAttached(
+        $client = Client::factory()->hasSuits(
             Suit::factory()->count(2)
         )
             ->create();
