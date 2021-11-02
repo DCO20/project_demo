@@ -13,7 +13,7 @@ class SuitProductTest extends TestCase
 
         $suit_product->price = '1.000,00';
 
-        $this->assertEquals('R$ 1.000,00', $suit_product->formatted_price);
+        $this->assertEquals( $suit_product->formatted_price, 'R$ 1.000,00');
     }
 
 }

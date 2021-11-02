@@ -1,7 +1,6 @@
 <?php
 namespace Modules\Suit\Database\factories;
 
-use Modules\Suit\Entities\Suit;
 use Modules\Product\Entities\Product;
 use Modules\Suit\Entities\SuitProduct;
 use Modules\Category\Entities\Category;
@@ -25,11 +24,10 @@ class SuitProductFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => Category::factory()->create()->id,
-            'product_id' => Product::factory()->create()->id,
-            'purveyor_id' => Purveyor::factory()->create()->id,
-            'suit_id' => Suit::factory()->create()->id,
-            'price' => '100.00',
+            'category_id' => Category::factory()->create(),
+            'product_id' => Product::factory()->create(),
+            'purveyor_id' => Purveyor::factory()->create(),
+            'price' => '100,00',
             'amount' => 1
         ];
     }

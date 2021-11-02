@@ -146,38 +146,38 @@ class Suit extends Model
 	/**
 	 * Obtêm os fornecedores
 	 *
-	 * @return string
+	 * @return \Illuminate\Database\Eloquent\Collection $item
 	 */
-	public function filterPurveyor()
+	public function filterPurveyor($item)
 	{
-		return Purveyor::where('id', '!=', $this->purveyor_id)->get();
+		return Purveyor::where('id', '!=', $item->purveyor_id)->get();
 	}
 
 	/**
 	 * Obtêm as categorias
 	 *
-	 * @return string
+	 * @return \Illuminate\Database\Eloquent\Collection $item
 	 */
 	public function filterCategory($item)
 	{
 		return Category::whereHas('purveyors', function ($q) use ($item) {
-			$q->where('id', $item->purveyor_id);
+			$q->where('id', $item['purveyor_id']);
 		})
-		->where('id', '!=', $item->category_id)
+		->where('id', '!=', $item['category_id'])
 		->get();
 	}
 
 	/**
 	 * Obtêm as produtos
 	 *
-	 * @return string
+	 * @return \Illuminate\Database\Eloquent\Collection $item
 	 */
 	public function filterProduct($item)
 	{
 		return Product::whereHas('categories', function ($q) use ($item) {
-			$q->where('id', $item->category_id);
+			$q->where('id', $item['category_id']);
 		})
-		->where('id', '!=', $item->product_id)
+		->where('id', '!=', $item['product_id'])
 		->get();
 	}
 }

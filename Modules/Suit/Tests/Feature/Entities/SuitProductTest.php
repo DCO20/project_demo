@@ -13,28 +13,36 @@ class SuitProductTest extends TestCase
 {
     public function test_a_suit_product_belongs_to_category()
     {
-        $suit_product = SuitProduct::factory()->create();
+        $suit = Suit::factory()->hasSuitProducts()->create();
 
-        $this->assertInstanceOf(Category::class, $suit_product->category);
+        $suit->load('suitProducts.category');
+
+        $this->assertInstanceOf(Category::class, $suit->suitProducts->first()->category);
     }
 
     public function test_a_suit_product_belongs_to_product()
     {
-        $suit_product = SuitProduct::factory()->create();
+        $suit = Suit::factory()->hasSuitProducts()->create();
 
-        $this->assertInstanceOf(Product::class, $suit_product->product);
+        $suit->load('suitProducts.product');
+
+        $this->assertInstanceOf(Product::class, $suit->suitProducts->first()->product);
     }
 
     public function test_a_suit_product_belongs_to_purveyor()
     {
-        $suit_product = SuitProduct::factory()->create();
+        $suit = Suit::factory()->hasSuitProducts()->create();
 
-        $this->assertInstanceOf(Purveyor::class, $suit_product->purveyor);
+        $suit->load('suitProducts.purveyor');
+
+        $this->assertInstanceOf(Purveyor::class, $suit->suitProducts->first()->purveyor);
     }
 
     public function test_a_suit_product_belongs_to_suit()
     {
-        $suit_product = SuitProduct::factory()->create();
+        $suit = Suit::factory()->hasSuitProducts()->create();
+
+        $suit_product = SuitProduct::with('suit')->first();
 
         $this->assertInstanceOf(Suit::class, $suit_product->suit);
     }

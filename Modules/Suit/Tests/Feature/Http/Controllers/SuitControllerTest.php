@@ -6,7 +6,6 @@ use Tests\TestCase;
 use Modules\Suit\Entities\Suit;
 use Modules\Client\Entities\Client;
 use Modules\Product\Entities\Product;
-use Modules\Suit\Entities\SuitProduct;
 use Modules\Category\Entities\Category;
 use Modules\Purveyor\Entities\Purveyor;
 
@@ -186,5 +185,50 @@ class SuitControllerTest extends TestCase
         $this->assertSoftDeleted($suit);
 
         $this->assertDatabaseCount('suits', 1);
+    }
+
+     public function test_route_add_purveyor()
+    {
+        $suit = Purveyor::factory()->create();
+
+        $response = $this->post(route('suit.add_purveyor', [
+            'id' =>  $suit->id
+        ]));
+
+        $response->assertSuccessFul()->assertJson([
+            'success' => true
+        ]);
+    }
+
+    public function test_load_category()
+    {
+        $purveyor = Purveyor::factory()->hasAttached(
+            Category::factory()->count(2)
+        )
+            ->create();
+
+        $purveyor->load('categories');
+
+        $response = $this->post(route('suit.load_category', [
+            'id' =>  $purveyor->id
+        ]));
+
+        $response->assertSuccessful();
+    }
+
+    public function test_load_product()
+    {
+        $category = Category::factory()->hasAttached(
+            Product::factory()->count(2)
+        )
+            ->create();
+
+        $category->load('products');
+
+         $response = $this->post(route('suit.load_product', [
+            'id' =>  $category->id
+        ]));
+
+        $response->assertSuccessful();
     }
 }
