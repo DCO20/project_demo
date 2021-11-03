@@ -187,7 +187,7 @@ class SuitControllerTest extends TestCase
         $this->assertDatabaseCount('suits', 1);
     }
 
-     public function test_route_add_purveyor()
+    public function test_route_add_purveyor()
     {
         $suit = Purveyor::factory()->create();
 
@@ -207,10 +207,8 @@ class SuitControllerTest extends TestCase
         )
             ->create();
 
-        $purveyor->load('categories');
-
         $response = $this->post(route('suit.load_category', [
-            'id' =>  $purveyor->id
+            'purveyor_id' =>  $purveyor->id
         ]));
 
         $response->assertSuccessful();
@@ -223,10 +221,8 @@ class SuitControllerTest extends TestCase
         )
             ->create();
 
-        $category->load('products');
-
-         $response = $this->post(route('suit.load_product', [
-            'id' =>  $category->id
+        $response = $this->post(route('suit.load_product', [
+            'category_id' =>  $category->id
         ]));
 
         $response->assertSuccessful();
