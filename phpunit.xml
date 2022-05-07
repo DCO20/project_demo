@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
          bootstrap="vendor/autoload.php"
          colors="true"
->
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
@@ -12,13 +16,13 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
         <testsuite name="Modules">
-            <directory suffix="Test.php">./Modules/**/Tests</directory>
+            <directory suffix="Test.php">./Modules/**/Tests/</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
-             <directory suffix=".php">./Modules</directory>
+            <directory suffix=".php">./Modules</directory>
         </include>
         <exclude>
             <directory>./app/Notifications</directory>
@@ -27,12 +31,12 @@
             <directory>./app/Exceptions</directory>
             <directory>./app/Http</directory>
             <directory>./app/Providers</directory>
-            <directory>./Modules/**/config</directory>
+            <directory>./Modules/**/Config</directory>
             <directory>./Modules/**/Database</directory>
             <directory>./Modules/**/Providers</directory>
             <directory>./Modules/**/Routes</directory>
             <directory>./Modules/**/Tests</directory>
-            <directory>./Modules/**/resources</directory>
+            <directory>./Modules/**/Resources</directory>
         </exclude>
     </coverage>
     <php>

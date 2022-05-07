@@ -11,9 +11,6 @@ use Modules\Product\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-	protected $product;
-
-	protected $product_service;
 
 	/**
 	 * Método Construtor
@@ -23,11 +20,9 @@ class ProductController extends Controller
 	 * @return void
 	 */
 	public function __construct(
-		Product $product,
-		ProductService $product_service
+		protected Product $product,
+		protected ProductService $product_service
 	) {
-		$this->product = $product;
-		$this->product_service = $product_service;
 	}
 
 	/**
