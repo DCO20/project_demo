@@ -1,4 +1,4 @@
 # project_demo
 
-# Sistema administrativo com produtos, categorias, clientes, fornecedor e pedidos.
+Sistema administrativo com produtos, categorias, clientes, fornecedor e pedidos.
  
