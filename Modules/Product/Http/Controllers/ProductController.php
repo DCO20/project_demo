@@ -11,23 +11,18 @@ use Modules\Product\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
-	protected $product;
-
-	protected $product_service;
 
 	/**
 	 * Método Construtor
 	 *
-	 * @param  \Modules\Product\Entities\Product
-	 * @param  \Modules\Product\Services\ProductService
+	 * @param \Modules\Product\Entities\Product $product
+	 * @param \Modules\Product\Services\ProductService $product_service
 	 * @return void
 	 */
 	public function __construct(
-		Product $product,
-		ProductService $product_service
+		protected Product $product,
+		protected ProductService $product_service
 	) {
-		$this->product = $product;
-		$this->product_service = $product_service;
 	}
 
 	/**
@@ -156,7 +151,7 @@ class ProductController extends Controller
 	 * Atualiza e retorna para a tela de edição
 	 *
 	 * @param  \Modules\Product\Http\Requests\ProductRequest $request
-	 * @param  int                                           $id
+	 * @param  int $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function update(ProductRequest $request, $id)

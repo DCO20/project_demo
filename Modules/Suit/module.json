@@ -1,0 +1,13 @@
+{
+    "name": "Suit",
+    "alias": "suit",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Suit\\Providers\\SuitServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

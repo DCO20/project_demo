@@ -1,0 +1,13 @@
+{
+    "name": "Purveyor",
+    "alias": "purveyor",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Purveyor\\Providers\\PurveyorServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

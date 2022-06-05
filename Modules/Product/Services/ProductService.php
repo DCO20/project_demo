@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Services;
 
-use Illuminate\Support\Facades\DB;
+use DB;
 use Modules\Product\Entities\Product;
 
 class ProductService
@@ -19,18 +19,16 @@ class ProductService
 	/**
 	 * Cadastra ou atualiza o registro
 	 *
-	 * @param \Modules\Product\Entities\Product $product
+	 * @param array $request
 	 * @param int|null $id
 	 *
-	 * @return void
+	 * @return \Modules\Product\Entities\Product
 	 */
-
 	public function updateOrCreate($request, $id = null)
 	{
 		DB::beginTransaction();
 
 		try {
-
 			$product = Product::updateOrCreate(['id' => $id], $request);
 
 			$product->categories()->sync($request['categories'] ?? []);
@@ -45,12 +43,10 @@ class ProductService
 		}
 	}
 
-
 	/**
 	 * Exclui e retorna a tela inicial
 	 *
 	 * @param \Modules\Product\Entities\Product $product
-	 * @param int|null $id
 	 *
 	 * @return void
 	 */
@@ -60,6 +56,7 @@ class ProductService
 
 		try {
 			$product->delete();
+
 			DB::commit();
 		} catch (\Exception $e) {
 			DB::rollBack();
