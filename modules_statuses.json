@@ -7,5 +7,6 @@
     "Provider": true,
     "Purveyor": true,
     "Client": true,
-    "Suit": true
+    "Suit": true,
+    "Booking": true
 }
