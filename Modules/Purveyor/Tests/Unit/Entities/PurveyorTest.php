@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\purveyor\Tests\Unit\Entities;
+namespace Modules\Purveyor\Tests\Unit\Entities;
 
 use Modules\Purveyor\Entities\Purveyor;
 use Tests\TestCase;
