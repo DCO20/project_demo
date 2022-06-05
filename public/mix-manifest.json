@@ -2,8 +2,8 @@
     "/css/adminlte.css": "/css/adminlte.css",
     "/js/adminlte.js": "/js/adminlte.js",
     "/js/category.js": "/js/category.js",
-    "/js/client.js": "/js/client.js",
     "/js/product.js": "/js/product.js",
     "/js/purveyor.js": "/js/purveyor.js",
+    "/js/client.js": "/js/client.js",
     "/js/suit.js": "/js/suit.js"
 }
