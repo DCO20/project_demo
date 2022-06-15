@@ -3,13 +3,23 @@
 namespace Modules\Category\Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
+use App\Models\User;
 use Modules\Category\Entities\Category;
 
 class CategoryControllerTest extends TestCase
 {
+    protected $user;
+
+    protected function setup(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+    }
+
     public function test_route_index()
     {
-        $response = $this->get(route('category.index'));
+        $response = $this->actingAs($this->user)->get(route('category.index'));
 
         $response->assertSuccessful();
 
@@ -18,7 +28,7 @@ class CategoryControllerTest extends TestCase
 
     public function test_route_create()
     {
-        $response = $this->get(route('category.create'));
+        $response = $this->actingAs($this->user)->get(route('category.create'));
 
         $response->assertSuccessful();
 
@@ -32,7 +42,7 @@ class CategoryControllerTest extends TestCase
             'active' => true
         ];
 
-        $response = $this->post(route('category.store'), $data);
+        $response = $this->actingAs($this->user)->post(route('category.store'), $data);
 
         $response->assertRedirect(route('category.index'));
 
@@ -49,7 +59,7 @@ class CategoryControllerTest extends TestCase
     {
         $category = Category::factory()->create();
 
-        $response = $this->get(route('category.show', [
+        $response = $this->actingAs($this->user)->get(route('category.show', [
             'id' => $category->id
         ]));
 
@@ -62,7 +72,7 @@ class CategoryControllerTest extends TestCase
     {
         $category = Category::factory()->create();
 
-        $response = $this->get(route('category.edit', [
+        $response = $this->actingAs($this->user)->get(route('category.edit', [
             'id' => $category->id
         ]));
 
@@ -80,7 +90,7 @@ class CategoryControllerTest extends TestCase
             'active' => true
         ];
 
-        $response = $this->put(route('category.update', $category->id), $data);
+        $response = $this->actingAs($this->user)->put(route('category.update', $category->id), $data);
 
         $response->assertRedirect(route('category.edit', $category->id));
 
@@ -95,7 +105,7 @@ class CategoryControllerTest extends TestCase
     {
         $category = Category::factory()->create();
 
-        $response = $this->get(route('category.confirm_delete', [
+        $response = $this->actingAs($this->user)->get(route('category.confirm_delete', [
             'id' => $category->id
         ]));
 
@@ -108,7 +118,7 @@ class CategoryControllerTest extends TestCase
     {
         $category = Category::factory()->create();
 
-        $response = $this->delete(route('category.delete', [
+        $response = $this->actingAs($this->user)->delete(route('category.delete', [
             'id' =>  $category->id
         ]));
 

@@ -3,13 +3,23 @@
 namespace Modules\Client\Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
+use App\Models\User;
 use Modules\Client\Entities\Client;
 
 class ClientControllerTest extends TestCase
 {
+    protected $user;
+
+    protected function setup(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+    }
+
     public function test_route_index()
     {
-        $response = $this->get(route('client.index'));
+        $response = $this->actingAs($this->user)->get(route('client.index'));
 
         $response->assertSuccessful();
 
@@ -18,7 +28,7 @@ class ClientControllerTest extends TestCase
 
     public function test_route_create()
     {
-        $response = $this->get(route('client.create'));
+        $response = $this->actingAs($this->user)->get(route('client.create'));
 
         $response->assertSuccessful();
 
@@ -35,7 +45,7 @@ class ClientControllerTest extends TestCase
             'price' => '100.00'
         ];
 
-        $response = $this->post(route('client.store'), $data);
+        $response = $this->actingAs($this->user)->post(route('client.store'), $data);
 
         $response->assertRedirect(route('client.index'));
 
@@ -52,7 +62,7 @@ class ClientControllerTest extends TestCase
     {
         $client = Client::factory()->create();
 
-        $response = $this->get(route('client.show', [
+        $response = $this->actingAs($this->user)->get(route('client.show', [
             'id' => $client->id
         ]));
 
@@ -65,7 +75,7 @@ class ClientControllerTest extends TestCase
     {
         $client = Client::factory()->create();
 
-        $response = $this->get(route('client.edit', [
+        $response = $this->actingAs($this->user)->get(route('client.edit', [
             'id' => $client->id
         ]));
 
@@ -86,7 +96,7 @@ class ClientControllerTest extends TestCase
             'price' => '100.00'
         ];
 
-        $response = $this->put(route('client.update', $client->id), $data);
+        $response = $this->actingAs($this->user)->put(route('client.update', $client->id), $data);
 
         $response->assertRedirect(route('client.edit', $client->id));
 
@@ -101,7 +111,7 @@ class ClientControllerTest extends TestCase
     {
         $client = Client::factory()->create();
 
-        $response = $this->get(route('client.confirm_delete', [
+        $response = $this->actingAs($this->user)->get(route('client.confirm_delete', [
             'id' => $client->id
         ]));
 
@@ -114,7 +124,7 @@ class ClientControllerTest extends TestCase
     {
         $client = Client::factory()->create();
 
-        $response = $this->delete(route('client.delete', [
+        $response = $this->actingAs($this->user)->delete(route('client.delete', [
             'id' =>  $client->id
         ]));
 

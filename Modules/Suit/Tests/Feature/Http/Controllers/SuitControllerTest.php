@@ -3,6 +3,7 @@
 namespace Modules\Suit\Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
+use App\Models\User;
 use Modules\Suit\Entities\Suit;
 use Modules\Client\Entities\Client;
 use Modules\Product\Entities\Product;
@@ -11,9 +12,18 @@ use Modules\Purveyor\Entities\Purveyor;
 
 class SuitControllerTest extends TestCase
 {
+    protected $user;
+
+    protected function setup(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+    }
+
     public function test_route_index()
     {
-        $response = $this->get(route('suit.index'));
+        $response = $this->actingAs($this->user)->get(route('suit.index'));
 
         $response->assertSuccessful();
 
@@ -22,7 +32,7 @@ class SuitControllerTest extends TestCase
 
     public function test_route_create()
     {
-        $response = $this->get(route('suit.create'));
+        $response = $this->actingAs($this->user)->get(route('suit.create'));
 
         $response->assertSuccessful();
 
@@ -66,7 +76,7 @@ class SuitControllerTest extends TestCase
 
         ];
 
-        $response = $this->post(route('suit.store'), $data);
+        $response = $this->actingAs($this->user)->post(route('suit.store'), $data);
 
         $response->assertRedirect(route('suit.index'));
 
@@ -83,7 +93,7 @@ class SuitControllerTest extends TestCase
     {
         $suit = Suit::factory()->hasClient()->hasSuitProducts()->create();
 
-        $response = $this->get(route('suit.show', [
+        $response = $this->actingAs($this->user)->get(route('suit.show', [
             'id' => $suit->id
         ]));
 
@@ -96,7 +106,7 @@ class SuitControllerTest extends TestCase
     {
         $suit = Suit::factory()->hasClient()->hasSuitProducts()->create();
 
-        $response = $this->get(route('suit.edit', [
+        $response = $this->actingAs($this->user)->get(route('suit.edit', [
             'id' => $suit->id
         ]));
 
@@ -144,7 +154,7 @@ class SuitControllerTest extends TestCase
 
         ];
 
-        $response = $this->put(route('suit.update', $suit->id), $data);
+        $response = $this->actingAs($this->user)->put(route('suit.update', $suit->id), $data);
 
         $response->assertRedirect(route('suit.edit', $suit->id));
 
@@ -159,7 +169,7 @@ class SuitControllerTest extends TestCase
     {
         $suit = Suit::factory()->hasClient()->create();
 
-        $response = $this->get(route('suit.confirm_delete', [
+        $response = $this->actingAs($this->user)->get(route('suit.confirm_delete', [
             'id' => $suit->id
         ]));
 
@@ -172,7 +182,7 @@ class SuitControllerTest extends TestCase
     {
         $suit = Suit::factory()->create();
 
-        $response = $this->delete(route('suit.delete', [
+        $response = $this->actingAs($this->user)->delete(route('suit.delete', [
             'id' =>  $suit->id
         ]));
 
@@ -191,7 +201,7 @@ class SuitControllerTest extends TestCase
     {
         $suit = Purveyor::factory()->create();
 
-        $response = $this->post(route('suit.add_purveyor', [
+        $response = $this->actingAs($this->user)->post(route('suit.add_purveyor', [
             'id' =>  $suit->id
         ]));
 
@@ -207,7 +217,7 @@ class SuitControllerTest extends TestCase
         )
             ->create();
 
-        $response = $this->post(route('suit.load_category', [
+        $response = $this->actingAs($this->user)->post(route('suit.load_category', [
             'purveyor_id' =>  $purveyor->id
         ]));
 
@@ -221,7 +231,7 @@ class SuitControllerTest extends TestCase
         )
             ->create();
 
-        $response = $this->post(route('suit.load_product', [
+        $response = $this->actingAs($this->user)->post(route('suit.load_product', [
             'category_id' =>  $category->id
         ]));
 

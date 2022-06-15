@@ -3,14 +3,24 @@
 namespace Modules\Purveyor\Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
+use App\Models\User;
 use Modules\Category\Entities\Category;
 use Modules\purveyor\Entities\Purveyor;
 
 class PurveyorControllerTest extends TestCase
 {
+    protected $user;
+
+    protected function setup(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+    }
+
     public function test_route_index()
     {
-        $response = $this->get(route('purveyor.index'));
+        $response = $this->actingAs($this->user)->get(route('purveyor.index'));
 
         $response->assertSuccessful();
 
@@ -19,7 +29,7 @@ class PurveyorControllerTest extends TestCase
 
     public function test_route_create()
     {
-        $response = $this->get(route('purveyor.create'));
+        $response = $this->actingAs($this->user)->get(route('purveyor.create'));
 
         $response->assertSuccessful();
 
@@ -37,7 +47,7 @@ class PurveyorControllerTest extends TestCase
             'categories' => $category->pluck('id')
         ];
 
-        $response = $this->post(route('purveyor.store'), $data);
+        $response = $this->actingAs($this->user)->post(route('purveyor.store'), $data);
 
         $response->assertRedirect(route('purveyor.index'));
 
@@ -54,7 +64,7 @@ class PurveyorControllerTest extends TestCase
     {
         $purveyor = purveyor::factory()->hasCategories()->create();
 
-        $response = $this->get(route('purveyor.show', [
+        $response = $this->actingAs($this->user)->get(route('purveyor.show', [
             'id' => $purveyor->id
         ]));
 
@@ -67,7 +77,7 @@ class PurveyorControllerTest extends TestCase
     {
         $purveyor = purveyor::factory()->hasCategories()->create();
 
-        $response = $this->get(route('purveyor.edit', [
+        $response = $this->actingAs($this->user)->get(route('purveyor.edit', [
             'id' => $purveyor->id
         ]));
 
@@ -89,7 +99,7 @@ class PurveyorControllerTest extends TestCase
             'categories' => $category->pluck('id')
         ];
 
-        $response = $this->put(route('purveyor.update', $purveyor->id), $data);
+        $response = $this->actingAs($this->user)->put(route('purveyor.update', $purveyor->id), $data);
 
         $response->assertRedirect(route('purveyor.edit', $purveyor->id));
 
@@ -104,7 +114,7 @@ class PurveyorControllerTest extends TestCase
     {
         $purveyor = purveyor::factory()->create();
 
-        $response = $this->get(route('purveyor.confirm_delete', [
+        $response = $this->actingAs($this->user)->get(route('purveyor.confirm_delete', [
             'id' => $purveyor->id
         ]));
 
@@ -117,7 +127,7 @@ class PurveyorControllerTest extends TestCase
     {
         $purveyor = purveyor::factory()->create();
 
-        $response = $this->delete(route('purveyor.delete', [
+        $response = $this->actingAs($this->user)->delete(route('purveyor.delete', [
             'id' =>  $purveyor->id
         ]));
 
