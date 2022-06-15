@@ -5,7 +5,8 @@ use Modules\Client\Http\Controllers\ClientController;
 Route::group(
 	[
 		'prefix' => 'dashboard/cliente',
-		'as' => 'client.'
+		'as' => 'client.',
+		'middleware' => 'auth'
 	],
 	function () {
 

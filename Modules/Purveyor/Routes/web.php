@@ -5,7 +5,8 @@ use Modules\Purveyor\Http\Controllers\PurveyorController;
 Route::group(
 	[
 		'prefix' => 'dashboard/fornecedor',
-		'as' => 'purveyor.'
+		'as' => 'purveyor.',
+		'middleware' => 'auth'
 	],
 	function () {
 

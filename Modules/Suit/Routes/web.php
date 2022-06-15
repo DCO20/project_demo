@@ -5,7 +5,8 @@ use Modules\Suit\Http\Controllers\SuitController;
 Route::group(
 	[
 		'prefix' => 'dashboard/pedido',
-		'as' => 'suit.'
+		'as' => 'suit.',
+		'middleware' => 'auth'
 	],
 	function () {
 
