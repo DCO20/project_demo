@@ -65,9 +65,9 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-12 text-center">
-                                    <a href="" class="btn btn-danger btn-block">Login com Google</a>
-                                    <a href="" class="btn btn-primary btn-block">Login com Facebook</a>
-                                    <a href="" class="btn btn-dark btn-block">Login com GitHub</a>
+                                    <a href="{{ route('login.google') }}" class="btn btn-danger btn-block">Login com Google</a>
+                                    <a href="{{ route('login.facebook') }}" class="btn btn-primary btn-block">Login com Facebook</a>
+                                    <a href="{{ route('login.github') }}" class="btn btn-dark btn-block">Login com GitHub</a>
                                 </div>
                             </div>
                         </form>
